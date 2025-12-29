@@ -3,11 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { ChevronRight, X } from "lucide-react";
-import magazine1 from "@/assets/magazines/magazine-1.png";
-import magazine2 from "@/assets/magazines/magazine-2.png";
-import magazine3 from "@/assets/magazines/magazine-3.png";
-import magazine4 from "@/assets/magazines/magazine-4.png";
-import magazine5 from "@/assets/magazines/magazine-5.png";
+import fasciculoHistoria from "@/assets/fasciculos/fasciculo-historia.png";
+import fasciculoDesign from "@/assets/fasciculos/fasciculo-design.png";
+import fasciculoCuriosidades from "@/assets/fasciculos/fasciculo-curiosidades.png";
 
 const FasciculosSection = () => {
   const { setIsSubscriptionOpen } = useSubscription();
@@ -18,19 +16,19 @@ const FasciculosSection = () => {
       title: "História",
       subtitle: "e cronologia",
       description: "Acompanhe a origem de cada carro e em que contexto foram projetados e produzidos. Conheça os primeiros anos de vida de cada modelo.",
-      images: [magazine1, magazine2],
+      images: [fasciculoHistoria],
     },
     {
       title: "Design",
       subtitle: "e caraterísticas",
       description: "Observe ao pormenor o que carateriza a vista frontal, lateral e traseira, bem como o interior. Descubra os dados técnicos.",
-      images: [magazine3, magazine4],
+      images: [fasciculoDesign],
     },
     {
       title: "Curiosidades",
       subtitle: "e histórias",
       description: "Surpreenda-se com curiosidades e histórias que nunca lhe contaram. Descubra traços estilísticos ou mecânicos em destaque.",
-      images: [magazine5],
+      images: [fasciculoCuriosidades],
     },
   ];
 
