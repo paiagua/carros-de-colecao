@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ReasonsSection from "@/components/ReasonsSection";
 import CollectionSection from "@/components/CollectionSection";
-import SpecialOffersSection from "@/components/SpecialOffersSection";
+import FasciculosSection from "@/components/FasciculosSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -22,8 +22,8 @@ const Index = () => {
           <CollectionSection />
         </section>
         
-        <section id="ofertas" aria-labelledby="ofertas-titulo">
-          <SpecialOffersSection />
+        <section id="fasciculos" aria-labelledby="fasciculos-titulo">
+          <FasciculosSection />
         </section>
         
         <section id="razoes" aria-labelledby="razoes-titulo">
