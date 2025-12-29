@@ -79,14 +79,14 @@ const CollectionSection = () => {
               return (
                 <div 
                   key={car.number}
-                  className={`group relative bg-white rounded-2xl p-5 text-center transition-all duration-500 hover:-translate-y-3 overflow-hidden ${
+                  className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 ${
                     isFirst 
                       ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
                       : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
                   }`}
                 >
                   {/* Animated background gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-100/0 via-orange-50/0 to-amber-100/0 group-hover:from-orange-100/80 group-hover:via-orange-50/50 group-hover:to-amber-100/80 transition-all duration-700" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-100/0 via-orange-50/0 to-amber-100/0 group-hover:from-orange-100/80 group-hover:via-orange-50/50 group-hover:to-amber-100/80 transition-all duration-700" />
                   
                   {/* Decorative corner elements */}
                   <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-orange-200/0 group-hover:border-orange-400 rounded-tl-2xl transition-all duration-500" />
@@ -98,7 +98,7 @@ const CollectionSection = () => {
                   <div className="absolute top-1/2 right-4 w-1 h-1 bg-amber-400 rounded-full opacity-0 group-hover:opacity-70 group-hover:animate-pulse transition-opacity duration-500" style={{ animationDelay: '0.5s' }} />
                   
                   {/* Price badge */}
-                  <div className={`absolute -top-3 -right-3 text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform duration-300 ${
+                  <div className={`absolute top-2 right-2 text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform duration-300 ${
                     isFirst 
                       ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white" 
                       : "bg-white text-gray-700 border border-gray-200 group-hover:border-orange-300 group-hover:text-orange-600"
@@ -107,7 +107,7 @@ const CollectionSection = () => {
                   </div>
                   
                   {isFirst && (
-                    <div className="absolute -top-3 -left-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg animate-pulse">
+                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg animate-pulse">
                       1ª Entrega
                     </div>
                   )}
