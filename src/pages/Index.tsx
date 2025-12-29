@@ -6,6 +6,7 @@ import FasciculosSection from "@/components/FasciculosSection";
 import DiscoverSection from "@/components/DiscoverSection";
 import ReplicasSection from "@/components/ReplicasSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
+import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import SubscriptionSticker from "@/components/SubscriptionSticker";
@@ -34,6 +35,10 @@ const Index = () => {
         
         <section id="fasciculos" aria-labelledby="fasciculos-titulo">
           <FasciculosSection />
+        </section>
+        
+        <section id="ofertas" aria-labelledby="ofertas-titulo">
+          <SpecialOffersSection />
         </section>
         
         <section id="razoes" aria-labelledby="razoes-titulo">
