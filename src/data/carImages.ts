@@ -5,6 +5,7 @@ import car4 from "@/assets/cars/car-4.png";
 import car5 from "@/assets/cars/car-5.png";
 import car6 from "@/assets/cars/car-6.png";
 import car7 from "@/assets/cars/car-7.png";
+import car8 from "@/assets/cars/car-8.png";
 import car9 from "@/assets/cars/car-9.png";
 import car10 from "@/assets/cars/car-10.png";
 
@@ -16,6 +17,7 @@ const carImages: Record<number, string> = {
   5: car5,
   6: car6,
   7: car7,
+  8: car8,
   9: car9,
   10: car10,
 };
