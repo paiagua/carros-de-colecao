@@ -99,10 +99,10 @@ const DiscoverSection = () => {
               className="w-full max-w-2xl mx-auto"
             />
             
-            {/* Price badge */}
+            {/* Scale badge */}
             <div className="absolute top-4 right-4 md:top-8 md:right-8 w-24 h-24 md:w-32 md:h-32 bg-orange-500 rounded-full flex flex-col items-center justify-center text-white shadow-2xl border-4 border-white">
-              <span className="text-xs md:text-sm">apenas</span>
-              <span className="text-2xl md:text-4xl font-black">5,95€</span>
+              <span className="text-xs md:text-sm">escala</span>
+              <span className="text-2xl md:text-4xl font-black">1:60</span>
             </div>
           </div>
         </div>
