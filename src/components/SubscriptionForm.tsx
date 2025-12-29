@@ -278,10 +278,10 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   Subscrever Coleção <span className="text-accent">Inédita</span> de{" "}
                   <span className="relative inline-block">
                     <span className="inline-flex items-center justify-center bg-gradient-to-br from-accent to-amber-500 text-black w-16 h-16 md:w-20 md:h-20 rounded-full font-black text-2xl md:text-3xl shadow-xl shadow-accent/40 transform -rotate-3 hover:rotate-0 transition-transform">
-                      120
+                      60+
                     </span>
                   </span>{" "}
-                  Minerais
+                  Carros
                 </h2>
               </div>
             </div>
@@ -432,8 +432,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
             )}
 
             <Card className="p-4 md:p-6 bg-gradient-to-br from-accent/10 to-accent/5 border-2 border-accent/30 text-center">
-              <p className="text-base md:text-lg font-semibold mb-2">120 minerais autênticos esperam por si!</p>
-              <p className="text-xs md:text-sm text-muted-foreground">Uma viagem completa pelo fascinante mundo da mineralogia</p>
+              <p className="text-base md:text-lg font-semibold mb-2">60+ carros de coleção esperam por si!</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Uma viagem completa pelo fascinante mundo automóvel</p>
             </Card>
           </div>
 
@@ -498,7 +498,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
 
             <div>
               <h2 className="text-2xl font-display font-bold mb-2">
-                Morada onde vai querer receber os seus minerais:
+                Morada onde vai querer receber os seus carros:
               </h2>
             </div>
 

@@ -47,7 +47,7 @@ const SubscriptionSticker = () => {
                 Subscreva Agora
               </h3>
               <p className="text-sm text-accent-foreground/90">
-                Receba minerais autênticos + fascículos semanais
+                Receba carros de coleção + fascículos semanais
               </p>
             </div>
 

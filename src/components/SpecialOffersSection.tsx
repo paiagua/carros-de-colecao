@@ -90,7 +90,7 @@ const SpecialOffersSection = () => {
                   Lupa
                 </h3>
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  Descubra os detalhes excecionais dos seus minerais
+                  Descubra os detalhes excecionais dos seus carros
                 </p>
               </div>
               
