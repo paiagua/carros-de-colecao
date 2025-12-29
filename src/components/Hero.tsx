@@ -131,12 +131,12 @@ const Hero = () => {
         </div>
 
         {/* Animated Cars Marquee */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-x-clip overflow-y-visible z-50">
           {/* Top accent bar */}
           <div className="h-2 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 shadow-lg" />
           
           {/* Main marquee container */}
-          <div className="relative py-6 md:py-10 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-500">
+          <div className="relative py-6 md:py-10 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-500 overflow-visible">
             {/* Decorative top shadow */}
             <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-black/10 to-transparent" />
             
