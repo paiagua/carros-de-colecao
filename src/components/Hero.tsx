@@ -30,9 +30,8 @@ const Hero = () => {
 
         {/* Background with packshot - desktop only */}
         <div className="absolute inset-0 hidden lg:block">
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent z-10" />
           <div 
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-[55%] h-[80%] bg-contain bg-center bg-no-repeat"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[55%] h-[85%] bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${heroCollection})` }}
           />
         </div>
