@@ -82,13 +82,10 @@ const DiscoverSection = () => {
 
           {/* Right column - Cars image with scale badge */}
           <div className="relative">
-            {/* Decorative glow behind image */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-200/30 to-transparent rounded-3xl blur-2xl scale-105" />
-            
             <img 
               src={carsCollection} 
               alt="Coleção de carros em miniatura" 
-              className="relative w-full max-w-xl mx-auto drop-shadow-2xl"
+              className="w-full max-w-2xl mx-auto"
             />
             
             {/* Scale badge */}
