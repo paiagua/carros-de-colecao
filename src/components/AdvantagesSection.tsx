@@ -59,7 +59,7 @@ const AdvantagesSection = () => {
                 Primeiro carro por apenas <span className="text-primary font-bold">1,00€</span>
               </p>
               <Button 
-                variant="cta"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold"
                 onClick={() => setIsSubscriptionOpen(true)}
               >
                 Subscrever Agora

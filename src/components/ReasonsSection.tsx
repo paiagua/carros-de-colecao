@@ -67,8 +67,7 @@ const ReasonsSection = () => {
           {/* CTA */}
           <div className="text-center">
             <Button
-              variant="cta"
-              size="lg"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-8 py-6 h-auto"
               onClick={() => setIsSubscriptionOpen(true)}
             >
               Subscrever Agora
