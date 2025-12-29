@@ -12,7 +12,7 @@ const ReasonsSection = () => {
       icon: Gift,
       title: "OFERTAS EXCLUSIVAS",
       subtitle: "PARA ASSINANTES",
-      description: "Geodo de Quartzo, Geodo de Ametista e Lupa",
+      description: "Brindes exclusivos e edições especiais",
     },
     {
       icon: Truck,
@@ -24,7 +24,7 @@ const ReasonsSection = () => {
       icon: CalendarCheck,
       title: "NÃO PERDE",
       subtitle: "NENHUM NÚMERO",
-      description: "Garantia de receber todos os minerais da coleção",
+      description: "Garantia de receber todos os carros da coleção",
     },
     {
       icon: XCircle,
@@ -38,27 +38,27 @@ const ReasonsSection = () => {
     <>
       <section className="py-16 md:py-24 bg-secondary relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-cta/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-4 relative z-10">
           {/* Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end mb-12 md:mb-16 animate-fade-in">
             {/* Left side - Title */}
             <div className="lg:col-span-7 text-left">
-              <div className="inline-flex items-center gap-2 text-accent text-sm md:text-base font-semibold mb-3">
-                <span className="uppercase tracking-wider">Coleção inédita de 120 Minerais</span>
+              <div className="inline-flex items-center gap-2 text-primary text-sm md:text-base font-semibold mb-3">
+                <span className="uppercase tracking-wider">Coleção de Carros Clássicos</span>
               </div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-[0.9]">
-                4 Razões para <span className="text-accent">Subscrever</span>
+                4 Razões para <span className="text-primary">Subscrever</span>
               </h2>
             </div>
             
             {/* Right side - Description */}
             <div className="lg:col-span-5 lg:pb-2">
-              <div className="lg:border-l-2 border-accent/30 lg:pl-8">
+              <div className="lg:border-l-2 border-primary/30 lg:pl-8">
                 <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  Descubra porque <span className="text-foreground underline decoration-accent decoration-2 underline-offset-4">milhares de colecionadores</span> já subscreveram esta <span className="text-foreground underline decoration-accent decoration-2 underline-offset-4">coleção única</span>
+                  Descubra porque <span className="text-foreground underline decoration-primary decoration-2 underline-offset-4">milhares de colecionadores</span> já subscreveram esta <span className="text-foreground underline decoration-primary decoration-2 underline-offset-4">coleção única</span>
                 </p>
               </div>
             </div>
@@ -81,14 +81,14 @@ const ReasonsSection = () => {
                     rounded-xl md:rounded-2xl
                     p-6 md:p-8
                     transition-all duration-300
-                    hover:shadow-xl hover:shadow-accent/10
-                    hover:border-accent/30
+                    hover:shadow-xl hover:shadow-primary/10
+                    hover:border-primary/30
                     h-full
                   ">
                     <div className="flex items-start gap-4 md:gap-6 mb-4">
                       <div className="flex-shrink-0">
-                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                          <Icon className="w-7 h-7 md:w-8 md:h-8 text-accent" strokeWidth={2.5} />
+                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                          <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary" strokeWidth={2.5} />
                         </div>
                       </div>
 
@@ -96,7 +96,7 @@ const ReasonsSection = () => {
                         <h3 className="text-xl md:text-2xl font-display font-bold text-foreground leading-tight mb-1">
                           {reason.title}
                         </h3>
-                        <p className="text-lg md:text-xl font-display font-bold text-accent">
+                        <p className="text-lg md:text-xl font-display font-bold text-primary">
                           {reason.subtitle}
                         </p>
                       </div>
