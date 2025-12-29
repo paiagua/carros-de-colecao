@@ -14,9 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        'display': ['Oswald', 'sans-serif'],
-        'serif': ['Cormorant Garamond', 'Georgia', 'serif'],
         'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'display': ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
