@@ -39,12 +39,6 @@ const Hero = () => {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             {/* Left Column - Text Content (on dark background) */}
             <div className="space-y-6 order-2 lg:order-1">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/50 rounded-full px-4 py-2">
-                <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-                <span className="text-orange-400 text-sm font-bold uppercase tracking-wide">Coleção Exclusiva</span>
-              </div>
-
               {/* Logo + Main Title */}
               <div>
                 {/* Logo */}
