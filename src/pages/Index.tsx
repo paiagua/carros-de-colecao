@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import CarsShowcase from "@/components/CarsShowcase";
 import ReasonsSection from "@/components/ReasonsSection";
 import CollectionSection from "@/components/CollectionSection";
 import FasciculosSection from "@/components/FasciculosSection";
@@ -19,6 +20,8 @@ const Index = () => {
       
       <article>
         <Hero />
+        
+        <CarsShowcase />
         
         <section id="replicas" aria-labelledby="replicas-titulo">
           <ReplicasSection />
