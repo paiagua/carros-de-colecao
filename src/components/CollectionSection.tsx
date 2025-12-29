@@ -25,10 +25,18 @@ const CollectionSection = () => {
 
   return (
     <>
-      <section id="colecao" className="py-20 md:py-28 bg-background relative">
-        <div className="container mx-auto px-4">
+      <section id="colecao" className="py-20 md:py-28 bg-background relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-orange-500/10 via-orange-400/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-bl from-orange-400/15 to-transparent rounded-full blur-2xl" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-gray-200/50 to-transparent rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+        <div className="relative flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16 pb-8 border-b border-gray-200">
+          {/* Decorative line accent */}
+          <div className="absolute bottom-0 left-0 w-32 h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full" />
+          
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 text-primary text-sm font-semibold mb-4">
               <Car className="w-4 h-4" />
