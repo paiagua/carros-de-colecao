@@ -461,9 +461,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
             <Card className="p-6 bg-accent/10 border-2 border-accent/30">
               <h3 className="font-bold mb-4">Receberá as OFERTAS nos seguintes envios:</h3>
               <ul className="space-y-2">
-                <li>• 4º envio receberá o mineral <strong>Geodo de Quartzo</strong> de OFERTA (entre 10 a 15cm).</li>
-                <li>• 10º envio receberá a <strong>Lupa</strong> de OFERTA.</li>
-                <li>• 20º envio receberá o mineral <strong>Geodo de Ametista</strong> de OFERTA (entre 10 e 15cm).</li>
+                <li>• 1º envio receberá o <strong>Caderno Exclusivo</strong> de OFERTA.</li>
+                <li>• 4º e 19º envio receberá <strong>Pack de 3 Ferrari</strong> de OFERTA.</li>
+                <li>• 6º, 14º, 21º, 29º e 36º envio receberá <strong>Caixa Organizadora de Madeira</strong> de OFERTA.</li>
               </ul>
               
               {!showOffersDetails ? (
