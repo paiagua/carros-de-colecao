@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System - Dark theme inspired by CM Journal Minerais
+   Dark earthy background, golden/yellow accents, pink/red CTA buttons
+   All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark earthy theme */
+    --background: 220 15% 13%;
+    --foreground: 45 30% 95%;
+
+    --card: 220 12% 16%;
+    --card-foreground: 45 30% 95%;
+
+    --popover: 220 12% 14%;
+    --popover-foreground: 45 30% 95%;
+
+    /* Primary - Gold/Yellow */
+    --primary: 45 80% 55%;
+    --primary-foreground: 220 15% 10%;
+
+    /* Secondary - Dark slate */
+    --secondary: 220 12% 20%;
+    --secondary-foreground: 45 30% 90%;
+
+    /* Muted - Dark muted */
+    --muted: 220 10% 22%;
+    --muted-foreground: 45 15% 60%;
+
+    /* Accent - Gold */
+    --accent: 45 80% 55%;
+    --accent-foreground: 220 15% 10%;
+
+    /* CTA - Golden Yellow #F8B201 */
+    --cta: 43 99% 49%;
+    --cta-foreground: 0 0% 0%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 25%;
+    --input: 220 10% 25%;
+    --ring: 45 80% 55%;
+
+    --radius: 0.5rem;
+    
+    /* Premium Gradients */
+    --hero-gradient: linear-gradient(180deg, hsl(220 15% 13%) 0%, hsl(220 12% 10%) 100%);
+    --accent-gradient: linear-gradient(135deg, hsl(45 80% 55%) 0%, hsl(45 90% 65%) 100%);
+    --cta-gradient: linear-gradient(135deg, hsl(350 75% 55%) 0%, hsl(350 80% 60%) 100%);
+    
+    /* Premium Shadows */
+    --shadow-sm: 0 2px 4px -1px hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.4);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 30px hsl(45 80% 55% / 0.3);
+    --shadow-cta: 0 0 30px hsl(350 75% 55% / 0.4);
+    
+    /* Refined Card Shadows */
+    --card-shadow: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
+    --card-shadow-hover: 0 12px 30px -4px hsl(0 0% 0% / 0.4), 0 0 0 1px hsl(45 80% 55% / 0.2);
+    
+    /* Transitions */
+    --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Dark mode */
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 85% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --cta: 0 85% 50%;
+    --cta-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 85% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent/40 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent/60;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-yellow-400;
+  }
+}
