@@ -134,19 +134,42 @@ const Hero = () => {
         </div>
 
         {/* Animated Cars Marquee */}
-        <div className="relative py-8 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-500 overflow-hidden">
-          {/* First row - moving left */}
-          <div className="flex animate-marquee-left">
-            {[...carImages, ...carImages, ...carImages].map((car, index) => (
-              <div key={`car-1-${index}`} className="flex-shrink-0 mx-6">
-                <img 
-                  src={car} 
-                  alt={`Carro ${index + 1}`} 
-                  className="h-20 md:h-28 w-auto object-contain drop-shadow-lg hover:scale-110 transition-transform cursor-pointer"
-                />
-              </div>
-            ))}
+        <div className="relative overflow-hidden">
+          {/* Top accent bar */}
+          <div className="h-2 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 shadow-lg" />
+          
+          {/* Main marquee container */}
+          <div className="relative py-6 md:py-10 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-500">
+            {/* Decorative top shadow */}
+            <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-black/10 to-transparent" />
+            
+            {/* Shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+            
+            {/* Cars row */}
+            <div className="flex animate-marquee-left">
+              {[...carImages, ...carImages, ...carImages].map((car, index) => (
+                <div key={`car-1-${index}`} className="flex-shrink-0 mx-4 md:mx-8 group">
+                  <div className="relative">
+                    {/* Shadow under car */}
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-3 bg-black/20 rounded-full blur-md" />
+                    <img 
+                      src={car} 
+                      alt={`Carro ${index + 1}`} 
+                      className="relative h-16 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                      style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))' }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Decorative bottom shadow */}
+            <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-black/10 to-transparent" />
           </div>
+          
+          {/* Bottom accent bar */}
+          <div className="h-1.5 bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700" />
         </div>
 
         {/* Price Badge */}
