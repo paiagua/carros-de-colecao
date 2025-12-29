@@ -10,9 +10,9 @@ import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChevronLeft, ArrowRight, Check, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import mineral1 from "@/assets/minerals/mineral-1.jpg";
-import mineral2 from "@/assets/minerals/mineral-2.jpg";
-import mineral3 from "@/assets/minerals/mineral-3.jpg";
+import car1 from "@/assets/cars/car-1.png";
+import car2 from "@/assets/cars/car-2.png";
+import car3 from "@/assets/cars/car-3.png";
 
 
 const step1Schema = z.object({
@@ -27,7 +27,7 @@ const step1Schema = z.object({
 
 const step2Schema = z.object({
   firstBook: z.enum(["1", "2", "3"], {
-    required_error: "Selecione o primeiro mineral"
+    required_error: "Selecione o primeiro carro"
   })
 });
 
@@ -238,9 +238,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   };
 
   const minerals = [
-    { id: "1", title: "VW Beetle", image: mineral1, price: "5,95€" },
-    { id: "2", title: "VW T1 Bus", image: mineral2, price: "5,95€" },
-    { id: "3", title: "Renault 4L", image: mineral3, price: "5,95€" }
+    { id: "1", title: "VW Beetle", image: car1, price: "5,95€" },
+    { id: "2", title: "VW T1 Bus", image: car2, price: "5,95€" },
+    { id: "3", title: "Renault 4L", image: car3, price: "5,95€" }
   ];
 
   return (
@@ -380,9 +380,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
           <div className="flex-1 overflow-y-auto space-y-6 pb-4">
             <div className="text-center mb-6">
               <h2 className="text-xl md:text-2xl lg:text-3xl font-display font-bold mb-3 md:mb-4">
-                {formData.fullName?.split(' ')[0]}, escolha o seu <span className="text-accent">primeiro mineral</span>!
+                {formData.fullName?.split(' ')[0]}, escolha o seu <span className="text-accent">primeiro carro</span>!
               </h2>
-              <p className="text-sm md:text-base text-muted-foreground">Clique na capa do fascículo que deseja receber primeiro</p>
+              <p className="text-sm md:text-base text-muted-foreground">Clique no carro que deseja receber primeiro</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-full overflow-hidden">
@@ -415,7 +415,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       className="w-full max-w-[160px] sm:max-w-[200px] aspect-[3/4] object-cover mb-3 md:mb-4 rounded-lg shadow-md"
                     />
                     <p className="font-bold text-center text-xs md:text-sm mb-1">
-                      Mineral {mineral.id}
+                      Carro {mineral.id}
                     </p>
                     <p className="text-center text-[10px] md:text-xs text-muted-foreground leading-relaxed break-words px-2">
                       {mineral.title}
