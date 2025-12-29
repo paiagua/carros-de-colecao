@@ -24,15 +24,9 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-        {/* Animated background gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-900/20 via-transparent to-transparent" />
-        
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }} />
+      <section className="relative min-h-screen flex flex-col overflow-hidden bg-white">
+        {/* Top accent bar */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-orange-500" />
 
         {/* Main Content */}
         <div className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-10 flex items-center">
@@ -40,9 +34,9 @@ const Hero = () => {
             {/* Left Column - Text Content */}
             <div className="space-y-6 order-2 lg:order-1">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/50 rounded-full px-4 py-2 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 bg-orange-100 border border-orange-300 rounded-full px-4 py-2">
                 <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-                <span className="text-orange-400 text-sm font-bold uppercase tracking-wide">Coleção Exclusiva</span>
+                <span className="text-orange-600 text-sm font-bold uppercase tracking-wide">Coleção Exclusiva</span>
               </div>
 
               {/* Logo + Main Title */}
@@ -58,16 +52,16 @@ const Hero = () => {
                   <span 
                     className="block text-7xl sm:text-8xl lg:text-9xl font-bold text-orange-500"
                     style={{ 
-                      textShadow: '4px 4px 0 rgba(0,0,0,0.3)',
+                      textShadow: '3px 3px 0 rgba(0,0,0,0.1)',
                       letterSpacing: '-0.02em'
                     }}
                   >
                     CARROS
                   </span>
                   <span 
-                    className="block text-4xl sm:text-5xl lg:text-6xl font-bold text-white italic -mt-2"
+                    className="block text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 italic -mt-2"
                     style={{ 
-                      textShadow: '2px 2px 0 rgba(249,115,22,0.5)'
+                      textShadow: '2px 2px 0 rgba(249,115,22,0.2)'
                     }}
                   >
                     de coleção
@@ -81,23 +75,23 @@ const Hero = () => {
               </div>
 
               {/* Description */}
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-md">
-                Uma coleção única que junta uma obra editorial e as <span className="text-orange-400 font-semibold">réplicas oficiais</span> dos automóveis que marcaram gerações.
+              <p className="text-gray-700 text-lg md:text-xl leading-relaxed max-w-md">
+                Uma coleção única que junta uma obra editorial e as <span className="text-orange-500 font-semibold">réplicas oficiais</span> dos automóveis que marcaram gerações.
               </p>
 
               {/* Features */}
               <div className="grid grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+                <div className="text-center p-4 bg-gray-50 rounded-xl border border-gray-200">
                   <div className="text-3xl md:text-4xl font-bold text-orange-500">60+</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">Modelos</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">Modelos</div>
                 </div>
-                <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+                <div className="text-center p-4 bg-gray-50 rounded-xl border border-gray-200">
                   <div className="text-3xl md:text-4xl font-bold text-orange-500">1:60</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">Escala</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">Escala</div>
                 </div>
-                <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+                <div className="text-center p-4 bg-gray-50 rounded-xl border border-gray-200">
                   <div className="text-3xl md:text-4xl font-bold text-orange-500">1€</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">1º Carro</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">1º Carro</div>
                 </div>
               </div>
 
@@ -113,7 +107,7 @@ const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="text-lg px-10 py-7 border-2 border-white/30 text-white hover:bg-white/10 font-bold uppercase tracking-wide rounded-xl bg-transparent"
+                  className="text-lg px-10 py-7 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-bold uppercase tracking-wide rounded-xl"
                   onClick={() => document.getElementById('colecao')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Ver Coleção
@@ -123,7 +117,7 @@ const Hero = () => {
 
             {/* Right Column - Image */}
             <div className="relative order-1 lg:order-2">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-3xl blur-3xl" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-100 to-orange-50 rounded-3xl blur-2xl" />
               <img 
                 src={heroCollection} 
                 alt="Carros de Coleção - Miniaturas e Fascículos" 
