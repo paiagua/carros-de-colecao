@@ -52,14 +52,9 @@ const FasciculosSection = () => {
 
         {/* Features with connecting lines */}
         <div className="max-w-6xl mx-auto relative">
-          {/* Horizontal connecting line */}
-          <div className="hidden lg:block absolute top-32 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-orange-200 via-orange-400 to-orange-200" />
-          
-          {/* Vertical dots on line */}
-          <div className="hidden lg:flex absolute top-32 left-[16%] right-[16%] justify-between -translate-y-1/2">
-            <div className="w-3 h-3 bg-orange-500 rounded-full shadow-lg shadow-orange-500/50" />
-            <div className="w-3 h-3 bg-orange-500 rounded-full shadow-lg shadow-orange-500/50" />
-            <div className="w-3 h-3 bg-orange-500 rounded-full shadow-lg shadow-orange-500/50" />
+          {/* Horizontal connecting line - improved */}
+          <div className="hidden lg:block absolute top-8 left-[16%] right-[16%]">
+            <div className="h-[2px] bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
@@ -68,12 +63,18 @@ const FasciculosSection = () => {
                 key={index}
                 className="group relative text-center"
               >
-                {/* Vertical line from dot to content */}
-                <div className="hidden lg:block absolute top-32 left-1/2 w-0.5 h-12 bg-gradient-to-b from-orange-400 to-orange-100 -translate-x-1/2" />
-                
-                {/* Number circle */}
-                <div className="w-16 h-16 mx-auto mb-8 rounded-full border-2 border-orange-500 flex items-center justify-center text-2xl text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
-                  {index + 1}
+                {/* Number circle with connecting line */}
+                <div className="relative">
+                  {/* Vertical line from horizontal to circle */}
+                  <div className="hidden lg:block absolute top-0 left-1/2 w-[2px] h-8 bg-gradient-to-b from-orange-400 to-orange-500 -translate-x-1/2 -translate-y-full" />
+                  
+                  {/* Small dot at intersection */}
+                  <div className="hidden lg:block absolute -top-8 left-1/2 w-2 h-2 bg-orange-500 rounded-full -translate-x-1/2 shadow-lg shadow-orange-500/50" />
+                  
+                  {/* Number circle */}
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white border-3 border-orange-500 flex items-center justify-center text-2xl text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 shadow-lg relative z-10" style={{ borderWidth: '3px' }}>
+                    {index + 1}
+                  </div>
                 </div>
 
                 {/* Title */}
