@@ -1,46 +1,88 @@
-import fasciculoVW from "@/assets/fasciculos/fasciculo-vw-bus.png";
-import fasciculoRenault from "@/assets/fasciculos/fasciculo-renault.png";
+import { useState, useEffect } from "react";
+import magazine1 from "@/assets/magazines/magazine-1.png";
+import magazine2 from "@/assets/magazines/magazine-2.png";
+import magazine3 from "@/assets/magazines/magazine-3.png";
+import magazine4 from "@/assets/magazines/magazine-4.png";
+import magazine5 from "@/assets/magazines/magazine-5.png";
+
+const magazines = [magazine1, magazine2, magazine3, magazine4, magazine5];
 
 const ReplicasSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-advance slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % magazines.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Fascicle images */}
-          <div className="flex justify-center items-center gap-4 md:gap-8">
-            <img 
-              src={fasciculoVW} 
-              alt="Fascículo VW T1 Bus" 
-              className="w-40 md:w-56 lg:w-64 drop-shadow-2xl transform -rotate-6 hover:rotate-0 transition-transform duration-300"
-            />
-            <img 
-              src={fasciculoRenault} 
-              alt="Fascículo Renault 4L" 
-              className="w-40 md:w-56 lg:w-64 drop-shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-300"
-            />
+          {/* Left - Image Slider */}
+          <div className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
+            {magazines.map((img, index) => (
+              <div
+                key={index}
+                className={`absolute transition-all duration-700 ease-in-out ${
+                  index === currentSlide
+                    ? "opacity-100 scale-100 z-10"
+                    : index === (currentSlide - 1 + magazines.length) % magazines.length
+                    ? "opacity-40 scale-75 -translate-x-32 z-0"
+                    : index === (currentSlide + 1) % magazines.length
+                    ? "opacity-40 scale-75 translate-x-32 z-0"
+                    : "opacity-0 scale-50 z-0"
+                }`}
+              >
+                <img
+                  src={img}
+                  alt={`Fascículo ${index + 1}`}
+                  className="w-64 md:w-80 lg:w-96 rounded-lg shadow-2xl"
+                />
+              </div>
+            ))}
+            
+            {/* Slide indicators */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
+              {magazines.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? "bg-orange-500 w-8"
+                      : "bg-gray-300 hover:bg-gray-400"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Right - Content */}
           <div className="space-y-6">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-              Descubra as histórias e curiosidades das réplicas oficiais dos carros que deixaram a sua marca na história do automóvel.
+            <h2 className="text-2xl md:text-3xl lg:text-4xl text-gray-900 leading-tight">
+              Descubra as histórias e curiosidades das réplicas oficiais dos carros que deixaram a sua marca na{" "}
+              <span className="text-orange-500">história do automóvel.</span>
             </h2>
 
             <p className="text-gray-700 text-base md:text-lg leading-relaxed">
               Modelos que fizeram parte de momentos inesquecíveis, de viagens em família, de aventuras na estrada e de sonhos sobre rodas.
             </p>
 
-            <ul className="space-y-3 text-gray-700 text-base md:text-lg">
+            <ul className="space-y-4 text-gray-700 text-base md:text-lg">
               <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold text-xl">•</span>
+                <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
                 <span>Réplicas oficiais dos modelos mais emblemáticos do mundo automóvel, do passado e do presente</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold text-xl">•</span>
+                <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
                 <span>Miniaturas pormenorizadas</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold text-xl">•</span>
+                <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
                 <span>As melhores imagens, fotografias e infografias de cada modelo, ilustrando a sua história e design</span>
               </li>
             </ul>
