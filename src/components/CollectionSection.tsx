@@ -72,49 +72,68 @@ const CollectionSection = () => {
         </div>
 
           {/* Cars Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 md:gap-6 mb-12">
             {minerals.slice(0, 10).map((car, index) => {
               const isFirst = index === 0;
               const carImage = getCarImage(car.number);
               return (
                 <div 
                   key={car.number}
-                  className={`group relative bg-card rounded-xl p-4 text-center transition-all duration-300 hover:shadow-lg border ${
+                  className={`group relative bg-white rounded-2xl p-5 text-center transition-all duration-500 hover:-translate-y-2 ${
                     isFirst 
-                      ? "border-primary shadow-md ring-2 ring-primary/20" 
-                      : "border-border hover:border-primary/30"
+                      ? "shadow-xl shadow-orange-500/20 ring-2 ring-orange-500" 
+                      : "shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-orange-200/50"
                   }`}
                 >
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
                   {/* Price badge */}
-                  <div className={`absolute -top-2 -right-2 text-xs font-bold px-2 py-1 rounded-full z-10 ${
+                  <div className={`absolute -top-3 -right-3 text-xs font-bold px-3 py-1.5 rounded-full z-10 shadow-lg ${
                     isFirst 
-                      ? "bg-primary text-primary-foreground" 
-                      : "bg-muted text-foreground"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white" 
+                      : "bg-white text-gray-700 border border-gray-200"
                   }`}>
                     {car.price}
                   </div>
                   
                   {isFirst && (
-                    <div className="absolute -top-2 -left-2 bg-accent text-accent-foreground text-[10px] font-bold px-2 py-1 rounded-full z-10">
+                    <div className="absolute -top-3 -left-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-10 shadow-lg">
                       1ª Entrega
                     </div>
                   )}
                   
                   {/* Car image */}
-                  <div className="w-full aspect-[4/3] mb-3 overflow-hidden rounded-lg bg-white flex items-center justify-center">
+                  <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    {/* Subtle pattern */}
+                    <div className="absolute inset-0 opacity-5" style={{
+                      backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
+                      backgroundSize: '8px 8px'
+                    }} />
+                    
                     {carImage ? (
                       <img 
                         src={carImage} 
                         alt={car.title}
-                        className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                        className="relative w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
                       <Car className="w-12 h-12 text-muted-foreground/30" />
                     )}
                   </div>
                   
-                  <span className="text-xs font-semibold text-primary">Nº {car.number}</span>
-                  <h3 className="font-medium text-sm text-foreground mt-1 line-clamp-2">{car.title}</h3>
+                  {/* Car info */}
+                  <div className="relative">
+                    <span className="inline-block text-xs font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded-full mb-2">
+                      Nº {car.number}
+                    </span>
+                    <h3 className="font-semibold text-sm text-gray-800 line-clamp-2 group-hover:text-orange-600 transition-colors duration-300">
+                      {car.title}
+                    </h3>
+                  </div>
+                  
+                  {/* Bottom accent line */}
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full group-hover:w-1/2 transition-all duration-500" />
                 </div>
               );
             })}
