@@ -79,43 +79,60 @@ const CollectionSection = () => {
               return (
                 <div 
                   key={car.number}
-                  className={`group relative bg-white rounded-2xl p-5 text-center transition-all duration-500 hover:-translate-y-2 ${
+                  className={`group relative bg-white rounded-2xl p-5 text-center transition-all duration-500 hover:-translate-y-3 overflow-hidden ${
                     isFirst 
-                      ? "shadow-xl shadow-orange-500/20 ring-2 ring-orange-500" 
-                      : "shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-orange-200/50"
+                      ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
+                      : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
                   }`}
                 >
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Animated background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-100/0 via-orange-50/0 to-amber-100/0 group-hover:from-orange-100/80 group-hover:via-orange-50/50 group-hover:to-amber-100/80 transition-all duration-700" />
+                  
+                  {/* Decorative corner elements */}
+                  <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-orange-200/0 group-hover:border-orange-400 rounded-tl-2xl transition-all duration-500" />
+                  <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-orange-200/0 group-hover:border-orange-400 rounded-br-2xl transition-all duration-500" />
+                  
+                  {/* Floating particles effect */}
+                  <div className="absolute top-4 right-8 w-2 h-2 bg-orange-300 rounded-full opacity-0 group-hover:opacity-60 group-hover:animate-pulse transition-opacity duration-500" />
+                  <div className="absolute bottom-8 left-6 w-1.5 h-1.5 bg-orange-400 rounded-full opacity-0 group-hover:opacity-50 group-hover:animate-pulse transition-opacity duration-700" style={{ animationDelay: '0.3s' }} />
+                  <div className="absolute top-1/2 right-4 w-1 h-1 bg-amber-400 rounded-full opacity-0 group-hover:opacity-70 group-hover:animate-pulse transition-opacity duration-500" style={{ animationDelay: '0.5s' }} />
                   
                   {/* Price badge */}
-                  <div className={`absolute -top-3 -right-3 text-xs font-bold px-3 py-1.5 rounded-full z-10 shadow-lg ${
+                  <div className={`absolute -top-3 -right-3 text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform duration-300 ${
                     isFirst 
                       ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white" 
-                      : "bg-white text-gray-700 border border-gray-200"
+                      : "bg-white text-gray-700 border border-gray-200 group-hover:border-orange-300 group-hover:text-orange-600"
                   }`}>
                     {car.price}
                   </div>
                   
                   {isFirst && (
-                    <div className="absolute -top-3 -left-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-10 shadow-lg">
+                    <div className="absolute -top-3 -left-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg animate-pulse">
                       1ª Entrega
                     </div>
                   )}
                   
-                  {/* Car image */}
-                  <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                    {/* Subtle pattern */}
-                    <div className="absolute inset-0 opacity-5" style={{
-                      backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
-                      backgroundSize: '8px 8px'
+                  {/* Car image container */}
+                  <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center">
+                    {/* Radial glow effect */}
+                    <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+                         style={{ background: 'radial-gradient(circle at center, rgba(251, 146, 60, 0.15) 0%, transparent 70%)' }} />
+                    
+                    {/* Subtle grid pattern */}
+                    <div className="absolute inset-0 opacity-[0.03]" style={{
+                      backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
+                      backgroundSize: '20px 20px'
                     }} />
+                    
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000" />
                     
                     {carImage ? (
                       <img 
                         src={carImage} 
                         alt={car.title}
-                        className="relative w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-500"
+                        className="relative w-full h-full object-contain p-3 group-hover:scale-115 transition-transform duration-700 drop-shadow-lg group-hover:drop-shadow-2xl"
+                        style={{ filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }}
                       />
                     ) : (
                       <Car className="w-12 h-12 text-muted-foreground/30" />
@@ -123,17 +140,21 @@ const CollectionSection = () => {
                   </div>
                   
                   {/* Car info */}
-                  <div className="relative">
-                    <span className="inline-block text-xs font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded-full mb-2">
+                  <div className="relative z-10">
+                    <span className="inline-block text-xs font-bold text-orange-600 bg-gradient-to-r from-orange-50 to-amber-50 px-3 py-1 rounded-full mb-2 border border-orange-100 group-hover:border-orange-300 transition-colors duration-300">
                       Nº {car.number}
                     </span>
-                    <h3 className="font-semibold text-sm text-gray-800 line-clamp-2 group-hover:text-orange-600 transition-colors duration-300">
+                    <h3 className="font-bold text-sm text-gray-800 line-clamp-2 group-hover:text-orange-600 transition-colors duration-300">
                       {car.title}
                     </h3>
                   </div>
                   
                   {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full group-hover:w-1/2 transition-all duration-500" />
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  
+                  {/* Side glow lines */}
+                  <div className="absolute top-1/4 -left-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-1/4 -right-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               );
             })}
