@@ -3,7 +3,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import correioLogo from "@/assets/correio-manha-logo.png";
-import tvguiaLogo from "@/assets/tvguia-logo.png";
+import recordLogo from "@/assets/record-logo.png";
 import heroCollection from "@/assets/hero-collection.png";
 import { Car } from "lucide-react";
 
@@ -48,8 +48,8 @@ const Hero = () => {
                 className="h-10 md:h-14 object-contain"
               />
               <img 
-                src={tvguiaLogo} 
-                alt="TV Guia" 
+                src={recordLogo} 
+                alt="Record" 
                 className="h-10 md:h-14 object-contain"
               />
             </div>
