@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Car } from "lucide-react";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 
@@ -37,9 +37,10 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3 animate-fade-in-down">
+              <Car className="w-6 h-6 text-primary" />
               <span className="font-display text-xl font-bold">
-                <span className="text-accent">Minerais</span>
-                <span className="text-foreground/80"> da Terra</span>
+                <span className="text-primary">Carros</span>
+                <span className="text-foreground/80"> Clássicos</span>
               </span>
             </div>
 
@@ -47,29 +48,29 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-6 animate-fade-in-down">
               <button
                 onClick={() => scrollToSection("colecao")}
-                className="text-foreground/80 hover:text-accent transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+                className="text-foreground/80 hover:text-primary transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 A Coleção
               </button>
               <button
                 onClick={() => scrollToSection("entregas")}
-                className="text-foreground/80 hover:text-accent transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+                className="text-foreground/80 hover:text-primary transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 Entregas
               </button>
               <button
                 onClick={() => scrollToSection("vantagens")}
-                className="text-foreground/80 hover:text-accent transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+                className="text-foreground/80 hover:text-primary transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 Vantagens
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
-                className="text-foreground/80 hover:text-accent transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+                className="text-foreground/80 hover:text-primary transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 FAQs
               </button>
-              <Button variant="hero" size="default" onClick={() => setIsSubscriptionOpen(true)}>
+              <Button variant="cta" size="default" onClick={() => setIsSubscriptionOpen(true)}>
                 Assinar a Coleção
               </Button>
             </div>
@@ -78,7 +79,7 @@ const Navbar = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-foreground hover:text-accent transition-colors duration-300 p-2 hover:bg-secondary rounded-lg"
+                className="text-foreground hover:text-primary transition-colors duration-300 p-2 hover:bg-secondary rounded-lg"
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -90,30 +91,30 @@ const Navbar = () => {
             <div className="md:hidden pb-4 space-y-2 animate-slide-up">
               <button
                 onClick={() => scrollToSection("colecao")}
-                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-accent rounded-lg transition-all duration-300"
+                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-primary rounded-lg transition-all duration-300"
               >
                 A Coleção
               </button>
               <button
                 onClick={() => scrollToSection("entregas")}
-                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-accent rounded-lg transition-all duration-300"
+                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-primary rounded-lg transition-all duration-300"
               >
                 Entregas
               </button>
               <button
                 onClick={() => scrollToSection("vantagens")}
-                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-accent rounded-lg transition-all duration-300"
+                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-primary rounded-lg transition-all duration-300"
               >
                 Vantagens
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
-                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-accent rounded-lg transition-all duration-300"
+                className="block w-full text-left px-4 py-3 text-foreground/80 hover:bg-secondary hover:text-primary rounded-lg transition-all duration-300"
               >
                 FAQs
               </button>
               <div className="px-4 pt-2">
-                <Button variant="hero" size="default" className="w-full" onClick={() => setIsSubscriptionOpen(true)}>
+                <Button variant="cta" size="default" className="w-full" onClick={() => setIsSubscriptionOpen(true)}>
                   Assinar a Coleção
                 </Button>
               </div>
