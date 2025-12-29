@@ -37,9 +37,10 @@ const SpecialOffersSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-3 bg-orange-500 text-white px-6 py-3 rounded-full mb-8 shadow-lg shadow-orange-500/30">
+          <div className="inline-flex items-center gap-3 bg-transparent border-2 border-orange-400 text-orange-500 px-8 py-4 rounded-full mb-8">
             <Gift className="w-5 h-5" />
-            <span className="uppercase tracking-[0.15em] text-sm font-semibold">Ofertas Exclusivas</span>
+            <span className="uppercase tracking-[0.2em] text-sm font-medium">Ofertas Exclusivas</span>
+            <Sparkles className="w-4 h-4" />
           </div>
           
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-tight mb-6 uppercase tracking-tight">
