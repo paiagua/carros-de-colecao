@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import { minerals } from "@/data/minerals";
+import { getCarImage } from "@/data/carImages";
 
 const CollectionSection = () => {
   const [showFullList, setShowFullList] = useState(false);
@@ -56,6 +57,7 @@ const CollectionSection = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 gap-y-10 md:gap-8 md:gap-y-12 mb-12 max-w-5xl mx-auto">
             {minerals.slice(0, 8).map((car, index) => {
               const isFirst = index === 0;
+              const carImage = getCarImage(car.number);
               return (
                 <div 
                   key={car.number}
@@ -82,9 +84,17 @@ const CollectionSection = () => {
                     </div>
                   )}
                   
-                  {/* Car icon placeholder */}
-                  <div className={`w-full aspect-[4/3] mb-3 overflow-hidden rounded-lg relative flex items-center justify-center bg-secondary ${isFirst ? "ring-2 ring-primary/50" : ""}`}>
-                    <Car className={`w-16 h-16 ${isFirst ? "text-primary" : "text-muted-foreground"}`} />
+                  {/* Car image */}
+                  <div className={`w-full aspect-[4/3] mb-3 overflow-hidden rounded-lg relative flex items-center justify-center bg-white ${isFirst ? "ring-2 ring-primary/50" : ""}`}>
+                    {carImage ? (
+                      <img 
+                        src={carImage} 
+                        alt={car.title}
+                        className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <Car className={`w-16 h-16 ${isFirst ? "text-primary" : "text-muted-foreground"}`} />
+                    )}
                   </div>
                   
                   <span className={`font-bold text-sm ${isFirst ? "text-primary" : "text-primary"}`}>Nº {car.number}</span>
