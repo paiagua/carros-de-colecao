@@ -25,7 +25,7 @@ const CollectionSection = () => {
 
   return (
     <>
-      <section id="colecao" className="py-20 md:py-28 bg-gradient-to-b from-orange-50/80 via-amber-50/50 to-white relative overflow-hidden">
+      <section id="colecao" className="py-20 md:py-28 bg-gradient-to-b from-orange-100 via-amber-50 to-white relative overflow-hidden">
         {/* Subtle dot pattern texture */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
