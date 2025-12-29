@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import magazine1 from "@/assets/magazines/magazine-1.png";
 import magazine2 from "@/assets/magazines/magazine-2.png";
 import magazine3 from "@/assets/magazines/magazine-3.png";
@@ -9,6 +11,7 @@ import magazine5 from "@/assets/magazines/magazine-5.png";
 
 const FasciculosSection = () => {
   const { setIsSubscriptionOpen } = useSubscription();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const features = [
     {
@@ -86,16 +89,26 @@ const FasciculosSection = () => {
                 {/* Magazine Images */}
                 <div className="flex gap-4 justify-center">
                   {feature.images.map((img, imgIndex) => (
-                    <div key={imgIndex} className="relative">
+                    <div 
+                      key={imgIndex} 
+                      className="relative cursor-pointer"
+                      onClick={() => setSelectedImage(img)}
+                    >
                       <div className="absolute inset-0 bg-orange-500/10 rounded-lg blur-xl scale-90 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       <img 
                         src={img} 
                         alt={`Fascículo ${index + 1}`}
-                        className="relative w-28 md:w-32 lg:w-36 rounded-lg shadow-xl group-hover:scale-105 transition-transform duration-500"
+                        className="relative w-28 md:w-32 lg:w-36 rounded-lg shadow-xl group-hover:scale-105 hover:scale-110 transition-transform duration-500"
                         style={{ 
                           transform: `rotate(${imgIndex % 2 === 0 ? -3 : 3}deg)`,
                         }}
                       />
+                      {/* Click hint */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                        <div className="bg-black/50 text-white text-xs px-2 py-1 rounded">
+                          Clique para ampliar
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -126,6 +139,27 @@ const FasciculosSection = () => {
           </Button>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-4xl w-full p-0 bg-transparent border-none shadow-none">
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 z-50 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all"
+          >
+            <X className="w-6 h-6 text-gray-800" />
+          </button>
+          {selectedImage && (
+            <div className="flex items-center justify-center p-4">
+              <img 
+                src={selectedImage} 
+                alt="Fascículo ampliado"
+                className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
