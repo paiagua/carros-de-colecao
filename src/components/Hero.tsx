@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
@@ -17,10 +18,14 @@ import car8 from "@/assets/cars/car-8.png";
 import car9 from "@/assets/cars/car-9.png";
 import car10 from "@/assets/cars/car-10.png";
 
+// Import real car images
+import { getRealCarImage } from "@/data/realCarImages";
+
 const carImages = [car1, car2, car3, car4, car5, car6, car7, car8, car9, car10];
 
 const Hero = () => {
   const { isSubscriptionOpen, setIsSubscriptionOpen } = useSubscription();
+  const [hoveredCarIndex, setHoveredCarIndex] = useState<number | null>(null);
 
   return (
     <>
@@ -141,20 +146,47 @@ const Hero = () => {
             
             {/* Cars row */}
             <div className="flex animate-marquee-left">
-              {[...carImages, ...carImages, ...carImages].map((car, index) => (
-                <div key={`car-1-${index}`} className="flex-shrink-0 mx-4 md:mx-8 group">
-                  <div className="relative">
-                    {/* Shadow under car */}
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-3 bg-black/20 rounded-full blur-md" />
-                    <img 
-                      src={car} 
-                      alt={`Carro ${index + 1}`} 
-                      className="relative h-16 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-                      style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))' }}
-                    />
+              {[...carImages, ...carImages, ...carImages].map((car, index) => {
+                const carNumber = (index % 10) + 1;
+                const realCarImage = getRealCarImage(carNumber);
+                const isHovered = hoveredCarIndex === index;
+                
+                return (
+                  <div 
+                    key={`car-1-${index}`} 
+                    className="flex-shrink-0 mx-4 md:mx-8 group"
+                    onMouseEnter={() => setHoveredCarIndex(index)}
+                    onMouseLeave={() => setHoveredCarIndex(null)}
+                  >
+                    <div className="relative">
+                      {/* Shadow under car */}
+                      <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-3 rounded-full blur-md transition-all duration-300 ${
+                        isHovered ? 'bg-orange-600/40 scale-110' : 'bg-black/20'
+                      }`} />
+                      
+                      {/* Miniature car */}
+                      <img 
+                        src={car} 
+                        alt={`Carro ${index + 1}`} 
+                        className={`absolute h-16 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl transition-all duration-500 cursor-pointer ${
+                          isHovered ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+                        }`}
+                        style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))' }}
+                      />
+                      
+                      {/* Real car on hover */}
+                      <img 
+                        src={realCarImage || car} 
+                        alt={`Carro Real ${index + 1}`} 
+                        className={`relative h-16 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl transition-all duration-500 cursor-pointer ${
+                          isHovered ? 'opacity-100 scale-125 -translate-y-4' : 'opacity-0 scale-100'
+                        }`}
+                        style={{ filter: isHovered ? 'drop-shadow(0 12px 24px rgba(249,115,22,0.5))' : 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))' }}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             
             {/* Decorative bottom shadow */}
