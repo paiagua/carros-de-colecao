@@ -19,8 +19,28 @@ const ReplicasSection = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+      {/* Background image - very large, behind everything */}
+      <div className="absolute inset-0 pointer-events-none">
+        {magazines.map((img, index) => (
+          <div
+            key={index}
+            className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 ease-in-out ${
+              index === currentSlide
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-90"
+            }`}
+          >
+            <img
+              src={img}
+              alt=""
+              className="w-[800px] md:w-[1200px] lg:w-[1600px] xl:w-[2000px] max-w-none object-contain opacity-10"
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image Slider */}
           <div className="relative h-[550px] md:h-[650px] lg:h-[750px] w-full flex items-center justify-center">
