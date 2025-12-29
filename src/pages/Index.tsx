@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import ReasonsSection from "@/components/ReasonsSection";
 import CollectionSection from "@/components/CollectionSection";
 import FasciculosSection from "@/components/FasciculosSection";
+import DiscoverSection from "@/components/DiscoverSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -20,6 +21,10 @@ const Index = () => {
         
         <section id="colecao" aria-labelledby="colecao-titulo">
           <CollectionSection />
+        </section>
+        
+        <section id="descubra" aria-labelledby="descubra-titulo">
+          <DiscoverSection />
         </section>
         
         <section id="fasciculos" aria-labelledby="fasciculos-titulo">
