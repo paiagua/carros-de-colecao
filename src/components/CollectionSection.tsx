@@ -1,13 +1,11 @@
 import { useState, useRef } from "react";
-import { ChevronDown, ChevronUp, Car, Eye } from "lucide-react";
+import { ChevronDown, ChevronUp, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import { minerals } from "@/data/minerals";
 import { getCarImage } from "@/data/carImages";
-import { getRealCarImage, hasRealCarImage } from "@/data/realCarImages";
 
 const CollectionSection = () => {
   const [showFullList, setShowFullList] = useState(false);
@@ -78,11 +76,10 @@ const CollectionSection = () => {
             {minerals.slice(0, 10).map((car, index) => {
               const isFirst = index === 0;
               const carImage = getCarImage(car.number);
-              const realCarImage = getRealCarImage(car.number);
-              const hasRealImage = hasRealCarImage(car.number);
               
-              const cardContent = (
+              return (
                 <div 
+                  key={car.number}
                   onClick={() => setIsSubscriptionOpen(true)}
                   className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 cursor-pointer ${
                     isFirst 
@@ -161,57 +158,6 @@ const CollectionSection = () => {
                   <div className="absolute top-1/4 -left-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute top-1/4 -right-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-              );
-
-              return (
-                <HoverCard key={car.number} openDelay={200} closeDelay={100}>
-                  <HoverCardTrigger asChild>
-                    {cardContent}
-                  </HoverCardTrigger>
-                  <HoverCardContent 
-                    side="top" 
-                    align="center"
-                    className="w-80 md:w-96 p-0 border-0 bg-transparent shadow-none"
-                    sideOffset={10}
-                  >
-                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-orange-200">
-                      {/* Header */}
-                      <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-4 py-3 flex items-center gap-2">
-                        <Eye className="w-4 h-4 text-white" />
-                        <span className="text-white font-bold text-sm">
-                          {hasRealImage ? "Carro Real" : "Miniatura"}
-                        </span>
-                      </div>
-                      
-                      {/* Image */}
-                      <div className="p-4 bg-gradient-to-br from-gray-50 to-white">
-                        <div className="aspect-video rounded-xl overflow-hidden bg-white flex items-center justify-center">
-                          <img 
-                            src={realCarImage || carImage} 
-                            alt={`${car.title} - ${hasRealImage ? "Real" : "Miniatura"}`}
-                            className="w-full h-full object-contain p-2"
-                          />
-                        </div>
-                      </div>
-                      
-                      {/* Info */}
-                      <div className="px-4 pb-4 bg-white">
-                        <h4 className="font-bold text-gray-900 mb-1">{car.title}</h4>
-                        <p className="text-sm text-gray-500">
-                          {hasRealImage 
-                            ? "Passe o rato para ver o carro real" 
-                            : "Imagem do carro real em breve"}
-                        </p>
-                        <div className="mt-3 flex items-center justify-between">
-                          <span className="text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
-                            Nº {car.number}
-                          </span>
-                          <span className="font-bold text-orange-600">{car.price}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </HoverCardContent>
-                </HoverCard>
               );
             })}
           </div>
