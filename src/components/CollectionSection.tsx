@@ -1,12 +1,13 @@
 import { useState, useRef } from "react";
-import { ChevronDown, ChevronUp, Car } from "lucide-react";
+import { ChevronDown, ChevronUp, Car, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import { minerals } from "@/data/minerals";
 import { getCarImage } from "@/data/carImages";
+import { getRealCarImage, hasRealCarImage } from "@/data/realCarImages";
 
 const CollectionSection = () => {
   const [showFullList, setShowFullList] = useState(false);
@@ -73,22 +74,22 @@ const CollectionSection = () => {
         </div>
 
           {/* Cars Grid */}
-          <TooltipProvider>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 md:gap-6 mb-12">
-              {minerals.slice(0, 10).map((car, index) => {
-                const isFirst = index === 0;
-                const carImage = getCarImage(car.number);
-                return (
-                  <Tooltip key={car.number}>
-                    <TooltipTrigger asChild>
-                      <div 
-                        onClick={() => setIsSubscriptionOpen(true)}
-                        className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 cursor-pointer ${
-                          isFirst 
-                            ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
-                            : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
-                        }`}
-                      >
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 md:gap-6 mb-12">
+            {minerals.slice(0, 10).map((car, index) => {
+              const isFirst = index === 0;
+              const carImage = getCarImage(car.number);
+              const realCarImage = getRealCarImage(car.number);
+              const hasRealImage = hasRealCarImage(car.number);
+              
+              const cardContent = (
+                <div 
+                  onClick={() => setIsSubscriptionOpen(true)}
+                  className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 cursor-pointer ${
+                    isFirst 
+                      ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
+                      : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
+                  }`}
+                >
                   {/* Animated background gradient */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-100/0 via-orange-50/0 to-amber-100/0 group-hover:from-orange-100/80 group-hover:via-orange-50/50 group-hover:to-amber-100/80 transition-all duration-700" />
                   
@@ -159,16 +160,61 @@ const CollectionSection = () => {
                   {/* Side glow lines */}
                   <div className="absolute top-1/4 -left-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute top-1/4 -right-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              );
+
+              return (
+                <HoverCard key={car.number} openDelay={200} closeDelay={100}>
+                  <HoverCardTrigger asChild>
+                    {cardContent}
+                  </HoverCardTrigger>
+                  <HoverCardContent 
+                    side="top" 
+                    align="center"
+                    className="w-80 md:w-96 p-0 border-0 bg-transparent shadow-none"
+                    sideOffset={10}
+                  >
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-orange-200">
+                      {/* Header */}
+                      <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-4 py-3 flex items-center gap-2">
+                        <Eye className="w-4 h-4 text-white" />
+                        <span className="text-white font-bold text-sm">
+                          {hasRealImage ? "Carro Real" : "Miniatura"}
+                        </span>
                       </div>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="bg-gray-900 text-white px-3 py-2 rounded-lg">
-                      <p>Clique para subscrever</p>
-                    </TooltipContent>
-                  </Tooltip>
-                );
-              })}
-            </div>
-          </TooltipProvider>
+                      
+                      {/* Image */}
+                      <div className="p-4 bg-gradient-to-br from-gray-50 to-white">
+                        <div className="aspect-video rounded-xl overflow-hidden bg-white flex items-center justify-center">
+                          <img 
+                            src={realCarImage || carImage} 
+                            alt={`${car.title} - ${hasRealImage ? "Real" : "Miniatura"}`}
+                            className="w-full h-full object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Info */}
+                      <div className="px-4 pb-4 bg-white">
+                        <h4 className="font-bold text-gray-900 mb-1">{car.title}</h4>
+                        <p className="text-sm text-gray-500">
+                          {hasRealImage 
+                            ? "Passe o rato para ver o carro real" 
+                            : "Imagem do carro real em breve"}
+                        </p>
+                        <div className="mt-3 flex items-center justify-between">
+                          <span className="text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
+                            Nº {car.number}
+                          </span>
+                          <span className="font-bold text-orange-600">{car.price}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+              );
+            })}
+          </div>
 
           {/* Toggle List Button */}
           <div id="entregas" className="text-center mb-8">
