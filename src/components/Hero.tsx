@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
-import correioLogo from "@/assets/correio-manha-logo.png";
-import recordLogo from "@/assets/record-logo.png";
+import correioRecordLogo from "@/assets/correio-record-logo.png";
 import heroCollection from "@/assets/hero-collection.png";
 import { Car } from "lucide-react";
 
@@ -39,16 +38,11 @@ const Hero = () => {
         {/* Content */}
         <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
           <div className="max-w-xl space-y-6 animate-fade-in">
-            {/* Logos */}
-            <div className="flex items-center gap-4">
+            {/* Logo */}
+            <div>
               <img 
-                src={correioLogo} 
-                alt="Correio da Manhã" 
-                className="h-10 md:h-14 object-contain"
-              />
-              <img 
-                src={recordLogo} 
-                alt="Record" 
+                src={correioRecordLogo} 
+                alt="Correio da Manhã | Record" 
                 className="h-10 md:h-14 object-contain"
               />
             </div>
