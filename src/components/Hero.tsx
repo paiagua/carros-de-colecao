@@ -24,7 +24,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex flex-col overflow-hidden">
+      <section className="relative min-h-screen flex flex-col overflow-hidden pt-20 md:pt-24">
         {/* Split background - Left dark, Right white */}
         <div className="absolute inset-0 flex">
           <div className="w-full lg:w-1/2 bg-gray-900" />
