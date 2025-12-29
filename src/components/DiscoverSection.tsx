@@ -39,44 +39,42 @@ const DiscoverSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left column - Text content */}
-          <div className="space-y-8">
-            <div className="space-y-5">
-              <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
-                Tem curiosidade em conhecer a origem e as caraterísticas dos modelos mais populares?
-              </p>
-              <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
-                Brincava com carros quando era criança?
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <p className="text-gray-600 text-base leading-relaxed">
+                Tem curiosidade em conhecer a origem e as caraterísticas dos modelos mais populares? Brincava com carros quando era criança?
               </p>
             </div>
 
-            <div className="space-y-5">
-              <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
+            <div className="bg-gray-50 rounded-xl p-5 border-l-4 border-orange-500">
+              <p className="text-gray-700 text-base leading-relaxed">
                 Dos utilitários aos desportivos, dos clássicos aos todo-o-terreno —{" "}
-                <strong className="font-bold text-gray-900">todos têm uma história para contar.</strong>
-              </p>
-              <p className="text-gray-600 text-lg md:text-xl italic leading-relaxed border-l-4 border-orange-400 pl-4">
-                Descubra por que razão estes ícones continuam a emocionar quem os conduziu... e quem sempre os admirou.
+                <strong className="text-gray-900">todos têm uma história para contar.</strong>
               </p>
             </div>
+            
+            <p className="text-gray-500 text-sm italic leading-relaxed">
+              Descubra por que razão estes ícones continuam a emocionar quem os conduziu... e quem sempre os admirou.
+            </p>
 
             {/* Categories */}
             <div className="pt-4">
               <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-gray-900 font-bold text-lg md:text-xl">
-                  <span className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-5 h-5 text-white" />
+                <li className="flex items-center gap-3 text-gray-900 text-base">
+                  <span className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-4 h-4 text-white" />
                   </span>
                   Os mais clássicos
                 </li>
-                <li className="flex items-center gap-3 text-gray-900 font-bold text-lg md:text-xl">
-                  <span className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-5 h-5 text-white" />
+                <li className="flex items-center gap-3 text-gray-900 text-base">
+                  <span className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-4 h-4 text-white" />
                   </span>
                   Os mais rápidos
                 </li>
-                <li className="flex items-center gap-3 text-gray-900 font-bold text-lg md:text-xl">
-                  <span className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-5 h-5 text-white" />
+                <li className="flex items-center gap-3 text-gray-900 text-base">
+                  <span className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-4 h-4 text-white" />
                   </span>
                   Os mais atuais
                 </li>
@@ -84,7 +82,7 @@ const DiscoverSection = () => {
               
               <Button 
                 onClick={() => setIsSubscriptionOpen(true)}
-                className="mt-8 bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg md:text-xl px-10 py-6 h-auto rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all uppercase tracking-wide"
+                className="mt-6 bg-orange-500 hover:bg-orange-600 text-white text-base px-8 py-5 h-auto rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all uppercase tracking-wide"
               >
                 CONHEÇA-OS A TODOS!
               </Button>
