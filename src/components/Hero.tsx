@@ -24,19 +24,25 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex flex-col overflow-hidden bg-white">
+      <section className="relative min-h-screen flex flex-col overflow-hidden">
+        {/* Split background - Left dark, Right white */}
+        <div className="absolute inset-0 flex">
+          <div className="w-full lg:w-1/2 bg-gray-900" />
+          <div className="hidden lg:block w-1/2 bg-white" />
+        </div>
+        
         {/* Top accent bar */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-orange-500" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-orange-500 z-10" />
 
         {/* Main Content */}
         <div className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-10 flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
-            {/* Left Column - Text Content */}
+            {/* Left Column - Text Content (on dark background) */}
             <div className="space-y-6 order-2 lg:order-1">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-orange-100 border border-orange-300 rounded-full px-4 py-2">
+              <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/50 rounded-full px-4 py-2">
                 <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-                <span className="text-orange-600 text-sm font-bold uppercase tracking-wide">Coleção Exclusiva</span>
+                <span className="text-orange-400 text-sm font-bold uppercase tracking-wide">Coleção Exclusiva</span>
               </div>
 
               {/* Logo + Main Title */}
@@ -52,16 +58,16 @@ const Hero = () => {
                   <span 
                     className="block text-7xl sm:text-8xl lg:text-9xl font-bold text-orange-500"
                     style={{ 
-                      textShadow: '3px 3px 0 rgba(0,0,0,0.1)',
+                      textShadow: '3px 3px 0 rgba(0,0,0,0.3)',
                       letterSpacing: '-0.02em'
                     }}
                   >
                     CARROS
                   </span>
                   <span 
-                    className="block text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 italic -mt-2"
+                    className="block text-4xl sm:text-5xl lg:text-6xl font-bold text-white italic -mt-2"
                     style={{ 
-                      textShadow: '2px 2px 0 rgba(249,115,22,0.2)'
+                      textShadow: '2px 2px 0 rgba(249,115,22,0.5)'
                     }}
                   >
                     de coleção
@@ -75,23 +81,23 @@ const Hero = () => {
               </div>
 
               {/* Description */}
-              <p className="text-gray-700 text-lg md:text-xl leading-relaxed max-w-md">
-                Uma coleção única que junta uma obra editorial e as <span className="text-orange-500 font-semibold">réplicas oficiais</span> dos automóveis que marcaram gerações.
+              <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-md">
+                Uma coleção única que junta uma obra editorial e as <span className="text-orange-400 font-semibold">réplicas oficiais</span> dos automóveis que marcaram gerações.
               </p>
 
               {/* Features */}
               <div className="grid grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div className="text-center p-4 bg-white/10 rounded-xl border border-white/20">
                   <div className="text-3xl md:text-4xl font-bold text-orange-500">60+</div>
-                  <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">Modelos</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">Modelos</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div className="text-center p-4 bg-white/10 rounded-xl border border-white/20">
                   <div className="text-3xl md:text-4xl font-bold text-orange-500">1:60</div>
-                  <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">Escala</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">Escala</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div className="text-center p-4 bg-white/10 rounded-xl border border-white/20">
                   <div className="text-3xl md:text-4xl font-bold text-orange-500">1€</div>
-                  <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">1º Carro</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">1º Carro</div>
                 </div>
               </div>
 
@@ -107,7 +113,7 @@ const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="text-lg px-10 py-7 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-bold uppercase tracking-wide rounded-xl"
+                  className="text-lg px-10 py-7 border-2 border-white/30 text-white hover:bg-white/10 font-bold uppercase tracking-wide rounded-xl bg-transparent"
                   onClick={() => document.getElementById('colecao')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Ver Coleção
