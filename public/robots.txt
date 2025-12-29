@@ -1,4 +1,4 @@
-# Robots.txt for mineraisdaterra.pt
+# Robots.txt for carroscolecionaveis.pt
 
 User-agent: Googlebot
 Allow: /
@@ -15,5 +15,8 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Crawl-delay
+Crawl-delay: 1
+
 # Sitemap
-Sitemap: https://mineraisdaterra.pt/sitemap.xml
+Sitemap: https://carroscolecionaveis.pt/sitemap.xml
