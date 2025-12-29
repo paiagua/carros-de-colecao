@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { ChevronDown, ChevronUp, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import { minerals } from "@/data/minerals";
@@ -72,20 +73,22 @@ const CollectionSection = () => {
         </div>
 
           {/* Cars Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 md:gap-6 mb-12">
-            {minerals.slice(0, 10).map((car, index) => {
-              const isFirst = index === 0;
-              const carImage = getCarImage(car.number);
-              return (
-                <div 
-                  key={car.number}
-                  onClick={() => setIsSubscriptionOpen(true)}
-                  className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 cursor-pointer ${
-                    isFirst 
-                      ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
-                      : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
-                  }`}
-                >
+          <TooltipProvider>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 md:gap-6 mb-12">
+              {minerals.slice(0, 10).map((car, index) => {
+                const isFirst = index === 0;
+                const carImage = getCarImage(car.number);
+                return (
+                  <Tooltip key={car.number}>
+                    <TooltipTrigger asChild>
+                      <div 
+                        onClick={() => setIsSubscriptionOpen(true)}
+                        className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 cursor-pointer ${
+                          isFirst 
+                            ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
+                            : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
+                        }`}
+                      >
                   {/* Animated background gradient */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-100/0 via-orange-50/0 to-amber-100/0 group-hover:from-orange-100/80 group-hover:via-orange-50/50 group-hover:to-amber-100/80 transition-all duration-700" />
                   
@@ -156,10 +159,16 @@ const CollectionSection = () => {
                   {/* Side glow lines */}
                   <div className="absolute top-1/4 -left-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute top-1/4 -right-px w-px h-1/2 bg-gradient-to-b from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              );
-            })}
-          </div>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="bg-gray-900 text-white px-3 py-2 rounded-lg">
+                      <p>Clique para subscrever</p>
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              })}
+            </div>
+          </TooltipProvider>
 
           {/* Toggle List Button */}
           <div id="entregas" className="text-center mb-8">
