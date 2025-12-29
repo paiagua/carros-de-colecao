@@ -167,9 +167,9 @@ const Hero = () => {
                     </HoverCardTrigger>
                     <HoverCardContent 
                       side="bottom" 
-                      sideOffset={-20}
+                      sideOffset={20}
+                      avoidCollisions={false}
                       className="w-auto p-3 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl z-[200]"
-                      style={{ overflow: 'visible' }}
                     >
                       <img 
                         src={realCarImage || car} 
