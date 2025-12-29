@@ -12,68 +12,74 @@ const Hero = () => {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
-        {/* Top red accent bar */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-red-600" />
+        {/* Top accent bar */}
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-orange-500" />
 
         {/* Content */}
         <div className="container mx-auto px-4 py-8 md:py-16 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Column - Text Content */}
-            <div className="space-y-6 lg:space-y-8 order-2 lg:order-1">
+            <div className="space-y-5 lg:space-y-6 order-2 lg:order-1">
               {/* Logo */}
               <img 
                 src={correioRecordLogo} 
                 alt="Correio da Manhã | Record" 
-                className="h-12 md:h-16 object-contain"
+                className="h-10 md:h-12 object-contain"
               />
 
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-2">
-                <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-                <span className="text-red-700 text-sm font-semibold uppercase tracking-wide">Coleção Exclusiva</span>
+              <div className="inline-flex items-center gap-2 bg-orange-100 border-2 border-orange-400 rounded-full px-4 py-2">
+                <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+                <span className="text-orange-700 text-sm font-bold uppercase tracking-wide">Coleção Exclusiva</span>
               </div>
 
               {/* Main Title */}
               <div>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight">
-                  <span className="text-gray-900">Carros</span>
-                  <br />
-                  <span className="text-red-600">de Coleção</span>
+                <h1 className="font-display uppercase leading-[0.85] tracking-tight">
+                  <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold text-orange-500" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.1)' }}>
+                    CARROS
+                  </span>
+                  <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white italic mt-1" style={{ 
+                    textShadow: '2px 2px 0 #f97316, -1px -1px 0 #f97316, 1px -1px 0 #f97316, -1px 1px 0 #f97316, 1px 1px 0 #f97316',
+                    WebkitTextStroke: '2px #f97316'
+                  }}>
+                    de coleção
+                  </span>
                 </h1>
-                <div className="mt-4 h-1 w-24 bg-red-600 rounded-full" />
+                <div className="mt-4 h-1.5 w-32 bg-orange-500 rounded-full" />
               </div>
 
               {/* Description */}
-              <div className="space-y-4 max-w-md">
-                <p className="text-gray-800 text-lg md:text-xl leading-relaxed font-medium">
+              <div className="space-y-3 max-w-md">
+                <p className="text-gray-800 text-lg md:text-xl leading-relaxed font-semibold">
                   Uma coleção única que junta uma obra editorial e as réplicas oficiais dos automóveis que marcaram gerações.
                 </p>
-                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                <p className="text-gray-600 text-base leading-relaxed">
                   Modelos que fizeram parte de momentos inesquecíveis, de viagens em família, de aventuras na estrada e de sonhos sobre rodas.
                 </p>
               </div>
 
               {/* Features */}
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 <li className="flex items-start gap-3">
-                  <span className="mt-1.5 w-2 h-2 bg-red-600 rounded-full flex-shrink-0" />
-                  <span className="text-gray-700">Réplicas oficiais dos modelos mais emblemáticos</span>
+                  <span className="mt-1.5 w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Réplicas oficiais dos modelos mais emblemáticos</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-1.5 w-2 h-2 bg-red-600 rounded-full flex-shrink-0" />
-                  <span className="text-gray-700">Miniaturas pormenorizadas à escala 1:60</span>
+                  <span className="mt-1.5 w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Miniaturas pormenorizadas à escala 1:60</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-1.5 w-2 h-2 bg-red-600 rounded-full flex-shrink-0" />
-                  <span className="text-gray-700">Fascículos com história, design e curiosidades</span>
+                  <span className="mt-1.5 w-2.5 h-2.5 bg-orange-500 rounded-full flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Fascículos com história, design e curiosidades</span>
                 </li>
               </ul>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <Button 
                   size="lg" 
-                  className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700 text-white font-bold shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 transition-all"
+                  className="text-lg px-8 py-6 bg-orange-500 hover:bg-orange-600 text-white font-bold shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all uppercase tracking-wide"
                   onClick={() => setIsSubscriptionOpen(true)}
                 >
                   Assinar a Coleção
@@ -81,7 +87,7 @@ const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="text-lg px-8 py-6 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 font-semibold"
+                  className="text-lg px-8 py-6 border-2 border-orange-400 text-orange-600 hover:bg-orange-50 font-bold uppercase tracking-wide"
                   onClick={() => document.getElementById('colecao')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Ver Coleção
@@ -106,8 +112,8 @@ const Hero = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:flex flex-col items-center gap-2 text-gray-400">
-          <span className="text-xs uppercase tracking-wider">Descobrir</span>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:flex flex-col items-center gap-2 text-orange-500">
+          <span className="text-xs uppercase tracking-wider font-bold">Descobrir</span>
           <ChevronDown className="w-5 h-5" />
         </div>
 
@@ -115,7 +121,7 @@ const Hero = () => {
         {!isSubscriptionOpen && (
           <div 
             onClick={() => setIsSubscriptionOpen(true)}
-            className="fixed top-24 right-4 md:top-28 md:right-8 lg:right-12 w-28 h-28 md:w-36 md:h-36 rounded-full font-bold flex flex-col items-center justify-center text-center z-[100] cursor-pointer transition-all duration-300 hover:scale-105 border-4 border-white shadow-2xl bg-red-600"
+            className="fixed top-24 right-4 md:top-28 md:right-8 lg:right-12 w-28 h-28 md:w-36 md:h-36 rounded-full font-bold flex flex-col items-center justify-center text-center z-[100] cursor-pointer transition-all duration-300 hover:scale-105 border-4 border-white shadow-2xl bg-orange-500"
           >
             <span className="text-[10px] md:text-xs uppercase tracking-wider text-white/80 font-medium">1º Carro</span>
             <span className="text-lg md:text-2xl font-black text-white leading-tight">VW Beetle</span>
