@@ -88,9 +88,31 @@ const Hero = () => {
             </div>
 
             {/* Description */}
-            <p className="text-gray-700 text-lg md:text-xl max-w-md leading-relaxed font-medium">
-              Uma coleção <span className="text-red-600 font-bold">exclusiva</span> de <strong className="text-gray-900 font-bold">miniaturas de carros clássicos</strong> que marcaram a história do automobilismo.
-            </p>
+            <div className="space-y-4 max-w-lg">
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+                Uma coleção única que junta uma obra editorial e as réplicas oficiais dos automóveis que marcaram gerações.
+              </p>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                Modelos que fizeram parte de momentos inesquecíveis, de viagens em família, de aventuras na estrada e de sonhos sobre rodas.
+              </p>
+              <ul className="space-y-2 text-gray-700 text-sm md:text-base">
+                <li className="flex items-start gap-2">
+                  <span className="text-red-600 font-bold">•</span>
+                  <span>Réplicas oficiais dos modelos mais emblemáticos do mundo automóvel, do passado e do presente</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-600 font-bold">•</span>
+                  <span>Miniaturas pormenorizadas</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-600 font-bold">•</span>
+                  <span>As melhores imagens, fotografias e infografias de cada modelo, ilustrando a sua história e design</span>
+                </li>
+              </ul>
+              <p className="text-gray-400 text-xs italic mt-4">
+                As imagens dos carros apresentadas não são contratuais.
+              </p>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-start gap-4 pt-2">
