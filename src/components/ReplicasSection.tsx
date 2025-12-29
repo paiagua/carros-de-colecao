@@ -23,24 +23,24 @@ const ReplicasSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image Slider */}
-          <div className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
+          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] w-full flex items-center justify-center">
             {magazines.map((img, index) => (
               <div
                 key={index}
-                className={`absolute transition-all duration-700 ease-in-out ${
+                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out ${
                   index === currentSlide
                     ? "opacity-100 scale-100 z-10"
                     : index === (currentSlide - 1 + magazines.length) % magazines.length
-                    ? "opacity-40 scale-75 -translate-x-32 z-0"
+                    ? "opacity-30 scale-60 -translate-x-[120%] z-0"
                     : index === (currentSlide + 1) % magazines.length
-                    ? "opacity-40 scale-75 translate-x-32 z-0"
+                    ? "opacity-30 scale-60 translate-x-[20%] z-0"
                     : "opacity-0 scale-50 z-0"
                 }`}
               >
                 <img
                   src={img}
                   alt={`Fascículo ${index + 1}`}
-                  className="w-64 md:w-80 lg:w-96 rounded-lg shadow-2xl"
+                  className="w-80 md:w-[400px] lg:w-[500px] max-h-[450px] md:max-h-[550px] lg:max-h-[650px] object-contain rounded-lg shadow-2xl"
                 />
               </div>
             ))}
