@@ -166,13 +166,15 @@ const Hero = () => {
                       </div>
                     </HoverCardTrigger>
                     <HoverCardContent 
-                      side="top" 
-                      className="w-auto p-2 bg-white/95 backdrop-blur-sm border-orange-200 shadow-xl"
+                      side="bottom" 
+                      sideOffset={-20}
+                      className="w-auto p-3 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl z-[200]"
+                      style={{ overflow: 'visible' }}
                     >
                       <img 
                         src={realCarImage || car} 
                         alt={`Carro Real ${carNumber}`} 
-                        className="w-48 h-auto object-contain"
+                        className="w-72 md:w-96 h-auto object-contain drop-shadow-xl"
                       />
                     </HoverCardContent>
                   </HoverCard>
