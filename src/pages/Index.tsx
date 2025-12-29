@@ -4,6 +4,7 @@ import ReasonsSection from "@/components/ReasonsSection";
 import CollectionSection from "@/components/CollectionSection";
 import FasciculosSection from "@/components/FasciculosSection";
 import DiscoverSection from "@/components/DiscoverSection";
+import ReplicasSection from "@/components/ReplicasSection";
 import AdvantagesSection from "@/components/AdvantagesSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -18,6 +19,10 @@ const Index = () => {
       
       <article>
         <Hero />
+        
+        <section id="replicas" aria-labelledby="replicas-titulo">
+          <ReplicasSection />
+        </section>
         
         <section id="colecao" aria-labelledby="colecao-titulo">
           <CollectionSection />
