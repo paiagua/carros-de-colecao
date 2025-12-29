@@ -14,45 +14,48 @@ const SpecialOffersSection = () => {
   const { setIsSubscriptionOpen } = useSubscription();
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-orange-50 via-white to-orange-50 relative overflow-hidden">
-      {/* Elegant background elements */}
+    <section className="py-24 md:py-32 bg-[#0f172a] relative overflow-hidden">
+      {/* Elegant dark background with grid */}
       <div className="absolute inset-0">
-        {/* Subtle dot pattern */}
+        {/* Subtle grid pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.15]"
           style={{
-            backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
-            backgroundSize: '24px 24px'
+            backgroundImage: 'linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)',
+            backgroundSize: '80px 80px'
           }}
         />
         
-        {/* Floating orbs */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-200/30 rounded-full blur-3xl" />
+        {/* Inner glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/5 rounded-full blur-3xl" />
+        
+        {/* Corner accents */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-orange-500/10 to-transparent" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-orange-500/10 to-transparent" />
       </div>
 
       {/* Top decorative line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-3 bg-transparent border-2 border-orange-400 text-orange-500 px-8 py-4 rounded-full mb-8">
+          <div className="inline-flex items-center gap-3 bg-transparent border border-orange-500/40 text-orange-400 px-8 py-4 rounded-full mb-8">
             <Gift className="w-5 h-5" />
             <span className="uppercase tracking-[0.2em] text-sm font-medium">Ofertas Exclusivas</span>
             <Sparkles className="w-4 h-4" />
           </div>
           
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-tight mb-6 uppercase tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 uppercase tracking-tight">
             Assine Já e Receba
             <br />
-            <span className="text-orange-500">Ofertas Fantásticas!</span>
+            <span className="text-orange-400">Ofertas Fantásticas!</span>
           </h2>
           
           <div className="flex justify-center gap-2 mt-8">
-            <div className="h-1 w-16 bg-orange-500 rounded-full" />
-            <div className="h-1 w-8 bg-orange-300 rounded-full" />
-            <div className="h-1 w-4 bg-orange-200 rounded-full" />
+            <div className="h-px w-16 bg-orange-500/60 rounded-full" />
+            <div className="h-1 w-2 bg-orange-400 rounded-full" />
+            <div className="h-px w-16 bg-orange-500/60 rounded-full" />
           </div>
         </div>
 
@@ -186,14 +189,14 @@ const SpecialOffersSection = () => {
             </span>
           </Button>
           
-          <p className="mt-8 text-gray-500 text-sm max-w-2xl mx-auto">
+          <p className="mt-8 text-gray-400 text-sm max-w-2xl mx-auto">
             Imagens não contratuais. Em caso de rutura de stock, as ofertas serão substituídas por outras de valor idêntico.
           </p>
         </div>
       </div>
 
       {/* Bottom decorative line */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
     </section>
   );
 };
