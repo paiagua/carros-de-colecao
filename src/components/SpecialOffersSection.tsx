@@ -40,7 +40,7 @@ const SpecialOffersSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center bg-transparent border border-orange-500/40 text-orange-400 px-8 py-4 rounded-full mb-8">
+          <div className="inline-flex items-center text-orange-400 px-8 py-4 mb-8">
             <span className="uppercase tracking-[0.2em] text-sm font-medium">Ofertas Exclusivas</span>
           </div>
           
