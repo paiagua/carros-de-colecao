@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import correioRecordLogo from "@/assets/correio-record-logo.png";
@@ -27,7 +27,8 @@ const Hero = () => {
   const { isSubscriptionOpen, setIsSubscriptionOpen } = useSubscription();
 
   return (
-    <>
+    <TooltipProvider delayDuration={100}>
+      <>
       <section className="relative min-h-screen flex flex-col overflow-hidden pt-20 md:pt-24">
         {/* Split background - Left dark, Right white */}
         <div className="absolute inset-0 flex">
@@ -150,8 +151,8 @@ const Hero = () => {
                 const realCarImage = getRealCarImage(carNumber);
                 
                 return (
-                  <HoverCard key={`car-1-${index}`} openDelay={100} closeDelay={100}>
-                    <HoverCardTrigger asChild>
+                  <Tooltip key={`car-1-${index}`}>
+                    <TooltipTrigger asChild>
                       <div className="flex-shrink-0 mx-4 md:mx-8 group cursor-pointer">
                         <div className="relative">
                           {/* Shadow under car */}
@@ -164,20 +165,19 @@ const Hero = () => {
                           />
                         </div>
                       </div>
-                    </HoverCardTrigger>
-                    <HoverCardContent 
+                    </TooltipTrigger>
+                    <TooltipContent 
                       side="bottom" 
-                      sideOffset={20}
-                      avoidCollisions={false}
-                      className="w-auto p-3 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl z-[200]"
+                      sideOffset={30}
+                      className="w-auto p-3 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl"
                     >
                       <img 
                         src={realCarImage || car} 
                         alt={`Carro Real ${carNumber}`} 
                         className="w-72 md:w-96 h-auto object-contain drop-shadow-xl"
                       />
-                    </HoverCardContent>
-                  </HoverCard>
+                    </TooltipContent>
+                  </Tooltip>
                 );
               })}
             </div>
@@ -209,7 +209,8 @@ const Hero = () => {
           <SubscriptionForm onClose={() => setIsSubscriptionOpen(false)} />
         </DialogContent>
       </Dialog>
-    </>
+      </>
+    </TooltipProvider>
   );
 };
 
