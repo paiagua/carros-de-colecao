@@ -6,7 +6,7 @@ const DiscoverSection = () => {
   const { setIsSubscriptionOpen } = useSubscription();
 
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-gray-50 relative overflow-hidden border-y border-gray-100">
       <div className="container mx-auto px-4">
         {/* Main Headline */}
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-gray-900 italic mb-12 max-w-5xl mx-auto leading-tight">
