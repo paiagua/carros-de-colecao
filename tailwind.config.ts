@@ -131,6 +131,14 @@ export default {
           "0%, 100%": { transform: "translateY(0) rotate(0deg) scale(1)" },
           "50%": { transform: "translateY(-18px) rotate(-3deg) scale(0.95)" }
         },
+        "marquee-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-33.33%)" }
+        },
+        "marquee-right": {
+          "0%": { transform: "translateX(-33.33%)" },
+          "100%": { transform: "translateX(0)" }
+        },
         "elegant-float": {
           "0%, 100%": { 
             boxShadow: "0 8px 32px rgba(248, 178, 1, 0.4), 0 0 40px rgba(248, 178, 1, 0.15)",
@@ -170,6 +178,8 @@ export default {
         "float-slow": "float-slow 6s ease-in-out infinite",
         "float-medium": "float-medium 4s ease-in-out infinite",
         "float-fast": "float-fast 3s ease-in-out infinite",
+        "marquee-left": "marquee-left 20s linear infinite",
+        "marquee-right": "marquee-right 20s linear infinite",
         "elegant-float": "elegant-float 60s ease-in-out infinite",
         "elegant-shine": "elegant-shine 12s ease-in-out infinite",
         "shimmer-gold": "shimmer-gold 3s ease-in-out infinite",
