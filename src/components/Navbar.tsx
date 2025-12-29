@@ -37,9 +37,10 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <Car className="w-6 h-6 text-primary" />
-              <span className="font-display text-xl font-bold text-foreground">
-                Carros <span className="text-primary">de Coleção</span>
+              <Car className="w-6 h-6 text-orange-500" />
+              <span className="font-display text-xl uppercase tracking-tight">
+                <span className="font-bold text-orange-500">Carros</span>
+                <span className="font-bold text-gray-700 italic lowercase ml-1">de Coleção</span>
               </span>
             </div>
 
