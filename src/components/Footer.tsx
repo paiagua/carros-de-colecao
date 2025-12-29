@@ -3,8 +3,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Mail, Phone, Clock, Car } from "lucide-react";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
-import correioLogo from "@/assets/correio-manha-logo.png";
-import recordLogo from "@/assets/record-logo.png";
+import correioRecordLogo from "@/assets/correio-record-logo.png";
 
 const Footer = () => {
   const { isSubscriptionOpen, setIsSubscriptionOpen } = useSubscription();
@@ -15,37 +14,37 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-foreground text-background">
+      <footer className="bg-gray-900 text-white">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="grid md:grid-cols-3 gap-8 md:gap-12">
             {/* Brand */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Car className="w-6 h-6" />
-                <span className="font-display text-xl font-bold">Carros de Coleção</span>
+                <Car className="w-6 h-6 text-orange-500" />
+                <span className="font-display text-xl uppercase">
+                  <span className="font-bold text-orange-500">CARROS</span>
+                  <span className="font-bold text-white italic lowercase ml-1">de Coleção</span>
+                </span>
               </div>
-              <p className="text-background/70 text-sm mb-6">
-                Uma coleção de miniaturas de carros clássicos para descobrir os ícones do automobilismo.
+              <p className="text-gray-400 text-sm mb-6">
+                Uma coleção única de miniaturas de carros clássicos à escala 1:60 para descobrir os ícones do automobilismo.
               </p>
-              <div className="flex items-center gap-4">
-                <img src={correioLogo} alt="Correio da Manhã" className="h-8 brightness-0 invert opacity-70" />
-                <img src={recordLogo} alt="Record" className="h-8 opacity-70" />
-              </div>
+              <img src={correioRecordLogo} alt="Correio da Manhã | Record" className="h-10 opacity-80" />
             </div>
 
             {/* Contact */}
             <div>
-              <h3 className="font-semibold mb-4">Contactos</h3>
-              <div className="space-y-3 text-sm text-background/70">
+              <h3 className="font-semibold mb-4 text-orange-500">Contactos</h3>
+              <div className="space-y-3 text-sm text-gray-400">
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4" />
-                  <a href="mailto:assinaturas@vasp.pt" className="hover:text-background transition-colors">
+                  <a href="mailto:assinaturas@vasp.pt" className="hover:text-white transition-colors">
                     assinaturas@vasp.pt
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4" />
-                  <a href="tel:214337036" className="hover:text-background transition-colors">
+                  <a href="tel:214337036" className="hover:text-white transition-colors">
                     21 433 70 36
                   </a>
                 </div>
@@ -58,13 +57,12 @@ const Footer = () => {
 
             {/* CTA */}
             <div>
-              <h3 className="font-semibold mb-4">Assine Já</h3>
-              <p className="text-sm text-background/70 mb-4">
+              <h3 className="font-semibold mb-4 text-orange-500">Assine Já</h3>
+              <p className="text-sm text-gray-400 mb-4">
                 Não perca esta oportunidade única de colecionar os carros mais icónicos da história.
               </p>
               <Button 
-                variant="outline"
-                className="border-background/30 text-background hover:bg-background hover:text-foreground"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold"
                 onClick={() => setIsSubscriptionOpen(true)}
               >
                 Subscrever Agora
@@ -72,9 +70,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="border-t border-background/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-background/60">
+          <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
             <p>© 2025 Carros de Coleção. Todos os direitos reservados.</p>
-            <button onClick={scrollToTop} className="hover:text-background transition-colors">
+            <button onClick={scrollToTop} className="hover:text-white transition-colors">
               Voltar ao topo ↑
             </button>
           </div>

@@ -70,7 +70,7 @@ const Navbar = () => {
               >
                 FAQs
               </button>
-              <Button variant="cta" size="default" onClick={() => setIsSubscriptionOpen(true)}>
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold" onClick={() => setIsSubscriptionOpen(true)}>
                 Assinar Agora
               </Button>
             </div>
@@ -114,7 +114,7 @@ const Navbar = () => {
                 FAQs
               </button>
               <div className="px-4 pt-2">
-                <Button variant="cta" size="default" className="w-full" onClick={() => setIsSubscriptionOpen(true)}>
+                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold" onClick={() => setIsSubscriptionOpen(true)}>
                   Assinar Agora
                 </Button>
               </div>
