@@ -238,9 +238,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   };
 
   const minerals = [
-    { id: "1", title: "OURO", image: mineral1, price: "1,00€" },
-    { id: "2", title: "QUARTZO ROSA", image: mineral2, price: "3,99€" },
-    { id: "3", title: "OLHO DO TIGRE", image: mineral3, price: "7,99€" }
+    { id: "1", title: "VW Beetle", image: mineral1, price: "5,95€" },
+    { id: "2", title: "VW T1 Bus", image: mineral2, price: "5,95€" },
+    { id: "3", title: "Renault 4L", image: mineral3, price: "5,95€" }
   ];
 
   return (
@@ -477,9 +477,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                 </Button>
               ) : (
                 <div className="space-y-2 text-sm border-t border-accent/20 pt-4 mt-4 animate-fade-in">
-                  <p>Fascículo 1 (Ouro): <strong>1,00€</strong></p>
-                  <p>Fascículo 2 (Quartzo Rosa): <strong>3,99€</strong></p>
-                  <p>Fascículos 3 a 120: <strong>7,99€</strong> cada</p>
+                  <p>Cada carro: <strong>5,95€</strong></p>
                   <p className="text-xs mt-4">
                     Preços válidos para Portugal Continental, IVA incluído. Pode cancelar a assinatura quando desejar.
                   </p>

@@ -90,8 +90,8 @@ const Hero = () => {
                   <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">Escala</div>
                 </div>
                 <div className="text-center p-4 bg-white/10 rounded-xl border border-white/20">
-                  <div className="text-3xl md:text-4xl font-bold text-orange-500">1€</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">1º Carro</div>
+                  <div className="text-3xl md:text-4xl font-bold text-orange-500">5,95€</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">Por Carro</div>
                 </div>
               </div>
 
@@ -173,9 +173,9 @@ const Hero = () => {
             className="fixed top-24 right-4 md:top-28 md:right-8 lg:right-12 w-28 h-28 md:w-36 md:h-36 rounded-full font-bold flex flex-col items-center justify-center text-center z-[100] cursor-pointer transition-all duration-300 hover:scale-110 border-4 border-white shadow-2xl bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500"
             style={{ boxShadow: '0 10px 40px rgba(249,115,22,0.5)' }}
           >
-            <span className="text-[10px] md:text-xs uppercase tracking-wider text-white/80 font-medium">1º Carro</span>
+            <span className="text-[10px] md:text-xs uppercase tracking-wider text-white/80 font-medium">Cada Carro</span>
             <span className="text-lg md:text-2xl font-black text-white leading-tight">VW Beetle</span>
-            <span className="text-sm md:text-lg font-bold text-white">por 1€</span>
+            <span className="text-sm md:text-lg font-bold text-white">5,95€</span>
           </div>
         )}
       </section>

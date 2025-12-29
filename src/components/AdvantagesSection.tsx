@@ -56,7 +56,7 @@ const AdvantagesSection = () => {
                 Comece já a sua coleção!
               </p>
               <p className="text-muted-foreground text-sm mb-4">
-                Primeiro carro por apenas <span className="text-primary font-bold">1,00€</span>
+                Cada carro por apenas <span className="text-primary font-bold">5,95€</span>
               </p>
               <Button 
                 className="bg-orange-500 hover:bg-orange-600 text-white font-bold"

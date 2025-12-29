@@ -17,7 +17,7 @@ const faqs = [
   },
   { 
     question: "Qual o preço unitário de cada entrega?", 
-    answer: "A primeira entrega tem um preço de lançamento de 1€. As restantes entregas têm preços promocionais conforme indicado na lista de entregas."
+    answer: "Cada entrega tem um preço de 5,95€."
   },
   { 
     question: "Com que frequência serão distribuídas as entregas em banca?", 
