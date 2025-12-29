@@ -79,7 +79,8 @@ const CollectionSection = () => {
               return (
                 <div 
                   key={car.number}
-                  className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 ${
+                  onClick={() => setIsSubscriptionOpen(true)}
+                  className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 cursor-pointer ${
                     isFirst 
                       ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
                       : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
