@@ -1,19 +1,18 @@
-import { Gift, Truck, Calendar, Car, Award, Shield, Clock, XCircle, BookOpen } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Gift, Truck, Calendar, Car, Shield, Clock, XCircle, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 
 const advantages = [
-  { icon: Car, title: "Miniaturas de Qualidade", description: "Reproduções fiéis dos modelos originais", highlight: true },
-  { icon: Truck, title: "Envio Gratuito", description: "Todos os custos de envio são suportados pelo editor" },
-  { icon: Calendar, title: "Entrega Mensal", description: "Receba as entregas na sua morada" },
-  { icon: BookOpen, title: "Fascículos Completos", description: "Com a história e curiosidades de cada modelo" },
-  { icon: Gift, title: "Caixa Expositora", description: "Para guardar e expor a sua coleção" },
-  { icon: Shield, title: "Garantia de Qualidade", description: "Materiais premium e acabamento detalhado" },
-  { icon: Clock, title: "Não Perde Nenhum", description: "Todos os carros chegam à sua morada" },
-  { icon: XCircle, title: "Cancelamento Flexível", description: "Cancele quando desejar, sem penalizações" }
+  { icon: Car, title: "Miniaturas de Qualidade", description: "Reproduções fiéis dos modelos originais" },
+  { icon: Truck, title: "Envio Gratuito", description: "Sem custos de envio para assinantes" },
+  { icon: Calendar, title: "Entrega Regular", description: "Receba em casa sem preocupações" },
+  { icon: BookOpen, title: "Fascículos Completos", description: "História e curiosidades de cada modelo" },
+  { icon: Gift, title: "Caixa Expositora", description: "Para guardar a sua coleção" },
+  { icon: Shield, title: "Qualidade Premium", description: "Materiais e acabamentos de excelência" },
+  { icon: Clock, title: "Nunca Perde Nenhum", description: "Garantia de entrega completa" },
+  { icon: XCircle, title: "Cancelamento Livre", description: "Cancele quando quiser" }
 ];
 
 const AdvantagesSection = () => {
@@ -21,77 +20,47 @@ const AdvantagesSection = () => {
 
   return (
     <>
-      <section id="vantagens" className="py-24 bg-background relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end mb-16 animate-fade-in">
-            {/* Left side - Title */}
-            <div className="lg:col-span-7 text-left">
-              <div className="inline-flex items-center text-primary text-sm md:text-base font-semibold mb-3">
-                <span className="uppercase tracking-wider">Benefícios Exclusivos</span>
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-[0.9]">
-                Vantagens da <span className="text-primary">Assinatura</span>
-              </h2>
-            </div>
-            
-            {/* Right side - Description */}
-            <div className="lg:col-span-5 lg:pb-2">
-              <div className="lg:border-l-2 border-primary/30 lg:pl-8">
-                <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  Descubra todos os <span className="text-foreground underline decoration-primary decoration-2 underline-offset-4">benefícios exclusivos</span> para assinantes da coleção <span className="text-foreground underline decoration-primary decoration-2 underline-offset-4">Carros Clássicos</span>
-                </p>
-              </div>
-            </div>
+      <section id="vantagens" className="py-20 md:py-28 bg-muted/30">
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+            <span className="text-primary text-sm font-semibold uppercase tracking-wider">Benefícios</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mt-2 mb-4">
+              Vantagens da Assinatura
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Descubra os benefícios exclusivos para assinantes da coleção Carros de Coleção.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             {advantages.map((advantage, index) => (
-              <Card 
+              <div 
                 key={index}
-                className="group p-6 bg-card border-border hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 animate-scale-in relative overflow-hidden"
-                style={{ animationDelay: `${index * 0.05}s` }}
+                className="group bg-card rounded-xl p-6 border border-border hover:border-primary/30 hover:shadow-md transition-all duration-300"
               >
-                {advantage.highlight && (
-                  <div className="absolute -top-3 -right-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                    TOP
-                  </div>
-                )}
-
-                <div className="relative z-10 flex gap-4">
-                  <div className="w-14 h-14 flex-shrink-0 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                    <advantage.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  
-                  <div className="flex-1 text-left">
-                    <h3 className="font-bold text-base mb-1 text-foreground">
-                      {advantage.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {advantage.description}
-                    </p>
-                  </div>
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  <advantage.icon className="w-6 h-6 text-primary" />
                 </div>
-              </Card>
+                <h3 className="font-semibold text-foreground mb-1">{advantage.title}</h3>
+                <p className="text-muted-foreground text-sm">{advantage.description}</p>
+              </div>
             ))}
           </div>
 
-          {/* Bottom CTA */}
-          <div className="mt-16 text-center animate-fade-in">
-            <div className="inline-block bg-card border border-border rounded-xl px-10 py-8">
-              <p className="text-lg font-semibold text-foreground mb-2">
-                Comece já a sua coleção de carros clássicos!
+          {/* CTA */}
+          <div className="mt-12 md:mt-16 text-center">
+            <div className="inline-block bg-card border border-border rounded-xl px-8 py-6">
+              <p className="text-foreground font-medium mb-1">
+                Comece já a sua coleção!
               </p>
-              <p className="text-sm text-muted-foreground mb-5">
-                Primeiro carro <span className="text-primary font-bold">VW Beetle</span> por apenas <span className="text-primary font-bold text-xl">1,00€</span>
+              <p className="text-muted-foreground text-sm mb-4">
+                Primeiro carro por apenas <span className="text-primary font-bold">1,00€</span>
               </p>
               <Button 
                 variant="cta"
                 onClick={() => setIsSubscriptionOpen(true)}
-                className="px-8"
               >
                 Subscrever Agora
               </Button>
@@ -101,7 +70,7 @@ const AdvantagesSection = () => {
       </section>
 
       <Dialog open={isSubscriptionOpen} onOpenChange={setIsSubscriptionOpen}>
-        <DialogContent className="max-w-4xl w-full h-[100dvh] md:h-auto md:max-h-[85vh] p-4 md:p-6 m-0 md:m-4 max-w-full md:max-w-4xl rounded-none md:rounded-lg overflow-hidden flex flex-col">
+        <DialogContent className="max-w-4xl w-full h-[100dvh] md:h-auto md:max-h-[85vh] p-4 md:p-6 m-0 md:m-4 max-w-full md:max-w-4xl rounded-none md:rounded-xl overflow-hidden flex flex-col">
           <SubscriptionForm onClose={() => setIsSubscriptionOpen(false)} />
         </DialogContent>
       </Dialog>
