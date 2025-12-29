@@ -39,21 +39,21 @@ const Hero = () => {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             {/* Left Column - Text Content */}
             <div className="space-y-6 order-2 lg:order-1">
-              {/* Logo */}
-              <img 
-                src={correioRecordLogo} 
-                alt="Correio da Manhã | Record" 
-                className="h-10 md:h-12 object-contain brightness-0 invert"
-              />
-
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/50 rounded-full px-4 py-2 backdrop-blur-sm">
                 <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
                 <span className="text-orange-400 text-sm font-bold uppercase tracking-wide">Coleção Exclusiva</span>
               </div>
 
-              {/* Main Title */}
+              {/* Logo + Main Title */}
               <div>
+                {/* Logo */}
+                <img 
+                  src={correioRecordLogo} 
+                  alt="Correio da Manhã | Record" 
+                  className="h-8 md:h-10 object-contain mb-4"
+                />
+                
                 <h1 className="font-display uppercase leading-[0.85]">
                   <span 
                     className="block text-7xl sm:text-8xl lg:text-9xl font-bold text-orange-500"
