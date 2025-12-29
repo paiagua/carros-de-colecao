@@ -26,6 +26,24 @@ const CollectionSection = () => {
   return (
     <>
       <section id="colecao" className="py-20 md:py-28 bg-background relative overflow-hidden">
+        {/* Subtle dot pattern texture */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`,
+            backgroundSize: '24px 24px'
+          }}
+        />
+        
+        {/* Grid lines texture */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }}
+        />
+        
         {/* Background decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-orange-500/10 via-orange-400/5 to-transparent rounded-full blur-3xl" />
         <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-bl from-orange-400/15 to-transparent rounded-full blur-2xl" />
