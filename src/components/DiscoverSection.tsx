@@ -6,14 +6,7 @@ const DiscoverSection = () => {
   const { setIsSubscriptionOpen } = useSubscription();
 
   return (
-    <section className="py-16 md:py-24 bg-amber-400 relative overflow-hidden">
-      {/* Decorative corner */}
-      <div className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48">
-        <div className="absolute top-0 left-0 w-full h-full border-t-4 border-l-4 border-white/60" 
-          style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} 
-        />
-      </div>
-
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Main Headline */}
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-gray-900 italic mb-12 max-w-5xl mx-auto leading-tight">
