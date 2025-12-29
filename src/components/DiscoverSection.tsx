@@ -13,12 +13,23 @@ const DiscoverSection = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-gray-100 to-transparent rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Main Headline */}
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif italic text-gray-800 max-w-5xl mx-auto leading-tight tracking-tight">
-            Em cada entrega, descubra as histórias e curiosidades das réplicas oficiais dos carros que deixaram a sua marca na{" "}
-            <span className="text-orange-500 font-bold not-italic">história do automóvel.</span>
-          </h2>
+        {/* Main Headline - Split layout */}
+        <div className="mb-16 md:mb-20">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end">
+            {/* Left side */}
+            <div className="text-left">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl italic text-gray-800 leading-tight">
+                Em cada entrega, descubra as histórias e curiosidades das réplicas oficiais dos carros
+              </h2>
+            </div>
+            {/* Right side */}
+            <div className="text-left md:text-right">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl italic text-gray-800 leading-tight">
+                que deixaram a sua marca na{" "}
+                <span className="text-orange-500 not-italic">história do automóvel.</span>
+              </h2>
+            </div>
+          </div>
           <div className="mt-8 flex justify-center gap-2">
             <div className="h-1 w-16 bg-orange-500 rounded-full" />
             <div className="h-1 w-8 bg-orange-300 rounded-full" />
