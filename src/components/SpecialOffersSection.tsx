@@ -49,12 +49,6 @@ const SpecialOffersSection = () => {
             <br />
             <span className="text-orange-400">Ofertas Fantásticas!</span>
           </h2>
-          
-          <div className="flex justify-center gap-2 mt-8">
-            <div className="h-px w-16 bg-orange-500/60 rounded-full" />
-            <div className="h-1 w-2 bg-orange-400 rounded-full" />
-            <div className="h-px w-16 bg-orange-500/60 rounded-full" />
-          </div>
         </div>
 
         {/* Offers Grid */}
