@@ -116,12 +116,11 @@ const Hero = () => {
             </div>
 
             {/* Right Column - Image */}
-            <div className="relative order-1 lg:order-2">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-100 to-orange-50 rounded-3xl blur-2xl" />
+            <div className="order-1 lg:order-2">
               <img 
                 src={heroCollection} 
                 alt="Carros de Coleção - Miniaturas e Fascículos" 
-                className="relative w-full max-w-2xl mx-auto drop-shadow-2xl"
+                className="w-full max-w-3xl mx-auto"
               />
             </div>
           </div>
