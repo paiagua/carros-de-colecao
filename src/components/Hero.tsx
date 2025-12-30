@@ -20,6 +20,7 @@ import car10 from "@/assets/cars/car-10.png";
 
 // Import real car images
 import { getRealCarImage } from "@/data/realCarImages";
+import { cars } from "@/data/minerals";
 
 const carImages = [car1, car2, car3, car4, car5, car6, car7, car8, car9, car10];
 
@@ -169,13 +170,20 @@ const Hero = () => {
                     <TooltipContent 
                       side="bottom" 
                       sideOffset={30}
-                      className="w-auto p-3 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl z-[9999]"
+                      className="w-auto p-4 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl z-[9999]"
                     >
-                      <img 
-                        src={realCarImage || car} 
-                        alt={`Carro Real ${carNumber}`} 
-                        className="w-72 md:w-96 h-auto object-contain drop-shadow-xl"
-                      />
+                      <div className="flex flex-col items-center gap-3">
+                        <img 
+                          src={realCarImage || car} 
+                          alt={`Carro Real ${carNumber}`} 
+                          className="w-72 md:w-96 h-auto object-contain drop-shadow-xl"
+                        />
+                        <div className="text-center">
+                          <span className="inline-block bg-orange-500 text-white text-sm font-bold px-4 py-1.5 rounded-full">
+                            {cars[carNumber - 1]?.title || `Carro ${carNumber}`}
+                          </span>
+                        </div>
+                      </div>
                     </TooltipContent>
                   </Tooltip>
                 );
