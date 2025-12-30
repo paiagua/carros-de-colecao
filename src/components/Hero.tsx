@@ -37,8 +37,11 @@ const Hero = () => {
           <div className="hidden lg:block w-1/2 bg-white" />
         </div>
 
-        {/* Right Column - Image (behind content) */}
-        <div className="hidden lg:flex absolute inset-0 z-[1] items-center justify-end">
+        {/* Right Column - Image (clipped to right half only) */}
+        <div 
+          className="hidden lg:flex absolute inset-0 z-[1] items-center justify-end"
+          style={{ clipPath: 'inset(0 0 0 50%)' }}
+        >
           <div className="w-[60%] h-full flex items-center justify-center">
             <img 
               src={heroCollection} 
