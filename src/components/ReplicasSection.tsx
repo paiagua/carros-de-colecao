@@ -94,33 +94,21 @@ const ReplicasSection = () => {
             </p>
 
             <div className="grid gap-3">
-              <div className="group flex items-center gap-5 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
-                <div className="w-11 h-11 bg-orange-50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors duration-300">
-                  <Trophy className="w-5 h-5 text-orange-500" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <span className="text-gray-800 font-medium">Réplicas oficiais dos modelos mais emblemáticos</span>
-                </div>
+              <div className="group flex items-center gap-4 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
+                <Trophy className="w-6 h-6 text-orange-500 flex-shrink-0" strokeWidth={1.5} />
+                <span className="text-gray-700 font-medium flex-1">Réplicas oficiais dos modelos mais emblemáticos</span>
                 <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
               </div>
               
-              <div className="group flex items-center gap-5 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
-                <div className="w-11 h-11 bg-gray-50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-orange-50 transition-colors duration-300">
-                  <Gem className="w-5 h-5 text-gray-600 group-hover:text-orange-500 transition-colors duration-300" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <span className="text-gray-800 font-medium">Miniaturas pormenorizadas com atenção ao detalhe</span>
-                </div>
+              <div className="group flex items-center gap-4 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
+                <Gem className="w-6 h-6 text-gray-500 group-hover:text-orange-500 flex-shrink-0 transition-colors duration-300" strokeWidth={1.5} />
+                <span className="text-gray-700 font-medium flex-1">Miniaturas pormenorizadas com atenção ao detalhe</span>
                 <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
               </div>
               
-              <div className="group flex items-center gap-5 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
-                <div className="w-11 h-11 bg-orange-50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors duration-300">
-                  <BookOpen className="w-5 h-5 text-orange-500" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <span className="text-gray-800 font-medium">Fotografias e infografias da história e design</span>
-                </div>
+              <div className="group flex items-center gap-4 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
+                <BookOpen className="w-6 h-6 text-orange-500 flex-shrink-0" strokeWidth={1.5} />
+                <span className="text-gray-700 font-medium flex-1">Fotografias e infografias da história e design</span>
                 <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
               </div>
             </div>
