@@ -120,16 +120,16 @@ const DiscoverSection = () => {
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
             {/* Real Car */}
-            <div className="relative flex flex-col items-center">
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 shadow-xl border border-gray-100">
+            <div className="relative flex flex-col items-center group">
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 shadow-xl border border-gray-100 transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105 group-hover:border-gray-200">
                 <img 
                   src={realCar5} 
                   alt="Fiat 500 Real" 
-                  className="w-72 md:w-96 h-auto object-contain"
+                  className="w-72 md:w-96 h-auto object-contain transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <div className="mt-4 text-center">
-                <span className="inline-block bg-gray-800 text-white text-sm font-bold px-4 py-2 rounded-full">
+              <div className="mt-4 text-center transition-all duration-300 group-hover:translate-y-1">
+                <span className="inline-block bg-gray-800 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-300 group-hover:bg-gray-900 group-hover:shadow-lg">
                   Fiat 500 Real
                 </span>
                 <p className="text-gray-500 text-sm mt-2">Tamanho original: ~3,5m</p>
@@ -138,7 +138,7 @@ const DiscoverSection = () => {
 
             {/* Scale indicator */}
             <div className="flex flex-col items-center gap-2">
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-orange-500 rounded-full flex flex-col items-center justify-center text-white shadow-lg">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-orange-500 rounded-full flex flex-col items-center justify-center text-white shadow-lg transition-all duration-500 hover:scale-110 hover:shadow-xl hover:shadow-orange-500/40 hover:rotate-12 cursor-default">
                 <span className="text-[10px] md:text-xs uppercase tracking-wide">escala</span>
                 <span className="text-xl md:text-2xl font-black">1:60</span>
               </div>
@@ -150,16 +150,16 @@ const DiscoverSection = () => {
             </div>
 
             {/* Miniature Car */}
-            <div className="relative flex flex-col items-center">
-              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl p-8 shadow-xl border border-orange-100">
+            <div className="relative flex flex-col items-center group">
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl p-8 shadow-xl border border-orange-100 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-orange-300/30 group-hover:scale-105 group-hover:border-orange-200">
                 <img 
                   src={car5} 
                   alt="Fiat 500 Miniatura" 
-                  className="w-32 md:w-40 h-auto object-contain"
+                  className="w-32 md:w-40 h-auto object-contain transition-transform duration-500 group-hover:scale-125 group-hover:-rotate-3"
                 />
               </div>
-              <div className="mt-4 text-center">
-                <span className="inline-block bg-orange-500 text-white text-sm font-bold px-4 py-2 rounded-full">
+              <div className="mt-4 text-center transition-all duration-300 group-hover:translate-y-1">
+                <span className="inline-block bg-orange-500 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-300 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/30">
                   Fiat 500 Miniatura
                 </span>
                 <p className="text-gray-500 text-sm mt-2">Tamanho: ~6cm</p>
