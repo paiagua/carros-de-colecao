@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Award, Search, Image, Car, Sparkles } from "lucide-react";
 import magazine1 from "@/assets/magazines/magazine-1.png";
 import magazine2 from "@/assets/magazines/magazine-2.png";
 import magazine3 from "@/assets/magazines/magazine-3.png";
@@ -93,31 +94,46 @@ const ReplicasSection = () => {
             </p>
 
             <div className="grid gap-4">
-              <div className="group flex items-center gap-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-4 border border-orange-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 hover:scale-[1.02]">
-                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
+              <div className="group flex items-center gap-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-5 border border-orange-100 transition-all duration-500 hover:shadow-xl hover:shadow-orange-200/50 hover:border-orange-300 hover:scale-[1.03] hover:-translate-y-1 cursor-default">
+                <div className="relative w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <Award className="w-7 h-7 text-white" />
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Sparkles className="w-2.5 h-2.5 text-white" />
+                  </div>
                 </div>
-                <span className="text-gray-700 font-medium">Réplicas oficiais dos modelos mais emblemáticos do mundo automóvel</span>
+                <div className="flex-1">
+                  <span className="text-gray-800 font-semibold block">Réplicas Oficiais</span>
+                  <span className="text-gray-500 text-sm">Modelos emblemáticos do mundo automóvel</span>
+                </div>
+                <Car className="w-5 h-5 text-orange-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
               </div>
               
-              <div className="group flex items-center gap-4 bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-4 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 hover:scale-[1.02]">
-                <div className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
+              <div className="group flex items-center gap-4 bg-gradient-to-r from-slate-50 to-gray-50 rounded-2xl p-5 border border-gray-200 transition-all duration-500 hover:shadow-xl hover:shadow-gray-200/50 hover:border-orange-300 hover:scale-[1.03] hover:-translate-y-1 cursor-default">
+                <div className="relative w-14 h-14 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
+                  <Search className="w-7 h-7 text-white" />
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Sparkles className="w-2.5 h-2.5 text-white" />
+                  </div>
                 </div>
-                <span className="text-gray-700 font-medium">Miniaturas pormenorizadas com atenção a cada detalhe</span>
+                <div className="flex-1">
+                  <span className="text-gray-800 font-semibold block">Miniaturas Detalhadas</span>
+                  <span className="text-gray-500 text-sm">Atenção pormenorizada a cada detalhe</span>
+                </div>
+                <Car className="w-5 h-5 text-gray-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
               </div>
               
-              <div className="group flex items-center gap-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-4 border border-orange-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 hover:scale-[1.02]">
-                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+              <div className="group flex items-center gap-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-5 border border-orange-100 transition-all duration-500 hover:shadow-xl hover:shadow-orange-200/50 hover:border-orange-300 hover:scale-[1.03] hover:-translate-y-1 cursor-default">
+                <div className="relative w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <Image className="w-7 h-7 text-white" />
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Sparkles className="w-2.5 h-2.5 text-white" />
+                  </div>
                 </div>
-                <span className="text-gray-700 font-medium">Imagens, fotografias e infografias ilustrando história e design</span>
+                <div className="flex-1">
+                  <span className="text-gray-800 font-semibold block">Conteúdo Visual Rico</span>
+                  <span className="text-gray-500 text-sm">Fotografias e infografias da história e design</span>
+                </div>
+                <Car className="w-5 h-5 text-orange-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
               </div>
             </div>
           </div>
