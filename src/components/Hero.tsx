@@ -122,11 +122,11 @@ const Hero = () => {
             </div>
 
             {/* Right Column - Image */}
-            <div className="order-1 lg:order-2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[55%] lg:h-full flex items-center justify-center">
+            <div className="order-1 lg:order-2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[60%] lg:h-full flex items-center justify-center">
               <img 
                 src={heroCollection} 
                 alt="Carros de Coleção - Miniaturas e Fascículos" 
-                className="w-full h-auto object-contain lg:scale-125 lg:translate-x-12"
+                className="w-full h-auto object-contain lg:scale-150 lg:translate-x-16"
               />
             </div>
           </div>
