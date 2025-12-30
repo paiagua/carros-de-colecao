@@ -32,19 +32,30 @@ const Hero = () => {
       <>
       <section className="relative min-h-screen flex flex-col overflow-hidden pt-20 md:pt-24">
         {/* Split background - Left dark, Right white */}
-        <div className="absolute inset-0 flex">
-          <div className="w-full lg:w-1/2 bg-gray-900 z-[1]" />
-          <div className="hidden lg:block w-1/2 bg-white z-0" />
+        <div className="absolute inset-0 flex z-0">
+          <div className="w-full lg:w-1/2 bg-gray-900" />
+          <div className="hidden lg:block w-1/2 bg-white" />
+        </div>
+
+        {/* Right Column - Image (behind content) */}
+        <div className="hidden lg:flex absolute inset-0 z-[1] items-center justify-end">
+          <div className="w-[60%] h-full flex items-center justify-center">
+            <img 
+              src={heroCollection} 
+              alt="Carros de Coleção - Miniaturas e Fascículos" 
+              className="w-full h-auto object-contain scale-150 translate-x-16"
+            />
+          </div>
         </div>
         
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-orange-500 z-10" />
 
         {/* Main Content */}
-        <div className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-10 flex items-center">
+        <div className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-[2] flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             {/* Left Column - Text Content (on dark background) */}
-            <div className="space-y-6 order-2 lg:order-1 relative z-10">
+            <div className="space-y-6 order-2 lg:order-1 relative">
               {/* Logo + Main Title */}
               <div>
                 {/* Logo */}
@@ -121,12 +132,12 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Right Column - Image */}
-            <div className="order-1 lg:order-2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[60%] lg:h-full flex items-center justify-center lg:-z-10">
+            {/* Right Column - Image (mobile only) */}
+            <div className="order-1 lg:order-2 lg:hidden flex items-center justify-center">
               <img 
                 src={heroCollection} 
                 alt="Carros de Coleção - Miniaturas e Fascículos" 
-                className="w-full h-auto object-contain lg:scale-150 lg:translate-x-16"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
