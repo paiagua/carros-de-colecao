@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { trackFAQInteraction } from "@/lib/analytics";
 
 const faqs = [
   { 
@@ -56,7 +57,12 @@ const FAQSection = () => {
           </h2>
         </div>
 
-        <Accordion type="single" collapsible className="w-full space-y-3">
+        <Accordion type="single" collapsible className="w-full space-y-3" onValueChange={(value) => {
+          if (value) {
+            const index = parseInt(value.replace('item-', ''));
+            trackFAQInteraction(faqs[index]?.question || value);
+          }
+        }}>
           {faqs.map((faq, index) => (
             <AccordionItem 
               key={index} 

@@ -5,6 +5,7 @@ import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import correioRecordLogo from "@/assets/correio-record-logo.png";
 import heroCollection from "@/assets/hero-collection.png";
+import { trackSubscriptionClick, trackNavClick } from "@/lib/analytics";
 
 // Import car images
 import car1 from "@/assets/cars/car-1.png";
@@ -120,7 +121,10 @@ const Hero = () => {
                 <Button 
                   size="lg" 
                   className="text-lg px-10 py-7 bg-orange-500 hover:bg-orange-600 text-white font-bold shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all uppercase tracking-wide rounded-xl"
-                  onClick={() => setIsSubscriptionOpen(true)}
+                  onClick={() => {
+                    trackSubscriptionClick('hero_main_button');
+                    setIsSubscriptionOpen(true);
+                  }}
                 >
                   Assinar Agora
                 </Button>
@@ -128,7 +132,10 @@ const Hero = () => {
                   variant="outline" 
                   size="lg" 
                   className="text-lg px-10 py-7 border-2 border-white/30 text-white hover:bg-white/10 font-bold uppercase tracking-wide rounded-xl bg-transparent"
-                  onClick={() => document.getElementById('colecao')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    trackNavClick('hero_ver_colecao');
+                    document.getElementById('colecao')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   Ver Coleção
                 </Button>
@@ -215,7 +222,10 @@ const Hero = () => {
         {/* Price Badge */}
         {!isSubscriptionOpen && (
           <div 
-            onClick={() => setIsSubscriptionOpen(true)}
+            onClick={() => {
+              trackSubscriptionClick('hero_price_badge');
+              setIsSubscriptionOpen(true);
+            }}
             className="fixed top-24 right-4 md:top-28 md:right-8 lg:right-12 w-28 h-28 md:w-36 md:h-36 rounded-full font-bold flex flex-col items-center justify-center text-center z-[100] cursor-pointer transition-all duration-300 hover:scale-110 border-4 border-white shadow-2xl bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500"
             style={{ boxShadow: '0 10px 40px rgba(249,115,22,0.5)' }}
           >

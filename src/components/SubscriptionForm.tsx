@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import car1 from "@/assets/cars/car-1.png";
 import car2 from "@/assets/cars/car-2.png";
 import car3 from "@/assets/cars/car-3.png";
-
+import { trackSubscriptionFormSubmit, trackEvent } from "@/lib/analytics";
 
 const step1Schema = z.object({
   fullName: z.string().trim().min(3, "Nome completo é obrigatório").max(100),
@@ -138,16 +138,19 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   };
 
   const handleStep1 = (data: Step1Data) => {
+    trackEvent('subscription_step_complete', { step: 1 });
     setFormData({ ...formData, ...data });
     setCurrentStep(2);
   };
 
   const handleStep2 = (data: Step2Data) => {
+    trackEvent('subscription_step_complete', { step: 2, first_car: data.firstBook });
     setFormData({ ...formData, ...data });
     setCurrentStep(3);
   };
 
   const handleStep3 = (data: Step3Data) => {
+    trackEvent('subscription_step_complete', { step: 3 });
     setFormData({ ...formData, ...data });
     // Preencher nome do titular por defeito com o nome da pessoa
     if (!step4Form.getValues("accountHolderName")) {
@@ -222,6 +225,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       const csv = buildCsvContent(finalData);
       await saveCsvToServer(csv, finalData.fullName);
 
+      trackSubscriptionFormSubmit(true);
       toast({
         title: "Subscrição guardada com sucesso!",
         description: "Em breve será contactado pela nossa equipa.",
@@ -229,6 +233,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       onClose();
     } catch (err: any) {
       console.error(err);
+      trackSubscriptionFormSubmit(false);
       toast({
         title: "Erro ao guardar",
         description: err?.message || "Não foi possível guardar no servidor.",

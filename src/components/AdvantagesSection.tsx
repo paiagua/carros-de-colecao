@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
+import { trackSubscriptionClick } from "@/lib/analytics";
 
 const advantages = [
   { icon: Car, title: "Miniaturas de Qualidade", description: "Reproduções fiéis dos modelos originais" },
@@ -60,7 +61,10 @@ const AdvantagesSection = () => {
               </p>
               <Button 
                 className="bg-orange-500 hover:bg-orange-600 text-white font-bold"
-                onClick={() => setIsSubscriptionOpen(true)}
+                onClick={() => {
+                  trackSubscriptionClick('advantages_section');
+                  setIsSubscriptionOpen(true);
+                }}
               >
                 Subscrever Agora
               </Button>
