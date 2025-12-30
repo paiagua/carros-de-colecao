@@ -137,7 +137,7 @@ const Hero = () => {
           <div className="h-2 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 shadow-lg" />
           
           {/* Main marquee container */}
-          <div className="relative py-6 md:py-10 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-500 overflow-visible">
+          <div className="relative py-6 md:py-10 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-500 overflow-visible z-50">
             {/* Decorative top shadow */}
             <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-black/10 to-transparent" />
             
@@ -169,7 +169,7 @@ const Hero = () => {
                     <TooltipContent 
                       side="bottom" 
                       sideOffset={30}
-                      className="w-auto p-3 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl"
+                      className="w-auto p-3 bg-white/95 backdrop-blur-sm border-2 border-orange-300 shadow-2xl rounded-xl z-[9999]"
                     >
                       <img 
                         src={realCarImage || car} 
