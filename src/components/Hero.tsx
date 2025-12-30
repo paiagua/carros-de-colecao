@@ -44,7 +44,7 @@ const Hero = () => {
         <div className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-10 flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             {/* Left Column - Text Content (on dark background) */}
-            <div className="space-y-6 order-2 lg:order-1">
+            <div className="space-y-6 order-2 lg:order-1 relative z-10">
               {/* Logo + Main Title */}
               <div>
                 {/* Logo */}
@@ -122,7 +122,7 @@ const Hero = () => {
             </div>
 
             {/* Right Column - Image */}
-            <div className="order-1 lg:order-2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[60%] lg:h-full flex items-center justify-center">
+            <div className="order-1 lg:order-2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[60%] lg:h-full flex items-center justify-center lg:z-0">
               <img 
                 src={heroCollection} 
                 alt="Carros de Coleção - Miniaturas e Fascículos" 
