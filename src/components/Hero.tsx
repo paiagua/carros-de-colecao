@@ -33,8 +33,8 @@ const Hero = () => {
       <section className="relative min-h-screen flex flex-col overflow-hidden pt-20 md:pt-24">
         {/* Split background - Left dark, Right white */}
         <div className="absolute inset-0 flex">
-          <div className="w-full lg:w-1/2 bg-gray-900" />
-          <div className="hidden lg:block w-1/2 bg-white" />
+          <div className="w-full lg:w-1/2 bg-gray-900 z-[1]" />
+          <div className="hidden lg:block w-1/2 bg-white z-0" />
         </div>
         
         {/* Top accent bar */}
@@ -122,7 +122,7 @@ const Hero = () => {
             </div>
 
             {/* Right Column - Image */}
-            <div className="order-1 lg:order-2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[60%] lg:h-full flex items-center justify-center lg:z-0">
+            <div className="order-1 lg:order-2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[60%] lg:h-full flex items-center justify-center lg:-z-10">
               <img 
                 src={heroCollection} 
                 alt="Carros de Coleção - Miniaturas e Fascículos" 
