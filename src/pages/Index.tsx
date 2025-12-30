@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ReasonsSection from "@/components/ReasonsSection";
@@ -10,8 +11,17 @@ import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import SubscriptionSticker from "@/components/SubscriptionSticker";
+import { initScrollTracking, trackPageView } from "@/lib/analytics";
 
 const Index = () => {
+  useEffect(() => {
+    // Track page view
+    trackPageView('home');
+    
+    // Initialize scroll depth tracking
+    const cleanup = initScrollTracking();
+    return cleanup;
+  }, []);
   return (
     <main className="min-h-screen" role="main">
       <header>
