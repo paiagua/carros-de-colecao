@@ -4,11 +4,13 @@ import { Mail, Phone, Clock, Car } from "lucide-react";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
 import correioRecordLogo from "@/assets/correio-record-logo.png";
+import { trackSubscriptionClick, trackPhoneClick, trackEmailClick, trackScrollToTop } from "@/lib/analytics";
 
 const Footer = () => {
   const { isSubscriptionOpen, setIsSubscriptionOpen } = useSubscription();
 
   const scrollToTop = () => {
+    trackScrollToTop();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -38,13 +40,13 @@ const Footer = () => {
               <div className="space-y-3 text-sm text-gray-400">
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4" />
-                  <a href="mailto:assinaturas@vasp.pt" className="hover:text-white transition-colors">
+                  <a href="mailto:assinaturas@vasp.pt" onClick={() => trackEmailClick()} className="hover:text-white transition-colors">
                     assinaturas@vasp.pt
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4" />
-                  <a href="tel:214337036" className="hover:text-white transition-colors">
+                  <a href="tel:214337036" onClick={() => trackPhoneClick()} className="hover:text-white transition-colors">
                     21 433 70 36
                   </a>
                 </div>
@@ -63,7 +65,10 @@ const Footer = () => {
               </p>
               <Button 
                 className="bg-orange-500 hover:bg-orange-600 text-white font-bold"
-                onClick={() => setIsSubscriptionOpen(true)}
+                onClick={() => {
+                  trackSubscriptionClick('footer');
+                  setIsSubscriptionOpen(true);
+                }}
               >
                 Subscrever Agora
               </Button>

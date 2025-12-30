@@ -4,6 +4,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Menu, X, Car } from "lucide-react";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
+import { trackNavClick, trackSubscriptionClick } from "@/lib/analytics";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +21,7 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
+    trackNavClick(id);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -70,7 +72,10 @@ const Navbar = () => {
               >
                 FAQs
               </button>
-              <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold" onClick={() => setIsSubscriptionOpen(true)}>
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold" onClick={() => {
+                trackSubscriptionClick('navbar_desktop');
+                setIsSubscriptionOpen(true);
+              }}>
                 Assinar Agora
               </Button>
             </div>
@@ -114,7 +119,10 @@ const Navbar = () => {
                 FAQs
               </button>
               <div className="px-4 pt-2">
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold" onClick={() => setIsSubscriptionOpen(true)}>
+                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold" onClick={() => {
+                  trackSubscriptionClick('navbar_mobile');
+                  setIsSubscriptionOpen(true);
+                }}>
                   Assinar Agora
                 </Button>
               </div>

@@ -4,6 +4,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import SubscriptionForm from "./SubscriptionForm";
+import { trackSubscriptionClick } from "@/lib/analytics";
 
 const SubscriptionSticker = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,7 +53,10 @@ const SubscriptionSticker = () => {
             </div>
 
             <Button
-              onClick={() => setIsSubscriptionOpen(true)}
+              onClick={() => {
+                trackSubscriptionClick('floating_sticker');
+                setIsSubscriptionOpen(true);
+              }}
               className="w-full bg-white text-accent hover:bg-white/90 font-semibold shadow-lg"
             >
               Começar Coleção
