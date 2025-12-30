@@ -1,4 +1,6 @@
 import carsCollection from "@/assets/cars-collection.png";
+import car5 from "@/assets/cars/car-5.png";
+import realCar5 from "@/assets/real-cars/real-car-5.png";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Check } from "lucide-react";
@@ -101,6 +103,67 @@ const DiscoverSection = () => {
             <div className="absolute top-4 right-4 md:top-8 md:right-8 w-24 h-24 md:w-32 md:h-32 bg-orange-500 rounded-full flex flex-col items-center justify-center text-white shadow-2xl border-4 border-white">
               <span className="text-xs md:text-sm">escala</span>
               <span className="text-2xl md:text-4xl font-black">1:60</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Scale Comparison Section */}
+        <div className="mt-20 md:mt-28">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+              Exemplo de Escala <span className="text-orange-500">1:60</span>
+            </h3>
+            <p className="text-gray-500 max-w-xl mx-auto">
+              Veja a comparação entre o Fiat 500 real e a sua réplica em miniatura
+            </p>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+            {/* Real Car */}
+            <div className="relative flex flex-col items-center">
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 shadow-xl border border-gray-100">
+                <img 
+                  src={realCar5} 
+                  alt="Fiat 500 Real" 
+                  className="w-72 md:w-96 h-auto object-contain"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <span className="inline-block bg-gray-800 text-white text-sm font-bold px-4 py-2 rounded-full">
+                  Fiat 500 Real
+                </span>
+                <p className="text-gray-500 text-sm mt-2">Tamanho original: ~3,5m</p>
+              </div>
+            </div>
+
+            {/* Scale indicator */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-orange-500 rounded-full flex flex-col items-center justify-center text-white shadow-lg">
+                <span className="text-[10px] md:text-xs uppercase tracking-wide">escala</span>
+                <span className="text-xl md:text-2xl font-black">1:60</span>
+              </div>
+              <div className="hidden md:flex items-center gap-2 text-gray-400">
+                <div className="w-8 h-px bg-gray-300"></div>
+                <span className="text-xs">vs</span>
+                <div className="w-8 h-px bg-gray-300"></div>
+              </div>
+            </div>
+
+            {/* Miniature Car */}
+            <div className="relative flex flex-col items-center">
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl p-8 shadow-xl border border-orange-100">
+                <img 
+                  src={car5} 
+                  alt="Fiat 500 Miniatura" 
+                  className="w-32 md:w-40 h-auto object-contain"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <span className="inline-block bg-orange-500 text-white text-sm font-bold px-4 py-2 rounded-full">
+                  Fiat 500 Miniatura
+                </span>
+                <p className="text-gray-500 text-sm mt-2">Tamanho: ~6cm</p>
+              </div>
             </div>
           </div>
         </div>
