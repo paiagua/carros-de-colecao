@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Award, Search, Image, Car, Sparkles } from "lucide-react";
+import { Trophy, Gem, BookOpen, ChevronRight } from "lucide-react";
 import magazine1 from "@/assets/magazines/magazine-1.png";
 import magazine2 from "@/assets/magazines/magazine-2.png";
 import magazine3 from "@/assets/magazines/magazine-3.png";
@@ -93,47 +93,35 @@ const ReplicasSection = () => {
               Modelos que fizeram parte de momentos inesquecíveis, de viagens em família, de aventuras na estrada e de sonhos sobre rodas.
             </p>
 
-            <div className="grid gap-4">
-              <div className="group flex items-center gap-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-5 border border-orange-100 transition-all duration-500 hover:shadow-xl hover:shadow-orange-200/50 hover:border-orange-300 hover:scale-[1.03] hover:-translate-y-1 cursor-default">
-                <div className="relative w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  <Award className="w-7 h-7 text-white" />
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Sparkles className="w-2.5 h-2.5 text-white" />
-                  </div>
+            <div className="grid gap-3">
+              <div className="group flex items-center gap-5 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
+                <div className="w-11 h-11 bg-orange-50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors duration-300">
+                  <Trophy className="w-5 h-5 text-orange-500" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
-                  <span className="text-gray-800 font-semibold block">Réplicas Oficiais</span>
-                  <span className="text-gray-500 text-sm">Modelos emblemáticos do mundo automóvel</span>
+                  <span className="text-gray-800 font-medium">Réplicas oficiais dos modelos mais emblemáticos</span>
                 </div>
-                <Car className="w-5 h-5 text-orange-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
+                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
               </div>
               
-              <div className="group flex items-center gap-4 bg-gradient-to-r from-slate-50 to-gray-50 rounded-2xl p-5 border border-gray-200 transition-all duration-500 hover:shadow-xl hover:shadow-gray-200/50 hover:border-orange-300 hover:scale-[1.03] hover:-translate-y-1 cursor-default">
-                <div className="relative w-14 h-14 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
-                  <Search className="w-7 h-7 text-white" />
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Sparkles className="w-2.5 h-2.5 text-white" />
-                  </div>
+              <div className="group flex items-center gap-5 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
+                <div className="w-11 h-11 bg-gray-50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-orange-50 transition-colors duration-300">
+                  <Gem className="w-5 h-5 text-gray-600 group-hover:text-orange-500 transition-colors duration-300" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
-                  <span className="text-gray-800 font-semibold block">Miniaturas Detalhadas</span>
-                  <span className="text-gray-500 text-sm">Atenção pormenorizada a cada detalhe</span>
+                  <span className="text-gray-800 font-medium">Miniaturas pormenorizadas com atenção ao detalhe</span>
                 </div>
-                <Car className="w-5 h-5 text-gray-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
+                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
               </div>
               
-              <div className="group flex items-center gap-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-5 border border-orange-100 transition-all duration-500 hover:shadow-xl hover:shadow-orange-200/50 hover:border-orange-300 hover:scale-[1.03] hover:-translate-y-1 cursor-default">
-                <div className="relative w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  <Image className="w-7 h-7 text-white" />
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Sparkles className="w-2.5 h-2.5 text-white" />
-                  </div>
+              <div className="group flex items-center gap-5 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
+                <div className="w-11 h-11 bg-orange-50 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors duration-300">
+                  <BookOpen className="w-5 h-5 text-orange-500" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
-                  <span className="text-gray-800 font-semibold block">Conteúdo Visual Rico</span>
-                  <span className="text-gray-500 text-sm">Fotografias e infografias da história e design</span>
+                  <span className="text-gray-800 font-medium">Fotografias e infografias da história e design</span>
                 </div>
-                <Car className="w-5 h-5 text-orange-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300" />
+                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
               </div>
             </div>
           </div>
