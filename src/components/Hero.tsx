@@ -137,7 +137,7 @@ const Hero = () => {
           <div className="h-2 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 shadow-lg" />
           
           {/* Main marquee container */}
-          <div className="relative py-6 md:py-10 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-500 overflow-visible z-50">
+          <div className="relative py-6 md:py-10 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-500 overflow-visible z-50 group/marquee">
             {/* Decorative top shadow */}
             <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-black/10 to-transparent" />
             
@@ -145,7 +145,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
             
             {/* Cars row */}
-            <div className="flex animate-marquee-left">
+            <div className="flex animate-marquee-left group-hover/marquee:[animation-play-state:paused]">
               {[...carImages, ...carImages, ...carImages].map((car, index) => {
                 const carNumber = (index % 10) + 1;
                 const realCarImage = getRealCarImage(carNumber);
