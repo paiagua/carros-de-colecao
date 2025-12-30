@@ -95,21 +95,21 @@ const ReplicasSection = () => {
 
             <div className="grid gap-3">
               <div className="group flex items-center gap-4 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
-                <Trophy className="w-6 h-6 text-orange-500 flex-shrink-0" strokeWidth={1.5} />
+                <Trophy className="w-6 h-6 text-orange-500 flex-shrink-0" strokeWidth={1} />
                 <span className="text-gray-700 font-medium flex-1">Réplicas oficiais dos modelos mais emblemáticos</span>
-                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
+                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" strokeWidth={1} />
               </div>
               
               <div className="group flex items-center gap-4 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
-                <Gem className="w-6 h-6 text-gray-500 group-hover:text-orange-500 flex-shrink-0 transition-colors duration-300" strokeWidth={1.5} />
+                <Gem className="w-6 h-6 text-gray-500 group-hover:text-orange-500 flex-shrink-0 transition-colors duration-300" strokeWidth={1} />
                 <span className="text-gray-700 font-medium flex-1">Miniaturas pormenorizadas com atenção ao detalhe</span>
-                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
+                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" strokeWidth={1} />
               </div>
               
               <div className="group flex items-center gap-4 bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-orange-200 cursor-default">
-                <BookOpen className="w-6 h-6 text-orange-500 flex-shrink-0" strokeWidth={1.5} />
+                <BookOpen className="w-6 h-6 text-orange-500 flex-shrink-0" strokeWidth={1} />
                 <span className="text-gray-700 font-medium flex-1">Fotografias e infografias da história e design</span>
-                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" />
+                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-orange-400 group-hover:translate-x-1 transition-all duration-300" strokeWidth={1} />
               </div>
             </div>
           </div>
