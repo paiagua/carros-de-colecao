@@ -46,7 +46,7 @@ const Hero = () => {
             <img 
               src={heroCollection} 
               alt="Carros de Coleção - Miniaturas e Fascículos" 
-              className="w-full h-auto object-contain scale-150 translate-x-16"
+              className="w-full h-auto object-contain scale-125 translate-x-12"
             />
           </div>
         </div>
