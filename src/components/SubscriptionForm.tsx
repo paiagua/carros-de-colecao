@@ -237,18 +237,34 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
 
   const handleStep3 = (data: Step3Data) => {
     trackEvent('subscription_step_complete', { step: 3 });
-    const newFormData = { ...formData, ...data };
+    
+    // Pre-fill step 4 fields with delivery data
+    const accountHolderName = step4Form.getValues("accountHolderName") || formData.fullName || "";
+    const accountHolderAddress = data.address || "";
+    const accountHolderPostalCode1 = data.postalCode1 || "";
+    const accountHolderPostalCode2 = data.postalCode2 || "";
+    const accountHolderCity = data.city || "";
+    
+    // Set form values
+    step4Form.setValue("accountHolderName", accountHolderName);
+    step4Form.setValue("accountHolderAddress", accountHolderAddress);
+    step4Form.setValue("accountHolderPostalCode1", accountHolderPostalCode1);
+    step4Form.setValue("accountHolderPostalCode2", accountHolderPostalCode2);
+    step4Form.setValue("accountHolderCity", accountHolderCity);
+    
+    // Save all data including pre-filled step 4 fields
+    const newFormData = { 
+      ...formData, 
+      ...data,
+      accountHolderName,
+      accountHolderAddress,
+      accountHolderPostalCode1,
+      accountHolderPostalCode2,
+      accountHolderCity
+    };
     setFormData(newFormData);
     saveToStorage(newFormData, 4);
-    // Preencher nome do titular por defeito com o nome da pessoa
-    if (!step4Form.getValues("accountHolderName")) {
-      step4Form.setValue("accountHolderName", formData.fullName || "");
-    }
-    // Preencher morada do titular por defeito com a morada de entrega
-    step4Form.setValue("accountHolderAddress", data.address || "");
-    step4Form.setValue("accountHolderPostalCode1", data.postalCode1 || "");
-    step4Form.setValue("accountHolderPostalCode2", data.postalCode2 || "");
-    step4Form.setValue("accountHolderCity", data.city || "");
+    
     setNibConfirmed(false);
     setCurrentStep(4);
   };
