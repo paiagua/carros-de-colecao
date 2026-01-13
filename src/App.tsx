@@ -7,6 +7,7 @@ import { SubscriptionProvider } from "@/contexts/SubscriptionContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Backoffice from "./pages/Backoffice";
+import BackofficeLogin from "./pages/BackofficeLogin";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/backoffice" element={<Backoffice />} />
+            <Route path="/backoffice/login" element={<BackofficeLogin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

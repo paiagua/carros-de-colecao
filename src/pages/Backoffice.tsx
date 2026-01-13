@@ -6,10 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Download, RefreshCcw, Search, Filter, ArrowLeft, Users, CheckCircle, Clock, AlertCircle } from "lucide-react";
+import { Download, RefreshCcw, Search, Filter, ArrowLeft, Users, CheckCircle, Clock, AlertCircle, LogOut } from "lucide-react";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 interface Lead {
   id: string;
@@ -45,6 +46,14 @@ const Backoffice = () => {
   const [stepFilter, setStepFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const navigate = useNavigate();
+  const { user, loading: authLoading, signOut } = useAuth();
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate("/backoffice/login");
+    }
+  }, [user, authLoading, navigate]);
 
   const fetchLeads = async () => {
     setLoading(true);
@@ -63,8 +72,10 @@ const Backoffice = () => {
   };
 
   useEffect(() => {
-    fetchLeads();
-  }, []);
+    if (user) {
+      fetchLeads();
+    }
+  }, [user]);
 
   useEffect(() => {
     let result = leads;
@@ -179,6 +190,20 @@ const Backoffice = () => {
     step4: leads.filter((l) => l.current_step === 4 && !l.completed).length,
   };
 
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
@@ -190,7 +215,7 @@ const Backoffice = () => {
             </Button>
             <div>
               <h1 className="text-2xl md:text-3xl font-bold text-foreground">Gestão de Leads</h1>
-              <p className="text-muted-foreground">Backoffice de subscrições</p>
+              <p className="text-muted-foreground">Backoffice de subscrições • {user.email}</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -201,6 +226,10 @@ const Backoffice = () => {
             <Button onClick={exportToExcel} disabled={filteredLeads.length === 0}>
               <Download className="h-4 w-4 mr-2" />
               Exportar Excel
+            </Button>
+            <Button variant="outline" onClick={signOut}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Sair
             </Button>
           </div>
         </div>
