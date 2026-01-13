@@ -75,6 +75,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   const [nibConfirmed, setNibConfirmed] = useState(false);
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
   const [isLoadingAccountAddress, setIsLoadingAccountAddress] = useState(false);
+  const [dataRecovered, setDataRecovered] = useState(false);
+  const [recoveredName, setRecoveredName] = useState<string | null>(null);
   const { toast } = useToast();
 
   const step1Form = useForm<Step1Data>({
@@ -105,6 +107,13 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
     if (savedData) {
       try {
         const parsed = JSON.parse(savedData);
+        
+        // Only show recovery message if there's meaningful data
+        if (parsed.formData?.fullName) {
+          setDataRecovered(true);
+          setRecoveredName(parsed.formData.fullName.split(' ')[0]); // First name only
+        }
+        
         setFormData(parsed.formData || {});
         setCurrentStep(parsed.currentStep || 1);
         
@@ -316,6 +325,43 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
 
   return (
     <div className="w-full max-w-full overflow-x-hidden h-full flex flex-col min-h-0">
+      {/* Welcome back message */}
+      {dataRecovered && (
+        <div className="mb-4 p-3 bg-gradient-to-r from-accent/20 to-amber-500/20 rounded-lg border border-accent/30 animate-fade-in">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">👋</span>
+            <div>
+              <p className="font-semibold text-foreground">
+                Bem-vindo de volta{recoveredName ? `, ${recoveredName}` : ''}!
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Os seus dados foram recuperados. Continue de onde parou.
+              </p>
+            </div>
+            <Button 
+              type="button" 
+              variant="ghost" 
+              size="sm"
+              className="ml-auto text-xs text-muted-foreground hover:text-foreground"
+              onClick={() => {
+                clearStorage();
+                setDataRecovered(false);
+                setRecoveredName(null);
+                setCurrentStep(1);
+                setFormData({});
+                step1Form.reset();
+                step2Form.reset();
+                step3Form.reset();
+                step4Form.reset();
+                setNibConfirmed(false);
+              }}
+            >
+              Recomeçar
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Progress indicator - Fixed at top */}
       <div className="mb-4 flex-shrink-0">
         <div className="flex items-center justify-between mb-2">
