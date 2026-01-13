@@ -231,7 +231,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   // Auto-save step 4 fields as user types
   const step4Values = step4Form.watch();
   useEffect(() => {
-    if (currentStep === 4) {
+    // Only auto-save if we're on step 4 AND there's existing formData with at least step 1 data
+    if (currentStep === 4 && formData.fullName) {
       const { termsAccepted, ...step4DataToSave } = step4Values;
       const newFormData = { ...formData, ...step4DataToSave };
       // Only save if there's meaningful data
