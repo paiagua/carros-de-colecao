@@ -395,9 +395,6 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
     try {
       // Save to database as completed
       await saveLeadToDatabase(finalData, 4, true);
-      
-      const csv = buildCsvContent(finalData);
-      await saveCsvToServer(csv, finalData.fullName);
 
       // Clear saved data on successful submission
       clearStorage();
@@ -408,12 +405,13 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
         description: "Em breve será contactado pela nossa equipa.",
       });
       onClose();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       trackSubscriptionFormSubmit(false);
+      const errorMessage = err instanceof Error ? err.message : "Não foi possível guardar.";
       toast({
         title: "Erro ao guardar",
-        description: err?.message || "Não foi possível guardar no servidor.",
+        description: errorMessage,
         variant: "destructive",
       });
     }
