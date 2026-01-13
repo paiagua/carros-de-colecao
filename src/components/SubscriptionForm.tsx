@@ -414,11 +414,13 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                     </div>
                   )}
                   <div className="flex flex-col items-center">
-                    <img
-                      src={mineral.image}
-                      alt={mineral.title}
-                      className="w-full max-w-[160px] sm:max-w-[200px] aspect-[3/4] object-cover mb-3 md:mb-4 rounded-lg shadow-md"
-                    />
+                    <div className="w-full max-w-[160px] sm:max-w-[200px] aspect-square bg-muted/30 rounded-lg shadow-md flex items-center justify-center p-2 mb-3 md:mb-4">
+                      <img
+                        src={mineral.image}
+                        alt={mineral.title}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
                     <p className="font-bold text-center text-xs md:text-sm mb-1">
                       Carro {mineral.id}
                     </p>
