@@ -110,42 +110,46 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       try {
         const parsed = JSON.parse(savedData);
         
-        // Only show recovery message if there's meaningful data
-        if (parsed.formData?.fullName) {
+        // Don't recover if submission was completed (step 4 with completed flag)
+        // Only show recovery message if there's meaningful data and not completed
+        if (parsed.formData?.fullName && !parsed.completed) {
           setDataRecovered(true);
           setRecoveredName(parsed.formData.fullName.split(' ')[0]); // First name only
         }
         
-        setFormData(parsed.formData || {});
-        setCurrentStep(parsed.currentStep || 1);
-        if (parsed.leadId) setLeadId(parsed.leadId);
+        // Only restore data if not completed
+        if (!parsed.completed) {
+          setFormData(parsed.formData || {});
+          setCurrentStep(parsed.currentStep || 1);
+          if (parsed.leadId) setLeadId(parsed.leadId);
         
-        // Restore step 1 form
-        if (parsed.formData?.fullName) step1Form.setValue('fullName', parsed.formData.fullName);
-        if (parsed.formData?.email) step1Form.setValue('email', parsed.formData.email);
-        if (parsed.formData?.phone) step1Form.setValue('phone', parsed.formData.phone);
-        if (parsed.formData?.marketingConsent) step1Form.setValue('marketingConsent', parsed.formData.marketingConsent);
-        
-        // Restore step 2 form
-        if (parsed.formData?.firstBook) step2Form.setValue('firstBook', parsed.formData.firstBook);
-        
-        // Restore step 3 form
-        if (parsed.formData?.address) step3Form.setValue('address', parsed.formData.address);
-        if (parsed.formData?.doorNumber) step3Form.setValue('doorNumber', parsed.formData.doorNumber);
-        if (parsed.formData?.floor) step3Form.setValue('floor', parsed.formData.floor);
-        if (parsed.formData?.postalCode1) step3Form.setValue('postalCode1', parsed.formData.postalCode1);
-        if (parsed.formData?.postalCode2) step3Form.setValue('postalCode2', parsed.formData.postalCode2);
-        if (parsed.formData?.city) step3Form.setValue('city', parsed.formData.city);
-        
-        // Restore step 4 form
-        if (parsed.formData?.nib) step4Form.setValue('nib', parsed.formData.nib);
-        if (parsed.formData?.accountHolderName) step4Form.setValue('accountHolderName', parsed.formData.accountHolderName);
-        if (parsed.formData?.accountHolderAddress) step4Form.setValue('accountHolderAddress', parsed.formData.accountHolderAddress);
-        if (parsed.formData?.accountHolderPostalCode1) step4Form.setValue('accountHolderPostalCode1', parsed.formData.accountHolderPostalCode1);
-        if (parsed.formData?.accountHolderPostalCode2) step4Form.setValue('accountHolderPostalCode2', parsed.formData.accountHolderPostalCode2);
-        if (parsed.formData?.accountHolderCity) step4Form.setValue('accountHolderCity', parsed.formData.accountHolderCity);
-        
-        if (parsed.nibConfirmed) setNibConfirmed(parsed.nibConfirmed);
+          // Restore step 1 form
+          if (parsed.formData?.fullName) step1Form.setValue('fullName', parsed.formData.fullName);
+          if (parsed.formData?.email) step1Form.setValue('email', parsed.formData.email);
+          if (parsed.formData?.phone) step1Form.setValue('phone', parsed.formData.phone);
+          if (parsed.formData?.marketingConsent) step1Form.setValue('marketingConsent', parsed.formData.marketingConsent);
+          
+          // Restore step 2 form
+          if (parsed.formData?.firstBook) step2Form.setValue('firstBook', parsed.formData.firstBook);
+          
+          // Restore step 3 form
+          if (parsed.formData?.address) step3Form.setValue('address', parsed.formData.address);
+          if (parsed.formData?.doorNumber) step3Form.setValue('doorNumber', parsed.formData.doorNumber);
+          if (parsed.formData?.floor) step3Form.setValue('floor', parsed.formData.floor);
+          if (parsed.formData?.postalCode1) step3Form.setValue('postalCode1', parsed.formData.postalCode1);
+          if (parsed.formData?.postalCode2) step3Form.setValue('postalCode2', parsed.formData.postalCode2);
+          if (parsed.formData?.city) step3Form.setValue('city', parsed.formData.city);
+          
+          // Restore step 4 form
+          if (parsed.formData?.nib) step4Form.setValue('nib', parsed.formData.nib);
+          if (parsed.formData?.accountHolderName) step4Form.setValue('accountHolderName', parsed.formData.accountHolderName);
+          if (parsed.formData?.accountHolderAddress) step4Form.setValue('accountHolderAddress', parsed.formData.accountHolderAddress);
+          if (parsed.formData?.accountHolderPostalCode1) step4Form.setValue('accountHolderPostalCode1', parsed.formData.accountHolderPostalCode1);
+          if (parsed.formData?.accountHolderPostalCode2) step4Form.setValue('accountHolderPostalCode2', parsed.formData.accountHolderPostalCode2);
+          if (parsed.formData?.accountHolderCity) step4Form.setValue('accountHolderCity', parsed.formData.accountHolderCity);
+          
+          if (parsed.nibConfirmed) setNibConfirmed(parsed.nibConfirmed);
+        }
       } catch (e) {
         console.error('Error loading saved form data:', e);
       }
@@ -449,10 +453,11 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                 setRecoveredName(null);
                 setCurrentStep(1);
                 setFormData({});
+                setLeadId(null); // Reset lead ID so a new lead is created
                 step1Form.reset();
                 step2Form.reset();
                 step3Form.reset();
-                step4Form.reset();
+                step4Form.reset({ termsAccepted: true });
                 setNibConfirmed(false);
               }}
             >
