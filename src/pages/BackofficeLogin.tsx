@@ -36,7 +36,7 @@ const BackofficeLogin = () => {
           title: "Login efetuado!",
           description: "Bem-vindo ao backoffice.",
         });
-        navigate("/backoffice");
+        navigate("/admin");
       }
     } catch (err) {
       toast({
