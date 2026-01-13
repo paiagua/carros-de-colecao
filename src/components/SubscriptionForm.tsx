@@ -10,6 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChevronLeft, ArrowRight, Check, Sparkles, Gift, Package, Car, Shield, X, RefreshCcw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import car1 from "@/assets/cars/car-1.png";
 import car2 from "@/assets/cars/car-2.png";
 import car3 from "@/assets/cars/car-3.png";
@@ -68,6 +69,7 @@ const STORAGE_KEY = 'subscription_form_data';
 const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<any>({});
+  const [leadId, setLeadId] = useState<string | null>(null);
   const [showDebitDetails, setShowDebitDetails] = useState(false);
   const [showOffersDetails, setShowOffersDetails] = useState(false);
   const [showTermsDetails, setShowTermsDetails] = useState(false);
@@ -116,6 +118,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
         
         setFormData(parsed.formData || {});
         setCurrentStep(parsed.currentStep || 1);
+        if (parsed.leadId) setLeadId(parsed.leadId);
         
         // Restore step 1 form
         if (parsed.formData?.fullName) step1Form.setValue('fullName', parsed.formData.fullName);
@@ -151,14 +154,69 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
 
   // Save data to localStorage whenever formData or currentStep changes
   // Note: termsAccepted is excluded as it should never be pre-filled
-  const saveToStorage = (newFormData: any, step: number, nibStatus?: boolean) => {
+  const saveToStorage = (newFormData: any, step: number, nibStatus?: boolean, currentLeadId?: string) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { termsAccepted, ...dataToSave } = newFormData;
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       formData: dataToSave,
       currentStep: step,
-      nibConfirmed: nibStatus ?? nibConfirmed
+      nibConfirmed: nibStatus ?? nibConfirmed,
+      leadId: currentLeadId ?? leadId
     }));
+  };
+
+  // Save or update lead in database
+  const saveLeadToDatabase = async (data: any, step: number, completed: boolean = false) => {
+    const leadData = {
+      full_name: data.fullName || null,
+      email: data.email || null,
+      phone: data.phone || null,
+      marketing_consent: data.marketingConsent || false,
+      first_book: data.firstBook || null,
+      address: data.address || null,
+      door_number: data.doorNumber || null,
+      floor: data.floor || null,
+      postal_code_1: data.postalCode1 || null,
+      postal_code_2: data.postalCode2 || null,
+      city: data.city || null,
+      nib: data.nib || null,
+      account_holder_name: data.accountHolderName || null,
+      account_holder_address: data.accountHolderAddress || null,
+      account_holder_postal_code_1: data.accountHolderPostalCode1 || null,
+      account_holder_postal_code_2: data.accountHolderPostalCode2 || null,
+      account_holder_city: data.accountHolderCity || null,
+      terms_accepted: data.termsAccepted || false,
+      current_step: step,
+      completed
+    };
+
+    try {
+      if (leadId) {
+        // Update existing lead
+        const { error } = await supabase
+          .from('leads')
+          .update(leadData)
+          .eq('id', leadId);
+        
+        if (error) throw error;
+        return leadId;
+      } else {
+        // Create new lead
+        const { data: newLead, error } = await supabase
+          .from('leads')
+          .insert(leadData)
+          .select('id')
+          .single();
+        
+        if (error) throw error;
+        const newLeadId = newLead.id;
+        setLeadId(newLeadId);
+        return newLeadId;
+      }
+    } catch (error) {
+      console.error('Error saving lead to database:', error);
+      return leadId;
+    }
   };
 
   // Clear localStorage on successful submission
@@ -219,23 +277,29 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
     }
   };
 
-  const handleStep1 = (data: Step1Data) => {
+  const handleStep1 = async (data: Step1Data) => {
     trackEvent('subscription_step_complete', { step: 1 });
     const newFormData = { ...formData, ...data };
     setFormData(newFormData);
-    saveToStorage(newFormData, 2);
+    
+    // Save to database and get lead ID
+    const currentLeadId = await saveLeadToDatabase(newFormData, 2);
+    saveToStorage(newFormData, 2, undefined, currentLeadId || undefined);
     setCurrentStep(2);
   };
 
-  const handleStep2 = (data: Step2Data) => {
+  const handleStep2 = async (data: Step2Data) => {
     trackEvent('subscription_step_complete', { step: 2, first_car: data.firstBook });
     const newFormData = { ...formData, ...data };
     setFormData(newFormData);
+    
+    // Save to database
+    await saveLeadToDatabase(newFormData, 3);
     saveToStorage(newFormData, 3);
     setCurrentStep(3);
   };
 
-  const handleStep3 = (data: Step3Data) => {
+  const handleStep3 = async (data: Step3Data) => {
     trackEvent('subscription_step_complete', { step: 3 });
     
     // Pre-fill step 4 fields with delivery data
@@ -263,6 +327,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       accountHolderCity
     };
     setFormData(newFormData);
+    
+    // Save to database
+    await saveLeadToDatabase(newFormData, 4);
     saveToStorage(newFormData, 4);
     
     setNibConfirmed(false);
@@ -326,6 +393,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
     };
 
     try {
+      // Save to database as completed
+      await saveLeadToDatabase(finalData, 4, true);
+      
       const csv = buildCsvContent(finalData);
       await saveCsvToServer(csv, finalData.fullName);
 
