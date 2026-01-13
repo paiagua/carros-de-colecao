@@ -51,7 +51,7 @@ const Backoffice = () => {
   // Redirect to login if not authenticated
   useEffect(() => {
     if (!authLoading && !user) {
-      navigate("/backoffice/login");
+      navigate("/admin/login");
     }
   }, [user, authLoading, navigate]);
 
