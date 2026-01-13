@@ -59,8 +59,8 @@ As variáveis do Supabase estão embebidas no build e não precisam de configura
 
 ## Credenciais do Backoffice
 
-- **Email:** `admin@colecoes.pt`
-- **Password:** `admin@colecoes.pt`
+- **Email:** `admin@carroscolecionaveis.pt`
+- **Password:** (definida no sistema de autenticação)
 
 ## Troubleshooting
 
