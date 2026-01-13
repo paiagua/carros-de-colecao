@@ -150,9 +150,12 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   }, []);
 
   // Save data to localStorage whenever formData or currentStep changes
+  // Note: termsAccepted is excluded as it should never be pre-filled
   const saveToStorage = (newFormData: any, step: number, nibStatus?: boolean) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { termsAccepted, ...dataToSave } = newFormData;
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      formData: newFormData,
+      formData: dataToSave,
       currentStep: step,
       nibConfirmed: nibStatus ?? nibConfirmed
     }));
