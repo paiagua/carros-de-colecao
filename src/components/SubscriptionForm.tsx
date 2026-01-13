@@ -514,10 +514,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   <Button 
                     type="button" 
                     variant="ghost" 
-                    className="mt-5 text-accent hover:text-accent/80 font-medium p-0 h-auto flex items-center gap-1"
+                    className="mt-5 text-accent hover:text-accent/80 font-medium p-0 h-auto"
                     onClick={() => setShowOffersDetails(true)}
                   >
-                    <Sparkles className="w-4 h-4" />
                     Ver mais informações →
                   </Button>
                 ) : (
