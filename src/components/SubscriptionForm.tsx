@@ -97,7 +97,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   const step4Form = useForm<Step4Data>({
     resolver: zodResolver(step4Schema),
     defaultValues: {
-      termsAccepted: false
+      termsAccepted: true
     }
   });
 
