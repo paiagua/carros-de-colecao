@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ChevronLeft, ArrowRight, Check, Sparkles } from "lucide-react";
+import { ChevronLeft, ArrowRight, Check, Sparkles, Gift, Package, Car } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import car1 from "@/assets/cars/car-1.png";
 import car2 from "@/assets/cars/car-2.png";
@@ -465,42 +465,81 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
         <form onSubmit={step3Form.handleSubmit(handleStep3)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
           {/* Scrollable content */}
           <div className="flex-1 overflow-y-auto space-y-6 pb-4 min-h-0">
-            <Card className="p-6 bg-accent/10 border-2 border-accent/30">
-              <h3 className="font-bold mb-4">Receberá as OFERTAS nos seguintes envios:</h3>
-              <ul className="space-y-2">
-                <li>• 1º envio receberá o <strong>Caderno Exclusivo</strong> de OFERTA.</li>
-                <li>• 4º e 19º envio receberá <strong>Pack de 3 Ferrari</strong> de OFERTA.</li>
-                <li>• 6º, 14º, 21º, 29º e 36º envio receberá <strong>Caixa Organizadora de Madeira</strong> de OFERTA.</li>
-              </ul>
+            <Card className="p-6 bg-gradient-to-br from-accent/15 via-accent/10 to-amber-500/10 border-2 border-accent/40 shadow-lg shadow-accent/10 relative overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
+              <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-amber-400/20 rounded-full blur-xl" />
               
-              {!showOffersDetails ? (
-                <Button 
-                  type="button" 
-                  variant="ghost" 
-                  className="mt-4 text-accent underline p-0 h-auto"
-                  onClick={() => setShowOffersDetails(true)}
-                >
-                  Ver mais informações →
-                </Button>
-              ) : (
-                <div className="space-y-2 text-sm border-t border-accent/20 pt-4 mt-4 animate-fade-in">
-                  <p>Cada carro: <strong>5,95€</strong></p>
-                  <p className="text-xs mt-4">
-                    Preços válidos para Portugal Continental, IVA incluído. Pode cancelar a assinatura quando desejar.
-                  </p>
-                  <p className="text-xs">
-                    Caso haja um aumento significativo nos custos de produção e transporte, a editora pode alterar os preços de venda e a periodicidade das entregas.
-                  </p>
+              <div className="relative">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-amber-500 flex items-center justify-center shadow-lg">
+                    <Gift className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="font-bold text-lg">Receberá as OFERTAS nos seguintes envios:</h3>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-white/10 rounded-lg border border-accent/20">
+                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-accent font-bold text-sm">1º</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">Caderno Exclusivo</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no primeiro envio</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-white/10 rounded-lg border border-accent/20">
+                    <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Car className="w-4 h-4 text-red-600" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">Pack de 3 Ferrari</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no 4º e 19º envio</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-white/10 rounded-lg border border-accent/20">
+                    <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Package className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">Caixa Organizadora de Madeira</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no 6º, 14º, 21º, 29º e 36º envio</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {!showOffersDetails ? (
                   <Button 
                     type="button" 
                     variant="ghost" 
-                    className="text-muted-foreground underline p-0 h-auto text-xs"
-                    onClick={() => setShowOffersDetails(false)}
+                    className="mt-5 text-accent hover:text-accent/80 font-medium p-0 h-auto flex items-center gap-1"
+                    onClick={() => setShowOffersDetails(true)}
                   >
-                    Ocultar
+                    <Sparkles className="w-4 h-4" />
+                    Ver mais informações →
                   </Button>
-                </div>
-              )}
+                ) : (
+                  <div className="space-y-2 text-sm border-t border-accent/20 pt-4 mt-5 animate-fade-in">
+                    <p className="font-medium">Cada carro: <span className="text-accent font-bold">5,95€</span></p>
+                    <p className="text-xs text-muted-foreground mt-4">
+                      Preços válidos para Portugal Continental, IVA incluído. Pode cancelar a assinatura quando desejar.
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Caso haja um aumento significativo nos custos de produção e transporte, a editora pode alterar os preços de venda e a periodicidade das entregas.
+                    </p>
+                    <Button 
+                      type="button" 
+                      variant="ghost" 
+                      className="text-muted-foreground hover:text-foreground p-0 h-auto text-xs"
+                      onClick={() => setShowOffersDetails(false)}
+                    >
+                      ← Ocultar
+                    </Button>
+                  </div>
+                )}
+              </div>
             </Card>
 
             <div>
