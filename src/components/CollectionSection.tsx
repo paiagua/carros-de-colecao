@@ -172,17 +172,20 @@ const CollectionSection = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {minerals.map((car, index) => (
-                        <tr 
-                          key={car.number}
-                          className={`border-t border-border hover:bg-muted/50 transition-colors ${index === 0 ? 'bg-primary/5' : ''}`}
-                        >
-                          <td className="py-3 px-4 font-semibold text-primary">{car.number}</td>
-                          <td className="py-3 px-4 text-foreground">{car.title}</td>
-                          <td className="py-3 px-4 text-muted-foreground">{car.date}</td>
-                          <td className="py-3 px-4 text-right font-semibold text-foreground">{car.price}</td>
-                        </tr>
-                      ))}
+                      {minerals.map((car, index) => {
+                        const hasModel = car.title !== "Em breve disponível o modelo do carro";
+                        return (
+                          <tr 
+                            key={car.number}
+                            className={`border-t border-border hover:bg-muted/50 transition-colors ${index === 0 ? 'bg-primary/5' : ''} ${!hasModel ? 'opacity-60' : ''}`}
+                          >
+                            <td className={`py-3 px-4 font-semibold ${hasModel ? 'text-accent' : 'text-muted-foreground'}`}>{car.number}</td>
+                            <td className={`py-3 px-4 ${hasModel ? 'text-foreground font-medium' : 'text-muted-foreground italic'}`}>{car.title}</td>
+                            <td className="py-3 px-4 text-muted-foreground">{car.date}</td>
+                            <td className="py-3 px-4 text-right font-semibold text-foreground">{car.price}</td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
