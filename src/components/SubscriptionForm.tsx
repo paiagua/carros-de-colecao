@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ChevronLeft, ArrowRight, Check, Sparkles, Gift, Package, Car } from "lucide-react";
+import { ChevronLeft, ArrowRight, Check, Sparkles, Gift, Package, Car, Shield, X, RefreshCcw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import car1 from "@/assets/cars/car-1.png";
 import car2 from "@/assets/cars/car-2.png";
@@ -931,13 +931,39 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
             </div>
           </div>
 
-          {/* Fixed button at bottom */}
+          {/* Trust badges */}
           <div className="flex-shrink-0 pt-4 border-t border-border bg-background">
+            {/* Garantias */}
+            <Card className="p-4 mb-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/30">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="font-bold text-green-700 dark:text-green-400">Subscrição Sem Compromisso</p>
+                  <p className="text-sm text-muted-foreground">Pode cancelar a qualquer momento</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="flex items-center gap-2 p-2 bg-white/50 dark:bg-white/5 rounded-lg">
+                  <X className="w-4 h-4 text-green-600" />
+                  <span>Cancelamento gratuito</span>
+                </div>
+                <div className="flex items-center gap-2 p-2 bg-white/50 dark:bg-white/5 rounded-lg">
+                  <RefreshCcw className="w-4 h-4 text-green-600" />
+                  <span>Sem período mínimo</span>
+                </div>
+              </div>
+            </Card>
+            
             <div className="flex flex-col gap-2">
               <Button type="submit" variant="cta" className="w-full h-14 text-lg font-bold group shadow-none hover:shadow-none" size="lg">
                 <Check className="w-5 h-5" />
                 <span>Confirmar Subscrição</span>
               </Button>
+              <p className="text-xs text-center text-muted-foreground">
+                🔒 Os seus dados estão protegidos e seguros
+              </p>
               <Button
                 type="button"
                 variant="ghost"
