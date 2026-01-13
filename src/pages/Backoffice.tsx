@@ -6,11 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Download, RefreshCcw, Search, Filter, ArrowLeft, Users, CheckCircle, Clock, AlertCircle, LogOut } from "lucide-react";
+import { Download, RefreshCcw, Search, Filter, ArrowLeft, Users, CheckCircle, Clock, AlertCircle, LogOut, BarChart3, Mail } from "lucide-react";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import FunnelChart from "@/components/backoffice/FunnelChart";
+import MarketingChart from "@/components/backoffice/MarketingChart";
 
 interface Lead {
   id: string;
@@ -45,6 +47,8 @@ const Backoffice = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [stepFilter, setStepFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [marketingFilter, setMarketingFilter] = useState<string>("all");
+  const [showCharts, setShowCharts] = useState(true);
   const navigate = useNavigate();
   const { user, loading: authLoading, signOut } = useAuth();
 
@@ -104,8 +108,15 @@ const Backoffice = () => {
       result = result.filter((lead) => !lead.completed);
     }
 
+    // Filter by marketing consent
+    if (marketingFilter === "accepted") {
+      result = result.filter((lead) => lead.marketing_consent === true);
+    } else if (marketingFilter === "rejected") {
+      result = result.filter((lead) => lead.marketing_consent === false);
+    }
+
     setFilteredLeads(result);
-  }, [searchTerm, stepFilter, statusFilter, leads]);
+  }, [searchTerm, stepFilter, statusFilter, marketingFilter, leads]);
 
   const getStepBadge = (step: number, completed: boolean) => {
     if (completed) {
@@ -219,13 +230,20 @@ const Backoffice = () => {
             </div>
           </div>
           <div className="flex gap-2">
+            <Button 
+              variant={showCharts ? "default" : "outline"} 
+              onClick={() => setShowCharts(!showCharts)}
+            >
+              <BarChart3 className="h-4 w-4 mr-2" />
+              Gráficos
+            </Button>
             <Button variant="outline" onClick={fetchLeads} disabled={loading}>
               <RefreshCcw className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`} />
               Atualizar
             </Button>
             <Button onClick={exportToExcel} disabled={filteredLeads.length === 0}>
               <Download className="h-4 w-4 mr-2" />
-              Exportar Excel
+              Exportar
             </Button>
             <Button variant="outline" onClick={signOut}>
               <LogOut className="h-4 w-4 mr-2" />
@@ -298,6 +316,14 @@ const Backoffice = () => {
           </Card>
         </div>
 
+        {/* Charts */}
+        {showCharts && (
+          <>
+            <FunnelChart stats={stats} />
+            <MarketingChart leads={leads} />
+          </>
+        )}
+
         {/* Filters */}
         <Card className="mb-6">
           <CardContent className="pt-6">
@@ -333,6 +359,17 @@ const Backoffice = () => {
                     <SelectItem value="all">Todos</SelectItem>
                     <SelectItem value="completed">Completos</SelectItem>
                     <SelectItem value="incomplete">Incompletos</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={marketingFilter} onValueChange={setMarketingFilter}>
+                  <SelectTrigger className="w-[150px]">
+                    <Mail className="h-4 w-4 mr-2" />
+                    <SelectValue placeholder="Marketing" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Todos</SelectItem>
+                    <SelectItem value="accepted">Aceitaram</SelectItem>
+                    <SelectItem value="rejected">Recusaram</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
