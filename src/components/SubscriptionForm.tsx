@@ -166,6 +166,19 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
     localStorage.removeItem(STORAGE_KEY);
   };
 
+  // Auto-save step 4 fields as user types
+  const step4Values = step4Form.watch();
+  useEffect(() => {
+    if (currentStep === 4) {
+      const { termsAccepted, ...step4DataToSave } = step4Values;
+      const newFormData = { ...formData, ...step4DataToSave };
+      // Only save if there's meaningful data
+      if (step4DataToSave.accountHolderName || step4DataToSave.accountHolderAddress || step4DataToSave.nib) {
+        saveToStorage(newFormData, 4, nibConfirmed);
+      }
+    }
+  }, [step4Values, currentStep]);
+
   // Função para buscar morada pelo código postal
   const fetchAddressByPostalCode = async (postalCode: string, formType: 'delivery' | 'account') => {
     if (formType === 'delivery') {
