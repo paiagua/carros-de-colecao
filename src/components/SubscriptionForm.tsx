@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -63,6 +63,8 @@ interface SubscriptionFormProps {
   onClose: () => void;
 }
 
+const STORAGE_KEY = 'subscription_form_data';
+
 const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<any>({});
@@ -96,6 +98,61 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       termsAccepted: false
     }
   });
+
+  // Load saved data from localStorage on mount
+  useEffect(() => {
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        setFormData(parsed.formData || {});
+        setCurrentStep(parsed.currentStep || 1);
+        
+        // Restore step 1 form
+        if (parsed.formData?.fullName) step1Form.setValue('fullName', parsed.formData.fullName);
+        if (parsed.formData?.email) step1Form.setValue('email', parsed.formData.email);
+        if (parsed.formData?.phone) step1Form.setValue('phone', parsed.formData.phone);
+        if (parsed.formData?.marketingConsent) step1Form.setValue('marketingConsent', parsed.formData.marketingConsent);
+        
+        // Restore step 2 form
+        if (parsed.formData?.firstBook) step2Form.setValue('firstBook', parsed.formData.firstBook);
+        
+        // Restore step 3 form
+        if (parsed.formData?.address) step3Form.setValue('address', parsed.formData.address);
+        if (parsed.formData?.doorNumber) step3Form.setValue('doorNumber', parsed.formData.doorNumber);
+        if (parsed.formData?.floor) step3Form.setValue('floor', parsed.formData.floor);
+        if (parsed.formData?.postalCode1) step3Form.setValue('postalCode1', parsed.formData.postalCode1);
+        if (parsed.formData?.postalCode2) step3Form.setValue('postalCode2', parsed.formData.postalCode2);
+        if (parsed.formData?.city) step3Form.setValue('city', parsed.formData.city);
+        
+        // Restore step 4 form
+        if (parsed.formData?.nib) step4Form.setValue('nib', parsed.formData.nib);
+        if (parsed.formData?.accountHolderName) step4Form.setValue('accountHolderName', parsed.formData.accountHolderName);
+        if (parsed.formData?.accountHolderAddress) step4Form.setValue('accountHolderAddress', parsed.formData.accountHolderAddress);
+        if (parsed.formData?.accountHolderPostalCode1) step4Form.setValue('accountHolderPostalCode1', parsed.formData.accountHolderPostalCode1);
+        if (parsed.formData?.accountHolderPostalCode2) step4Form.setValue('accountHolderPostalCode2', parsed.formData.accountHolderPostalCode2);
+        if (parsed.formData?.accountHolderCity) step4Form.setValue('accountHolderCity', parsed.formData.accountHolderCity);
+        
+        if (parsed.nibConfirmed) setNibConfirmed(parsed.nibConfirmed);
+      } catch (e) {
+        console.error('Error loading saved form data:', e);
+      }
+    }
+  }, []);
+
+  // Save data to localStorage whenever formData or currentStep changes
+  const saveToStorage = (newFormData: any, step: number, nibStatus?: boolean) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      formData: newFormData,
+      currentStep: step,
+      nibConfirmed: nibStatus ?? nibConfirmed
+    }));
+  };
+
+  // Clear localStorage on successful submission
+  const clearStorage = () => {
+    localStorage.removeItem(STORAGE_KEY);
+  };
 
   // Função para buscar morada pelo código postal
   const fetchAddressByPostalCode = async (postalCode: string, formType: 'delivery' | 'account') => {
@@ -139,19 +196,25 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
 
   const handleStep1 = (data: Step1Data) => {
     trackEvent('subscription_step_complete', { step: 1 });
-    setFormData({ ...formData, ...data });
+    const newFormData = { ...formData, ...data };
+    setFormData(newFormData);
+    saveToStorage(newFormData, 2);
     setCurrentStep(2);
   };
 
   const handleStep2 = (data: Step2Data) => {
     trackEvent('subscription_step_complete', { step: 2, first_car: data.firstBook });
-    setFormData({ ...formData, ...data });
+    const newFormData = { ...formData, ...data };
+    setFormData(newFormData);
+    saveToStorage(newFormData, 3);
     setCurrentStep(3);
   };
 
   const handleStep3 = (data: Step3Data) => {
     trackEvent('subscription_step_complete', { step: 3 });
-    setFormData({ ...formData, ...data });
+    const newFormData = { ...formData, ...data };
+    setFormData(newFormData);
+    saveToStorage(newFormData, 4);
     // Preencher nome do titular por defeito com o nome da pessoa
     if (!step4Form.getValues("accountHolderName")) {
       step4Form.setValue("accountHolderName", formData.fullName || "");
@@ -225,6 +288,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       const csv = buildCsvContent(finalData);
       await saveCsvToServer(csv, finalData.fullName);
 
+      // Clear saved data on successful submission
+      clearStorage();
+      
       trackSubscriptionFormSubmit(true);
       toast({
         title: "Subscrição guardada com sucesso!",
@@ -748,6 +814,10 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                         const nibValue = step4Form.getValues("nib");
                         if (nibValue && nibValue.length === 21) {
                           setNibConfirmed(true);
+                          // Save NIB to formData and storage
+                          const newFormData = { ...formData, nib: nibValue };
+                          setFormData(newFormData);
+                          saveToStorage(newFormData, 4, true);
                         } else {
                           toast({
                             title: "NIB inválido",
