@@ -8,6 +8,7 @@ import car7 from "@/assets/cars/car-7.png";
 import car8 from "@/assets/cars/car-8.png";
 import car9 from "@/assets/cars/car-9.png";
 import car10 from "@/assets/cars/car-10.png";
+import car16 from "@/assets/cars/car-16.png";
 import car23 from "@/assets/cars/car-23.png";
 
 const carImages: Record<number, string> = {
@@ -21,6 +22,7 @@ const carImages: Record<number, string> = {
   8: car8,
   9: car9,
   10: car10,
+  16: car16,
   23: car23,
 };
 
