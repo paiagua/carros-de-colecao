@@ -168,29 +168,50 @@ const CollectionSection = () => {
           {/* Full List */}
           {showFullList && (
             <div ref={listRef} className="max-w-4xl mx-auto animate-fade-in scroll-mt-24">
-              <div className="bg-card rounded-xl border border-border overflow-hidden">
+              <div className="bg-white rounded-2xl border border-orange-200/50 overflow-hidden shadow-xl shadow-orange-100/50">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
-                    <thead className="bg-muted">
+                    <thead className="bg-gradient-to-r from-orange-50 to-amber-50 border-b-2 border-orange-200">
                       <tr>
-                        <th className="text-left py-3 px-4 font-semibold text-foreground">Nº</th>
-                        <th className="text-left py-3 px-4 font-semibold text-foreground">Modelo</th>
-                        <th className="text-left py-3 px-4 font-semibold text-foreground">Data</th>
-                        <th className="text-right py-3 px-4 font-semibold text-foreground">Preço</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-700 uppercase tracking-wider text-xs">Nº</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-700 uppercase tracking-wider text-xs">Modelo</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-700 uppercase tracking-wider text-xs">Data</th>
+                        <th className="text-right py-4 px-6 font-bold text-gray-700 uppercase tracking-wider text-xs">Preço</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-orange-100">
                       {minerals.map((car, index) => {
                         const hasModel = car.title !== "Em breve disponível o modelo do carro";
+                        const carImage = getCarImage(car.number);
+                        const isFirst = index === 0;
                         return (
                           <tr 
                             key={car.number}
-                            className={`border-t border-border hover:bg-muted/50 transition-colors ${index === 0 ? 'bg-primary/5' : ''} ${!hasModel ? 'opacity-60' : ''}`}
+                            className={`hover:bg-orange-50/50 transition-all duration-200 ${isFirst ? 'bg-orange-50' : ''} ${!hasModel ? 'opacity-50' : ''}`}
                           >
-                            <td className={`py-3 px-4 font-semibold ${hasModel ? 'text-accent' : 'text-muted-foreground'}`}>{car.number}</td>
-                            <td className={`py-3 px-4 ${hasModel ? 'text-foreground font-medium' : 'text-muted-foreground italic'}`}>{car.title}</td>
-                            <td className="py-3 px-4 text-muted-foreground">{car.date}</td>
-                            <td className="py-3 px-4 text-right font-semibold text-foreground">{car.price}</td>
+                            <td className={`py-4 px-6 font-bold text-lg ${hasModel ? 'text-orange-500' : 'text-gray-400'}`}>
+                              {car.number}
+                            </td>
+                            <td className="py-4 px-6">
+                              <div className="flex items-center gap-4">
+                                {carImage && (
+                                  <div className="w-16 h-12 rounded-lg overflow-hidden bg-gradient-to-br from-orange-100 to-amber-50 flex-shrink-0 border border-orange-200/50">
+                                    <img 
+                                      src={carImage} 
+                                      alt={car.title}
+                                      className="w-full h-full object-contain p-1"
+                                    />
+                                  </div>
+                                )}
+                                <span className={`${hasModel ? 'text-gray-800 font-semibold' : 'text-gray-400 italic'}`}>
+                                  {car.title}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="py-4 px-6 text-gray-500">{car.date}</td>
+                            <td className={`py-4 px-6 text-right font-bold ${isFirst ? 'text-orange-500' : 'text-gray-700'}`}>
+                              {car.price}
+                            </td>
                           </tr>
                         );
                       })}
