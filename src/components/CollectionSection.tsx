@@ -33,6 +33,14 @@ const CollectionSection = () => {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-gray-200/50 to-transparent rounded-full blur-3xl" />
         
         <div className="container mx-auto px-4 relative z-10">
+        
+        {/* Big Title */}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground uppercase tracking-tight">
+            Os Carros da <span className="text-orange-500">Sua Vida</span>
+          </h2>
+        </div>
+        
         {/* Header */}
         <div className="relative flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16 pb-8 border-b border-gray-200">
           {/* Decorative line accent */}
@@ -43,9 +51,9 @@ const CollectionSection = () => {
               <Car className="w-4 h-4" />
               <span className="uppercase tracking-wider">Miniaturas Exclusivas</span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               A Coleção
-            </h2>
+            </h3>
           </div>
           <div className="md:text-right max-w-md">
             <p className="text-muted-foreground text-base md:text-lg">
