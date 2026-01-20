@@ -148,7 +148,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
           if (parsed.formData?.accountHolderPostalCode2) step4Form.setValue('accountHolderPostalCode2', parsed.formData.accountHolderPostalCode2);
           if (parsed.formData?.accountHolderCity) step4Form.setValue('accountHolderCity', parsed.formData.accountHolderCity);
           
-          if (parsed.nibConfirmed) setNibConfirmed(parsed.nibConfirmed);
+          // Don't restore nibConfirmed - always require user to confirm NIB again
+          // if (parsed.nibConfirmed) setNibConfirmed(parsed.nibConfirmed);
         }
       } catch (e) {
         console.error('Error loading saved form data:', e);
