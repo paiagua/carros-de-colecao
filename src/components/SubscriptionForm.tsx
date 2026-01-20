@@ -1224,7 +1224,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
               ) : (
                 <Button type="submit" variant="cta" className="w-full h-14 text-lg font-bold group" size="lg">
                   <Check className="w-5 h-5" />
-                  <span>Confirmar e Ativar Entregas</span>
+                  <span>Confirmar e Subscrever a Coleção</span>
                 </Button>
               )}
               <p className="text-xs text-center text-muted-foreground">
