@@ -10,6 +10,7 @@ import car9 from "@/assets/cars/car-9.png";
 import car10 from "@/assets/cars/car-10.png";
 import car16 from "@/assets/cars/car-16.png";
 import car23 from "@/assets/cars/car-23.png";
+import car27 from "@/assets/cars/car-27.png";
 
 const carImages: Record<number, string> = {
   1: car1,
@@ -24,6 +25,7 @@ const carImages: Record<number, string> = {
   10: car10,
   16: car16,
   23: car23,
+  27: car27,
 };
 
 export const getCarImage = (carNumber: number): string | undefined => {
