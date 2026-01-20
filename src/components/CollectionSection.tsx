@@ -33,10 +33,27 @@ const CollectionSection = () => {
         <div className="container mx-auto px-4 relative z-10">
         
         {/* Big Title */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground uppercase tracking-tight">
-            Os Carros da <span className="text-orange-500">Sua Vida</span>
+        <div className="text-center mb-12 md:mb-16 relative">
+          {/* Decorative glow behind title */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[600px] h-32 bg-gradient-to-r from-transparent via-orange-300/30 to-transparent blur-3xl" />
+          </div>
+          
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-foreground uppercase tracking-tight relative">
+            Os Carros da{" "}
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-orange-500 via-orange-400 to-amber-500 bg-clip-text text-transparent drop-shadow-lg">
+                Sua Vida
+              </span>
+              {/* Underline accent */}
+              <span className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-orange-500 via-orange-400 to-amber-500 rounded-full opacity-80" />
+            </span>
           </h2>
+          
+          {/* Subtitle */}
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            Uma coleção exclusiva de <strong className="text-foreground">150 réplicas</strong> dos automóveis que marcaram gerações
+          </p>
         </div>
         
         {/* Header */}
