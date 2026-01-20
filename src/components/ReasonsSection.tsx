@@ -1,8 +1,6 @@
 import { Gift, Truck, CalendarCheck, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
-import SubscriptionForm from "./SubscriptionForm";
 
 const ReasonsSection = () => {
   const { isSubscriptionOpen, setIsSubscriptionOpen } = useSubscription();
@@ -75,12 +73,6 @@ const ReasonsSection = () => {
           </div>
         </div>
       </section>
-
-      <Dialog open={isSubscriptionOpen} onOpenChange={setIsSubscriptionOpen}>
-        <DialogContent className="max-w-4xl w-full h-[100dvh] md:h-auto md:max-h-[85vh] p-4 md:p-6 m-0 md:m-4 max-w-full md:max-w-4xl rounded-none md:rounded-xl overflow-hidden flex flex-col">
-          <SubscriptionForm onClose={() => setIsSubscriptionOpen(false)} />
-        </DialogContent>
-      </Dialog>
     </>
   );
 };

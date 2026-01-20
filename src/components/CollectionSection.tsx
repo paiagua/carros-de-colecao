@@ -1,9 +1,7 @@
 import { useState, useRef } from "react";
 import { ChevronDown, ChevronUp, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSubscription } from "@/contexts/SubscriptionContext";
-import SubscriptionForm from "./SubscriptionForm";
 import { minerals } from "@/data/minerals";
 import { getCarImage } from "@/data/carImages";
 
@@ -233,12 +231,6 @@ const CollectionSection = () => {
           </div>
         </div>
       </section>
-
-      <Dialog open={isSubscriptionOpen} onOpenChange={setIsSubscriptionOpen}>
-        <DialogContent className="max-w-4xl w-full h-[100dvh] md:h-auto md:max-h-[85vh] p-4 md:p-6 m-0 md:m-4 max-w-full md:max-w-4xl rounded-none md:rounded-xl overflow-hidden flex flex-col">
-          <SubscriptionForm onClose={() => setIsSubscriptionOpen(false)} />
-        </DialogContent>
-      </Dialog>
     </>
   );
 };
