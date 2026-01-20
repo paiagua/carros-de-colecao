@@ -99,7 +99,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   const step4Form = useForm<Step4Data>({
     resolver: zodResolver(step4Schema),
     defaultValues: {
-      termsAccepted: true
+      termsAccepted: false
     }
   });
 
@@ -120,7 +120,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
         // Only restore data if not completed
         if (!parsed.completed) {
           setFormData(parsed.formData || {});
-          setCurrentStep(parsed.currentStep || 1);
+          // If recovering to step 4, go to step 3 instead to force re-confirmation
+          const recoveredStep = parsed.currentStep || 1;
+          setCurrentStep(recoveredStep === 4 ? 3 : recoveredStep);
           if (parsed.leadId) setLeadId(parsed.leadId);
         
           // Restore step 1 form
@@ -140,7 +142,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
           if (parsed.formData?.postalCode2) step3Form.setValue('postalCode2', parsed.formData.postalCode2);
           if (parsed.formData?.city) step3Form.setValue('city', parsed.formData.city);
           
-          // Restore step 4 form
+          // Restore step 4 form (but NOT termsAccepted or nibConfirmed)
           if (parsed.formData?.nib) step4Form.setValue('nib', parsed.formData.nib);
           if (parsed.formData?.accountHolderName) step4Form.setValue('accountHolderName', parsed.formData.accountHolderName);
           if (parsed.formData?.accountHolderAddress) step4Form.setValue('accountHolderAddress', parsed.formData.accountHolderAddress);
@@ -148,8 +150,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
           if (parsed.formData?.accountHolderPostalCode2) step4Form.setValue('accountHolderPostalCode2', parsed.formData.accountHolderPostalCode2);
           if (parsed.formData?.accountHolderCity) step4Form.setValue('accountHolderCity', parsed.formData.accountHolderCity);
           
-          // Don't restore nibConfirmed - always require user to confirm NIB again
-          // if (parsed.nibConfirmed) setNibConfirmed(parsed.nibConfirmed);
+          // NEVER restore nibConfirmed - always require user to confirm NIB again
         }
       } catch (e) {
         console.error('Error loading saved form data:', e);
