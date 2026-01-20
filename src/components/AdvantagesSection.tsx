@@ -54,19 +54,16 @@ const AdvantagesSection = () => {
           <div className="mt-12 md:mt-16 text-center">
             <div className="inline-block bg-card border border-border rounded-xl px-8 py-6">
               <p className="text-foreground font-medium mb-1">
-                Comece já a sua coleção!
-              </p>
-              <p className="text-muted-foreground text-sm mb-4">
-                Cada carro por apenas <span className="text-primary font-bold">5,95€</span>
+                Comece já a sua coleção por apenas <span className="text-primary font-bold">1,95€</span>
               </p>
               <Button 
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold mt-4"
                 onClick={() => {
                   trackSubscriptionClick('advantages_section');
                   setIsSubscriptionOpen(true);
                 }}
               >
-                Assinar Agora
+                Subscrever Coleção Agora
               </Button>
             </div>
           </div>
