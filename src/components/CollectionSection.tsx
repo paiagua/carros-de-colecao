@@ -32,77 +32,58 @@ const CollectionSection = () => {
         
         <div className="container mx-auto px-4 relative z-10">
         
-        {/* Big Title with Art */}
-        <div className="text-center mb-12 md:mb-16 relative py-8 md:py-12">
+        {/* Big Title with Premium Art */}
+        <div className="text-center mb-16 md:mb-24 relative py-12 md:py-20">
           
-          {/* Decorative floating elements */}
+          {/* Cinematic background layers */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Large glowing orbs */}
-            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-gradient-radial from-orange-400/20 via-orange-300/10 to-transparent rounded-full blur-3xl animate-pulse" />
-            <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-48 h-48 bg-gradient-radial from-amber-400/25 via-amber-300/10 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
-            
-            {/* Decorative lines */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-orange-400/50 to-transparent" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-t from-transparent via-orange-400/50 to-transparent" />
-            
-            {/* Side decorations */}
-            <div className="hidden md:block absolute top-1/2 left-8 -translate-y-1/2">
-              <div className="w-24 h-px bg-gradient-to-r from-transparent via-orange-500/60 to-orange-500" />
-              <div className="w-16 h-px bg-gradient-to-r from-transparent to-orange-400/40 mt-2" />
-              <div className="w-8 h-px bg-gradient-to-r from-transparent to-orange-300/30 mt-2" />
-            </div>
-            <div className="hidden md:block absolute top-1/2 right-8 -translate-y-1/2">
-              <div className="w-24 h-px bg-gradient-to-l from-transparent via-orange-500/60 to-orange-500" />
-              <div className="w-16 h-px bg-gradient-to-l from-transparent to-orange-400/40 mt-2 ml-auto" />
-              <div className="w-8 h-px bg-gradient-to-l from-transparent to-orange-300/30 mt-2 ml-auto" />
+            {/* Sweeping light beams */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full">
+              <div className="absolute top-0 left-[20%] w-[2px] h-full bg-gradient-to-b from-orange-400/0 via-orange-400/20 to-orange-400/0 transform -skew-x-12" />
+              <div className="absolute top-0 left-[40%] w-[1px] h-full bg-gradient-to-b from-amber-300/0 via-amber-300/15 to-amber-300/0 transform skew-x-6" />
+              <div className="absolute top-0 right-[35%] w-[1px] h-full bg-gradient-to-b from-orange-300/0 via-orange-300/10 to-orange-300/0 transform -skew-x-3" />
+              <div className="absolute top-0 right-[20%] w-[2px] h-full bg-gradient-to-b from-amber-400/0 via-amber-400/20 to-amber-400/0 transform skew-x-12" />
             </div>
             
-            {/* Floating sparkles/dots */}
-            <div className="absolute top-1/4 left-[15%] w-2 h-2 bg-orange-400 rounded-full animate-ping opacity-60" style={{ animationDuration: '2s' }} />
-            <div className="absolute top-1/3 right-[20%] w-1.5 h-1.5 bg-amber-400 rounded-full animate-ping opacity-50" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }} />
-            <div className="absolute bottom-1/3 left-[25%] w-1 h-1 bg-orange-300 rounded-full animate-ping opacity-40" style={{ animationDuration: '3s', animationDelay: '1s' }} />
-            <div className="absolute bottom-1/4 right-[15%] w-2 h-2 bg-amber-300 rounded-full animate-ping opacity-50" style={{ animationDuration: '2.2s', animationDelay: '0.7s' }} />
+            {/* Massive atmospheric glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[300%] bg-gradient-radial from-orange-400/15 via-amber-300/5 to-transparent blur-3xl" />
             
-            {/* Diamond shapes */}
-            <div className="absolute top-8 left-[30%] w-3 h-3 border border-orange-400/40 rotate-45" />
-            <div className="absolute bottom-8 right-[30%] w-4 h-4 border border-amber-400/30 rotate-45" />
+            {/* Floating ambient particles */}
+            <div className="absolute top-[10%] left-[10%] w-1 h-1 bg-orange-400/60 rounded-full animate-pulse" style={{ animationDuration: '3s' }} />
+            <div className="absolute top-[20%] right-[15%] w-0.5 h-0.5 bg-amber-400/50 rounded-full animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+            <div className="absolute bottom-[25%] left-[20%] w-0.5 h-0.5 bg-orange-300/40 rounded-full animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }} />
+            <div className="absolute bottom-[15%] right-[25%] w-1 h-1 bg-amber-300/50 rounded-full animate-pulse" style={{ animationDuration: '4.5s', animationDelay: '2s' }} />
+            <div className="absolute top-[40%] left-[5%] w-0.5 h-0.5 bg-orange-500/30 rounded-full animate-pulse" style={{ animationDuration: '5s', animationDelay: '1.5s' }} />
+            <div className="absolute top-[60%] right-[8%] w-0.5 h-0.5 bg-amber-500/40 rounded-full animate-pulse" style={{ animationDuration: '3.8s', animationDelay: '0.8s' }} />
           </div>
           
-          {/* Main glow behind title */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-[800px] h-40 bg-gradient-to-r from-transparent via-orange-300/30 to-transparent blur-3xl" />
-          </div>
-          
-          {/* Title with enhanced styling */}
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-foreground uppercase tracking-tight relative">
-            Os Carros da{" "}
+          {/* Title with dramatic styling */}
+          <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-black text-foreground uppercase tracking-tighter leading-none relative">
+            <span className="block mb-2">Os Carros da</span>
             <span className="relative inline-block">
-              {/* Glow effect behind text */}
-              <span className="absolute inset-0 bg-gradient-to-r from-orange-500 via-orange-400 to-amber-500 bg-clip-text text-transparent blur-sm opacity-50">
+              {/* Multi-layer glow effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent blur-xl opacity-40 scale-105">
                 Sua Vida
               </span>
-              <span className="relative bg-gradient-to-r from-orange-500 via-orange-400 to-amber-500 bg-clip-text text-transparent drop-shadow-lg">
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-500 via-orange-400 to-amber-400 bg-clip-text text-transparent blur-sm opacity-60">
                 Sua Vida
               </span>
-              {/* Underline accent with animation */}
-              <span className="absolute -bottom-2 left-0 right-0 h-1.5 bg-gradient-to-r from-orange-500 via-orange-400 to-amber-500 rounded-full opacity-90">
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-[shimmer_2s_infinite]" />
+              <span className="relative bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
+                Sua Vida
               </span>
+              {/* Elegant underline */}
+              <span className="absolute -bottom-3 md:-bottom-4 left-1/2 -translate-x-1/2 w-[120%] h-1 md:h-1.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent rounded-full opacity-80" />
             </span>
           </h2>
           
-          {/* Decorative divider */}
-          <div className="flex items-center justify-center gap-3 mt-6 mb-4">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-orange-400/60" />
-            <div className="w-2 h-2 bg-orange-500 rounded-full" />
-            <div className="w-20 h-px bg-orange-400/80" />
-            <div className="w-2 h-2 bg-orange-500 rounded-full" />
-            <div className="w-12 h-px bg-gradient-to-l from-transparent to-orange-400/60" />
-          </div>
-          
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Uma coleção exclusiva de <strong className="text-orange-600 font-bold">150 réplicas</strong> dos automóveis que marcaram gerações
+          {/* Subtitle with refined typography */}
+          <p className="mt-10 md:mt-14 text-lg md:text-xl lg:text-2xl text-muted-foreground/80 max-w-3xl mx-auto font-medium tracking-wide">
+            Uma coleção exclusiva de{" "}
+            <span className="relative inline-block">
+              <span className="text-orange-600 font-bold">150 réplicas</span>
+              <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500/50 via-orange-400/80 to-orange-500/50 rounded-full" />
+            </span>
+            {" "}dos automóveis que marcaram gerações
           </p>
         </div>
         
