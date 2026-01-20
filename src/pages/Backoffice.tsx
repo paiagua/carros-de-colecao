@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import FunnelChart from "@/components/backoffice/FunnelChart";
 import MarketingChart from "@/components/backoffice/MarketingChart";
+import DailyChart from "@/components/backoffice/DailyChart";
 
 interface Lead {
   id: string;
@@ -319,6 +320,7 @@ const Backoffice = () => {
         {/* Charts */}
         {showCharts && (
           <>
+            <DailyChart leads={leads} />
             <FunnelChart stats={stats} />
             <MarketingChart leads={leads} />
           </>
