@@ -231,7 +231,7 @@ const Hero = () => {
           >
             <span className="text-[10px] md:text-xs uppercase tracking-wider text-white/80 font-medium">Cada Carro</span>
             <span className="text-lg md:text-2xl font-black text-white leading-tight">VW Beetle</span>
-            <span className="text-sm md:text-lg font-bold text-white">5,95€</span>
+            <span className="text-sm md:text-lg font-bold text-white">1,95€</span>
           </div>
         )}
       </section>

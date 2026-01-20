@@ -423,7 +423,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   };
 
   const minerals = [
-    { id: "1", title: "VW Beetle", image: car1, price: "5,95€" },
+    { id: "1", title: "VW Beetle", image: car1, price: "1,95€" },
     { id: "2", title: "VW T1 Bus", image: car2, price: "5,95€" },
     { id: "3", title: "Renault 4L", image: car3, price: "5,95€" }
   ];
