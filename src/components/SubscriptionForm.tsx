@@ -922,108 +922,142 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
         <form onSubmit={step4Form.handleSubmit(handleStep4)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
           {/* Scrollable content */}
           <div className="flex-1 overflow-y-auto space-y-6 pb-4 min-h-0">
+            {/* Header with title */}
             <div className="text-center mb-6">
-              <h2 className="text-xl font-bold mb-4">
-                Faltam apenas os seus dados de pagamento da Coleção
-              </h2>
+              <p className="text-sm text-muted-foreground mb-2">O próximo passo já é o último.</p>
+              <div className="h-1 w-full bg-accent rounded-full mb-6"></div>
+              <h2 className="text-2xl font-bold mb-4">Finalizar adesão</h2>
+              
+              {/* Trust badges */}
+              <div className="flex flex-wrap justify-center gap-4 text-sm">
+                <div className="flex items-center gap-2 text-accent">
+                  <Shield className="w-4 h-4" />
+                  <span>Encriptação SSL</span>
+                </div>
+                <div className="flex items-center gap-2 text-accent">
+                  <Check className="w-4 h-4" />
+                  <span>Dados Protegidos</span>
+                </div>
+                <div className="flex items-center gap-2 text-accent">
+                  <Check className="w-4 h-4" />
+                  <span>Medialivre, S.A.</span>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-4">
-              <Card className="p-4 border-2 border-border">
-                <div className="flex justify-between items-center mb-2">
-                  <Label htmlFor="nib">NIB:*</Label>
-                  <span className="text-xs text-muted-foreground flex items-center gap-1">
-                    🔒 Ligação segura • Dados protegidos
-                  </span>
-                </div>
-                <div className="flex gap-2 items-start">
-                  <div className="flex-1">
-                    <Input
-                      id="nib"
-                      value={(() => {
-                        const digits = step4Form.watch('nib') || '';
-                        let formatted = '';
-                        if (digits.length > 0) formatted += digits.slice(0, 4);
-                        if (digits.length > 4) formatted += '-' + digits.slice(4, 8);
-                        if (digits.length > 8) formatted += '-' + digits.slice(8, 19);
-                        if (digits.length > 19) formatted += '-' + digits.slice(19, 21);
-                        return formatted;
-                      })()}
-                      onChange={(e) => {
-                        // Remove all non-digits
-                        let digits = e.target.value.replace(/\D/g, '');
-                        // Limit to 21 digits
-                        digits = digits.slice(0, 21);
-                        step4Form.setValue('nib', digits);
-                      }}
-                      maxLength={24}
-                      className="font-mono text-lg"
-                      placeholder="1221-2121-21212121212-12"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Introduza os 21 dígitos do seu NIB (aceita hífens automaticamente).
-                    </p>
-                    {step4Form.formState.errors.nib && (
-                      <p className="text-sm text-destructive mt-1">
-                        {step4Form.formState.errors.nib.message}
-                      </p>
-                    )}
+            {/* Payment info accordion */}
+            <Card className="p-4 bg-muted/30 border-border">
+              <button
+                type="button"
+                onClick={() => setShowDebitDetails(!showDebitDetails)}
+                className="w-full flex justify-between items-center text-left"
+              >
+                <span className="font-semibold">Qual o valor que será debitado e quando?</span>
+                <ChevronLeft className={`w-5 h-5 transition-transform ${showDebitDetails ? 'rotate-90' : '-rotate-90'}`} />
+              </button>
+              
+              {showDebitDetails && (
+                <div className="mt-4 space-y-3 text-sm">
+                  <div>
+                    <p className="font-semibold">Pagamento mensal por entrega</p>
+                    <p className="text-muted-foreground">A coleção é entregue mensalmente. O valor debitado em cada mês corresponde à entrega desse mês:</p>
                   </div>
-                  {!nibConfirmed && (
-                    <Button 
+                  <p>
+                    <strong>1º mês</strong> – Envio dos números 1, 2 e 3 – <span className="line-through text-muted-foreground">12,98€</span>
+                  </p>
+                  <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mt-2">
+                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Cancelamento gratuito</span>
+                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Sem período mínimo</span>
+                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Sem fidelização</span>
+                  </div>
+                </div>
+              )}
+            </Card>
+
+            {/* NIB Section */}
+            <Card className="p-5 bg-background border-2 border-border">
+              <p className="text-sm mb-4">
+                Aceitamos pagamento por débito direto (SEPA). Por favor, indique o seu NIB (21 dígitos).
+              </p>
+              
+              <div className="space-y-2">
+                <Label htmlFor="nib" className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-muted-foreground" />
+                  NIB (21 dígitos)*
+                </Label>
+                <Input
+                  id="nib"
+                  value={(() => {
+                    const digits = step4Form.watch('nib') || '';
+                    let formatted = '';
+                    if (digits.length > 0) formatted += digits.slice(0, 4);
+                    if (digits.length > 4) formatted += '-' + digits.slice(4, 8);
+                    if (digits.length > 8) formatted += '-' + digits.slice(8, 19);
+                    if (digits.length > 19) formatted += '-' + digits.slice(19, 21);
+                    return formatted;
+                  })()}
+                  onChange={(e) => {
+                    let digits = e.target.value.replace(/\D/g, '');
+                    digits = digits.slice(0, 21);
+                    step4Form.setValue('nib', digits);
+                    // Reset confirmation when NIB changes
+                    if (nibConfirmed) setNibConfirmed(false);
+                  }}
+                  maxLength={24}
+                  className="font-mono text-lg bg-muted/50"
+                  placeholder="0000-0000-00000000000-00"
+                  disabled={nibConfirmed}
+                />
+                <p className="text-xs text-muted-foreground flex items-center gap-1">
+                  <span className="inline-block w-4 h-4 rounded-full border border-muted-foreground text-center text-xs leading-4">i</span>
+                  Encontra o NIB no seu cartão ou extrato bancário
+                </p>
+                {step4Form.formState.errors.nib && (
+                  <p className="text-sm text-destructive mt-1">
+                    {step4Form.formState.errors.nib.message}
+                  </p>
+                )}
+              </div>
+            </Card>
+
+            {nibConfirmed && (
+              <>
+                <Card className="p-4 bg-accent/5 border-2 border-accent/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Check className="w-5 h-5 text-accent" />
+                    <span className="font-semibold text-accent">NIB Confirmado</span>
+                    <Button
                       type="button"
-                      variant="cta"
+                      variant="ghost"
                       size="sm"
-                      className="whitespace-nowrap"
-                      onClick={() => {
-                        const nibValue = step4Form.getValues("nib");
-                        if (nibValue && nibValue.length === 21) {
-                          setNibConfirmed(true);
-                          // Save NIB to formData and storage
-                          const newFormData = { ...formData, nib: nibValue };
-                          setFormData(newFormData);
-                          saveToStorage(newFormData, 4, true);
-                        } else {
-                          toast({
-                            title: "NIB inválido",
-                            description: "O NIB deve ter 21 dígitos.",
-                            variant: "destructive"
-                          });
+                      className="ml-auto text-xs"
+                      onClick={() => setNibConfirmed(false)}
+                    >
+                      Alterar
+                    </Button>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <Checkbox
+                      id="useDeliveryAddress"
+                      checked={useDeliveryAddress}
+                      onCheckedChange={(checked) => {
+                        setUseDeliveryAddress(checked === true);
+                        if (checked === true) {
+                          step4Form.setValue("accountHolderAddress", formData.address || "");
+                          step4Form.setValue("accountHolderPostalCode1", formData.postalCode1 || "");
+                          step4Form.setValue("accountHolderPostalCode2", formData.postalCode2 || "");
+                          step4Form.setValue("accountHolderCity", formData.city || "");
                         }
                       }}
-                    >
-                      Confirmar NIB
-                    </Button>
-                  )}
-                  {nibConfirmed && (
-                    <span className="text-accent text-sm flex items-center gap-1 pt-2">✓ Confirmado</span>
-                  )}
-                </div>
-              </Card>
+                    />
+                    <Label htmlFor="useDeliveryAddress" className="text-sm cursor-pointer leading-relaxed font-medium">
+                      Usar Morada de Entrega para titular da conta
+                    </Label>
+                  </div>
+                </Card>
 
-              {nibConfirmed && (
-                <>
-                  <Card className="p-4 bg-accent/5 border-2 border-accent/30">
-                    <div className="flex items-start gap-3">
-                      <Checkbox
-                        id="useDeliveryAddress"
-                        checked={useDeliveryAddress}
-                        onCheckedChange={(checked) => {
-                          setUseDeliveryAddress(checked === true);
-                          if (checked === true) {
-                            step4Form.setValue("accountHolderAddress", formData.address || "");
-                            step4Form.setValue("accountHolderPostalCode1", formData.postalCode1 || "");
-                            step4Form.setValue("accountHolderPostalCode2", formData.postalCode2 || "");
-                            step4Form.setValue("accountHolderCity", formData.city || "");
-                          }
-                        }}
-                      />
-                      <Label htmlFor="useDeliveryAddress" className="text-sm cursor-pointer leading-relaxed font-medium">
-                        Usar Morada de Entrega
-                      </Label>
-                    </div>
-                  </Card>
-
+                <div className="space-y-4">
                   <div>
                     <Label htmlFor="accountHolderName">Nome do titular da Conta*</Label>
                     <Input
@@ -1107,95 +1141,92 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       className="mt-1"
                     />
                   </div>
+                </div>
 
-                  <div className="space-y-2 text-sm">
-                    <button 
-                      type="button"
-                      onClick={() => setShowDebitDetails(true)}
-                      className="block text-primary hover:underline font-semibold"
-                    >
-                      Detalhes de Débito de Conta
-                    </button>
-                    <button 
-                      type="button"
-                      onClick={() => setShowTermsDetails(true)}
-                      className="block text-primary hover:underline font-semibold"
-                    >
-                      Detalhes Termos da coleção
-                    </button>
+                <div className="space-y-2 text-sm">
+                  <button 
+                    type="button"
+                    onClick={() => setShowTermsDetails(true)}
+                    className="block text-primary hover:underline font-semibold"
+                  >
+                    Detalhes Termos da coleção
+                  </button>
+                </div>
+
+                <Card className="p-4 border-2 border-accent/30 bg-accent/5">
+                  <div className="flex items-start gap-3">
+                    <Checkbox
+                      id="termsAccepted"
+                      checked={step4Form.watch("termsAccepted")}
+                      onCheckedChange={(checked) => {
+                        step4Form.setValue("termsAccepted", checked === true);
+                      }}
+                    />
+                    <Label htmlFor="termsAccepted" className="text-sm cursor-pointer leading-relaxed">
+                      Li, compreendi e aceito os{" "}
+                      <a 
+                        href="https://aminhaconta.xl.pt/Layers/TermsAndConditions" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-accent hover:underline font-semibold underline"
+                      >
+                        termos de utilização
+                      </a>{" "}
+                      e a{" "}
+                      <a 
+                        href="https://aminhaconta.xl.pt/Layers/PrivacyPolicy" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-accent hover:underline font-semibold underline"
+                      >
+                        política de privacidade
+                      </a>. *
+                    </Label>
                   </div>
-
-                  <Card className="p-4 border-2 border-accent/30 bg-accent/5 !mt-2">
-                    <div className="flex items-start gap-3">
-                      <Checkbox
-                        id="termsAccepted"
-                        checked={step4Form.watch("termsAccepted")}
-                        onCheckedChange={(checked) => {
-                          step4Form.setValue("termsAccepted", checked === true);
-                        }}
-                      />
-                      <Label htmlFor="termsAccepted" className="text-sm cursor-pointer leading-relaxed">
-                        Li, compreendi e aceito os{" "}
-                        <a 
-                          href="https://aminhaconta.xl.pt/Layers/TermsAndConditions" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-accent hover:underline font-semibold underline"
-                        >
-                          termos de utilização
-                        </a>{" "}
-                        e a{" "}
-                        <a 
-                          href="https://aminhaconta.xl.pt/Layers/PrivacyPolicy" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-accent hover:underline font-semibold underline"
-                        >
-                          política de privacidade
-                        </a>. *
-                      </Label>
-                    </div>
-                    {step4Form.formState.errors.termsAccepted && (
-                      <p className="text-sm text-destructive mt-2">
-                        {step4Form.formState.errors.termsAccepted.message}
-                      </p>
-                    )}
-                  </Card>
-                </>
-              )}
-            </div>
+                  {step4Form.formState.errors.termsAccepted && (
+                    <p className="text-sm text-destructive mt-2">
+                      {step4Form.formState.errors.termsAccepted.message}
+                    </p>
+                  )}
+                </Card>
+              </>
+            )}
           </div>
 
-          {/* Trust badges */}
+          {/* Fixed button at bottom */}
           <div className="flex-shrink-0 pt-4 border-t border-border bg-background">
-            {/* Garantias */}
-            <Card className="p-4 mb-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/30">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                  <Shield className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <p className="font-bold text-green-700 dark:text-green-400">Subscrição Sem Compromisso</p>
-                  <p className="text-sm text-muted-foreground">Pode cancelar a qualquer momento</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="flex items-center gap-2 p-2 bg-white/50 dark:bg-white/5 rounded-lg">
-                  <X className="w-4 h-4 text-green-600" />
-                  <span>Cancelamento gratuito</span>
-                </div>
-                <div className="flex items-center gap-2 p-2 bg-white/50 dark:bg-white/5 rounded-lg">
-                  <RefreshCcw className="w-4 h-4 text-green-600" />
-                  <span>Sem período mínimo</span>
-                </div>
-              </div>
-            </Card>
-            
             <div className="flex flex-col gap-2">
-              <Button type="submit" variant="cta" className="w-full h-14 text-lg font-bold group shadow-none hover:shadow-none" size="lg">
-                <Check className="w-5 h-5" />
-                <span>Confirmar Subscrição</span>
-              </Button>
+              {!nibConfirmed ? (
+                <Button 
+                  type="button"
+                  variant="cta" 
+                  className="w-full h-14 text-lg font-bold group"
+                  size="lg"
+                  onClick={() => {
+                    const nibValue = step4Form.getValues("nib");
+                    if (nibValue && nibValue.length === 21) {
+                      setNibConfirmed(true);
+                      const newFormData = { ...formData, nib: nibValue };
+                      setFormData(newFormData);
+                      saveToStorage(newFormData, 4, true);
+                    } else {
+                      toast({
+                        title: "NIB inválido",
+                        description: "O NIB deve ter 21 dígitos.",
+                        variant: "destructive"
+                      });
+                    }
+                  }}
+                >
+                  <Check className="w-5 h-5" />
+                  <span>Confirmar NIB</span>
+                </Button>
+              ) : (
+                <Button type="submit" variant="cta" className="w-full h-14 text-lg font-bold group" size="lg">
+                  <Check className="w-5 h-5" />
+                  <span>Confirmar e Ativar Entregas</span>
+                </Button>
+              )}
               <p className="text-xs text-center text-muted-foreground">
                 🔒 Os seus dados estão protegidos e seguros
               </p>
