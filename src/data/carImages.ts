@@ -18,8 +18,16 @@ import car17 from "@/assets/cars/car-17.png";
 import car18 from "@/assets/cars/car-18.png";
 import car19 from "@/assets/cars/car-19.png";
 import car20 from "@/assets/cars/car-20.png";
+import car21 from "@/assets/cars/car-21.png";
+import car22 from "@/assets/cars/car-22.png";
 import car23 from "@/assets/cars/car-23.png";
+import car24 from "@/assets/cars/car-24.png";
+import car25 from "@/assets/cars/car-25.png";
+import car26 from "@/assets/cars/car-26.png";
 import car27 from "@/assets/cars/car-27.png";
+import car28 from "@/assets/cars/car-28.png";
+import car29 from "@/assets/cars/car-29.png";
+import car30 from "@/assets/cars/car-30.png";
 
 const carImages: Record<number, string> = {
   1: car1,
@@ -42,8 +50,16 @@ const carImages: Record<number, string> = {
   18: car18,
   19: car19,
   20: car20,
+  21: car21,
+  22: car22,
   23: car23,
+  24: car24,
+  25: car25,
+  26: car26,
   27: car27,
+  28: car28,
+  29: car29,
+  30: car30,
 };
 
 export const getCarImage = (carNumber: number): string | undefined => {
