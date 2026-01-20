@@ -1195,7 +1195,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       </a>. *
                     </Label>
                   </div>
-                  {step4Form.formState.errors.termsAccepted && (
+                  {step4Form.formState.errors.termsAccepted && step4Form.formState.isSubmitted && (
                     <p className="text-sm text-destructive mt-2">
                       {step4Form.formState.errors.termsAccepted.message}
                     </p>
