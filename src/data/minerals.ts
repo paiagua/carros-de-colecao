@@ -56,11 +56,17 @@ export const cars: Car[] = [
   { number: 23, title: "SUZUKI Jimny", date: deliveryDates[22], price: "5,95€" },
   { number: 24, title: "Citroën Dyane 6 Nazare", date: deliveryDates[23], price: "5,95€" },
   { number: 25, title: "Mini Cooper New", date: deliveryDates[24], price: "5,95€" },
-  // Cars 26-150: Coming soon
-  ...Array.from({ length: 125 }, (_, i) => ({
-    number: i + 26,
+  { number: 26, title: "Trabant 601", date: "08/08/2026", price: "5,95€" },
+  { number: 27, title: "Renault 8 Gordini", date: "15/08/2026", price: "5,95€" },
+  { number: 28, title: "VW Golf GTI", date: "22/08/2026", price: "5,95€" },
+  { number: 29, title: "Dacia 1100", date: "29/08/2026", price: "5,95€" },
+  { number: 30, title: "Trabant P50", date: "05/09/2026", price: "5,95€" },
+  { number: 31, title: "Mercedes Benz G-Class", date: "12/09/2026", price: "5,95€" },
+  // Cars 32-150: Coming soon
+  ...Array.from({ length: 119 }, (_, i) => ({
+    number: i + 32,
     title: "Em breve disponível o modelo do carro",
-    date: deliveryDates[i + 25],
+    date: deliveryDates[i + 31],
     price: "5,95€"
   }))
 ];
