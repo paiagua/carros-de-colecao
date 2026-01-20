@@ -86,7 +86,7 @@ const DiscoverSection = () => {
                 onClick={() => setIsSubscriptionOpen(true)}
                 className="mt-6 bg-orange-500 hover:bg-orange-600 text-white text-base px-8 py-5 h-auto rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all uppercase tracking-wide"
               >
-                CONHEÇA-OS A TODOS!
+                ASSINAR AGORA
               </Button>
             </div>
           </div>

@@ -70,7 +70,7 @@ const Footer = () => {
                   setIsSubscriptionOpen(true);
                 }}
               >
-                Subscrever Agora
+                Assinar Agora
               </Button>
             </div>
           </div>

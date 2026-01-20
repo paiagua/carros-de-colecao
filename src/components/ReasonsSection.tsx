@@ -38,7 +38,7 @@ const ReasonsSection = () => {
           <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
             <span className="text-primary text-sm font-semibold uppercase tracking-wider">Porquê Assinar?</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mt-2 mb-4">
-              4 Razões para Subscrever
+              4 Razões para Assinar
             </h2>
             <p className="text-muted-foreground text-lg">
               Milhares de colecionadores já subscreveram esta coleção única.
@@ -70,7 +70,7 @@ const ReasonsSection = () => {
               className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-8 py-6 h-auto"
               onClick={() => setIsSubscriptionOpen(true)}
             >
-              Subscrever Agora
+              Assinar Agora
             </Button>
           </div>
         </div>

@@ -10,7 +10,7 @@ const advantages = [
   { icon: Truck, title: "Envio Gratuito", description: "Sem custos de envio para assinantes" },
   { icon: Calendar, title: "Entrega Regular", description: "Receba em casa sem preocupações" },
   { icon: BookOpen, title: "Fascículos Completos", description: "História e curiosidades de cada modelo" },
-  { icon: Gift, title: "Caixa Expositora", description: "Para guardar a sua coleção" },
+  { icon: Gift, title: "Ofertas Exclusivas para Assinantes", description: "Para guardar a sua coleção" },
   { icon: Shield, title: "Qualidade Premium", description: "Materiais e acabamentos de excelência" },
   { icon: Clock, title: "Nunca Perde Nenhum", description: "Garantia de entrega completa" },
   { icon: XCircle, title: "Cancelamento Livre", description: "Cancele quando quiser" }
@@ -66,7 +66,7 @@ const AdvantagesSection = () => {
                   setIsSubscriptionOpen(true);
                 }}
               >
-                Subscrever Agora
+                Assinar Agora
               </Button>
             </div>
           </div>
