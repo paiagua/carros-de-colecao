@@ -1,5 +1,5 @@
 import caderno from "@/assets/offers/caderno.png";
-import caixaMadeira from "@/assets/offers/caixa-madeira.png";
+import estanteMadeira from "@/assets/offers/estante-carros.png";
 import ferrari1 from "@/assets/offers/ferrari-1.png";
 import ferrari2 from "@/assets/offers/ferrari-2.png";
 import ferrari3 from "@/assets/offers/ferrari-3.png";
@@ -66,7 +66,7 @@ const SpecialOffersSection = () => {
               {/* Badge */}
               <div className="relative inline-flex items-center gap-2 bg-orange-500 text-white text-xs uppercase tracking-wider px-4 py-2 rounded-full mb-8 shadow-lg shadow-orange-500/30">
                 <Sparkles className="w-3 h-3" />
-                Oferta com o 1º Envio
+                Oferta com o 2º Envio
               </div>
               
               {/* Image container */}
@@ -102,12 +102,12 @@ const SpecialOffersSection = () => {
               
               <div className="relative inline-flex items-center gap-2 bg-orange-500 text-white text-xs uppercase tracking-wider px-4 py-2 rounded-full mb-8 shadow-lg shadow-orange-500/30">
                 <Sparkles className="w-3 h-3" />
-                6º, 14º, 21º, 29º e 36º Envio
+                7º, 15º, 22º, 30º e 37º Envio
               </div>
               
               <div className="relative flex justify-center mb-8">
                 <img 
-                  src={caixaMadeira} 
+                  src={estanteMadeira} 
                   alt="Caixa Organizadora de Madeira"
                   className="relative w-full max-w-[220px] object-contain group-hover:scale-110 transition-all duration-500 drop-shadow-xl"
                 />
@@ -135,7 +135,7 @@ const SpecialOffersSection = () => {
               
               <div className="relative inline-flex items-center gap-2 bg-orange-500 text-white text-xs uppercase tracking-wider px-4 py-2 rounded-full mb-8 shadow-lg shadow-orange-500/30">
                 <Sparkles className="w-3 h-3" />
-                4º e 19º Envio
+                5º e 20º Envio
               </div>
               
               <div className="relative flex justify-center mb-8">
