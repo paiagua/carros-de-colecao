@@ -958,15 +958,12 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                 <ChevronLeft className={`w-5 h-5 transition-transform ${showDebitDetails ? 'rotate-90' : '-rotate-90'}`} />
               </button>
               
-              {showDebitDetails && (
+            {showDebitDetails && (
                 <div className="mt-4 space-y-3 text-sm">
                   <div>
                     <p className="font-semibold">Pagamento mensal por entrega</p>
                     <p className="text-muted-foreground">A coleção é entregue mensalmente. O valor debitado em cada mês corresponde à entrega desse mês:</p>
                   </div>
-                  <p>
-                    <strong>1º mês</strong> – Envio dos números 1, 2 e 3 – <span className="line-through text-muted-foreground">12,98€</span>
-                  </p>
                   <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mt-2">
                     <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Cancelamento gratuito</span>
                     <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Sem período mínimo</span>
@@ -974,6 +971,29 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   </div>
                 </div>
               )}
+            
+            {/* Delivery info based on selected first book */}
+            <Card className="p-4 bg-accent/10 border-2 border-accent/40">
+              <div className="flex items-center gap-2 mb-2">
+                <Package className="w-5 h-5 text-accent" />
+                <span className="font-bold text-accent">Primeira entrega</span>
+              </div>
+              {formData.firstBook === "1" && (
+                <p className="text-sm font-semibold">
+                  Envio dos números 1, 2 e 3 – <span className="text-accent">13,85€</span>
+                </p>
+              )}
+              {formData.firstBook === "2" && (
+                <p className="text-sm font-semibold">
+                  Envio dos números 2, 3 e 4 – <span className="text-accent">17,85€</span>
+                </p>
+              )}
+              {formData.firstBook === "3" && (
+                <p className="text-sm font-semibold">
+                  Envio dos números 3, 4 e 5 – <span className="text-accent">17,85€</span>
+                </p>
+              )}
+            </Card>
             </Card>
 
             {/* NIB Section */}
