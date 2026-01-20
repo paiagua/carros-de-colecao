@@ -31,7 +31,7 @@ function calculateDeliveryDates(): string[] {
 const deliveryDates = calculateDeliveryDates();
 
 export const cars: Car[] = [
-  { number: 1, title: "VW Beetle Hard Top", date: deliveryDates[0], price: "5,95€" },
+  { number: 1, title: "VW Beetle Hard Top", date: deliveryDates[0], price: "1,95€" },
   { number: 2, title: "VW T1 Classic Bus", date: deliveryDates[1], price: "5,95€" },
   { number: 3, title: "Renault 4L", date: deliveryDates[2], price: "5,95€" },
   { number: 4, title: "Citroen 2CV", date: deliveryDates[3], price: "5,95€" },
