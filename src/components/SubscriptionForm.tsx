@@ -460,7 +460,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                 step1Form.reset();
                 step2Form.reset();
                 step3Form.reset();
-                step4Form.reset({ termsAccepted: true });
+                step4Form.reset({ termsAccepted: false });
                 setNibConfirmed(false);
               }}
             >
