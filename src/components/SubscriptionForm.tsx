@@ -712,8 +712,20 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       <Car className="w-4 h-4 text-red-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">2 Packs de 3 Ferrari</p>
-                      <p className="text-sm text-muted-foreground">de OFERTA no 5º e 20º envio</p>
+                      <p className="font-semibold text-foreground">Pack 1 de 3 Ferraris</p>
+                      <p className="text-sm text-muted-foreground">(Enzo Ferrari, LaFerrari, F40 Competizione)</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no 5º envio</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-white/10 rounded-lg border border-accent/20">
+                    <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Car className="w-4 h-4 text-red-600" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">Pack 2 de 3 Ferraris</p>
+                      <p className="text-sm text-muted-foreground">(Ferrari 599 GTO, Ferrari F50, Ferrari Roma)</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no 20º envio</p>
                     </div>
                   </div>
                   
@@ -722,8 +734,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       <Package className="w-4 h-4 text-amber-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">5 Caixas de Madeira</p>
-                      <p className="text-sm text-muted-foreground">de OFERTA no 7º, 15º, 22º, 30º e 37º envio</p>
+                      <p className="font-semibold text-foreground">Caixas Organizadoras de Madeira</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA com o 7º, 15º, 22º, 30º e 37º envio</p>
                     </div>
                   </div>
                 </div>
@@ -739,7 +751,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   </Button>
                 ) : (
                   <div className="space-y-2 text-sm border-t border-accent/20 pt-4 mt-5 animate-fade-in">
-                    <p className="font-medium">Cada carro: <span className="text-accent font-bold">5,95€</span></p>
+                    <p className="font-medium">Fascículo 1 (VW Beetle): <span className="text-accent font-bold">1,95€</span></p>
+                    <p className="font-medium">Fascículo 2 a 150: <span className="text-accent font-bold">5,95€</span> cada</p>
                     <p className="text-xs text-muted-foreground mt-4">
                       Preços válidos para Portugal Continental, IVA incluído. Pode cancelar a assinatura quando desejar.
                     </p>
@@ -1208,7 +1221,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
           </DialogHeader>
           <div className="space-y-4 text-sm">
             <p className="leading-relaxed">
-              Por débito na minha conta mencionada, queiram proceder ao pagamento das importâncias referentes à obra "DESCOBRIR A HISTÓRIA" que lhes serão apresentadas pela VASP PREMIUM. A insuficiência do saldo não responsabiliza o banco pela execução dos pagamentos.
+              Por débito na minha conta mencionada, queiram proceder ao pagamento das importâncias referentes à obra "Carros de Coleção" que lhes serão apresentadas pela VASP PREMIUM. A insuficiência do saldo não responsabiliza o banco pela execução dos pagamentos.
             </p>
           </div>
         </DialogContent>
