@@ -699,11 +699,11 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-white/10 rounded-lg border border-accent/20">
                     <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-accent font-bold text-sm">1º</span>
+                      <span className="text-accent font-bold text-sm">2º</span>
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Caderno Exclusivo</p>
-                      <p className="text-sm text-muted-foreground">de OFERTA no primeiro envio</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no 2º envio</p>
                     </div>
                   </div>
                   
@@ -712,8 +712,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       <Car className="w-4 h-4 text-red-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Pack de 3 Ferrari</p>
-                      <p className="text-sm text-muted-foreground">de OFERTA no 4º e 19º envio</p>
+                      <p className="font-semibold text-foreground">2 Packs de 3 Ferrari</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no 5º e 20º envio</p>
                     </div>
                   </div>
                   
@@ -722,8 +722,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       <Package className="w-4 h-4 text-amber-600" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Caixa Organizadora de Madeira</p>
-                      <p className="text-sm text-muted-foreground">de OFERTA no 6º, 14º, 21º, 29º e 36º envio</p>
+                      <p className="font-semibold text-foreground">5 Caixas de Madeira</p>
+                      <p className="text-sm text-muted-foreground">de OFERTA no 7º, 15º, 22º, 30º e 37º envio</p>
                     </div>
                   </div>
                 </div>
