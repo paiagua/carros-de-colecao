@@ -67,6 +67,12 @@ const Navbar = () => {
                 Vantagens
               </button>
               <button
+                onClick={() => scrollToSection("ofertas")}
+                className="text-muted-foreground hover:text-primary transition-colors font-medium"
+              >
+                Ofertas
+              </button>
+              <button
                 onClick={() => scrollToSection("faq")}
                 className="text-muted-foreground hover:text-primary transition-colors font-medium"
               >
@@ -111,6 +117,12 @@ const Navbar = () => {
                 className="block w-full text-left px-4 py-3 text-muted-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
               >
                 Vantagens
+              </button>
+              <button
+                onClick={() => scrollToSection("ofertas")}
+                className="block w-full text-left px-4 py-3 text-muted-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
+              >
+                Ofertas
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
