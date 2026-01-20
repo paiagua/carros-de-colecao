@@ -947,31 +947,6 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
               </div>
             </div>
 
-            {/* Payment info accordion */}
-            <Card className="p-4 bg-muted/30 border-border">
-              <button
-                type="button"
-                onClick={() => setShowDebitDetails(!showDebitDetails)}
-                className="w-full flex justify-between items-center text-left"
-              >
-                <span className="font-semibold">Qual o valor que será debitado e quando?</span>
-                <ChevronLeft className={`w-5 h-5 transition-transform ${showDebitDetails ? 'rotate-90' : '-rotate-90'}`} />
-              </button>
-              
-            {showDebitDetails && (
-                <div className="mt-4 space-y-3 text-sm">
-                  <div>
-                    <p className="font-semibold">Pagamento mensal por entrega</p>
-                    <p className="text-muted-foreground">A coleção é entregue mensalmente. O valor debitado em cada mês corresponde à entrega desse mês:</p>
-                  </div>
-                  <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mt-2">
-                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Cancelamento gratuito</span>
-                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Sem período mínimo</span>
-                    <span className="flex items-center gap-1"><Check className="w-3 h-3 text-accent" /> Sem fidelização</span>
-                  </div>
-                </div>
-              )}
-            
             {/* Delivery info based on selected first book */}
             <Card className="p-4 bg-accent/10 border-2 border-accent/40">
               <div className="flex items-center gap-2 mb-2">
@@ -993,7 +968,6 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   Envio dos números 3, 4 e 5 – <span className="text-accent">17,85€</span>
                 </p>
               )}
-            </Card>
             </Card>
 
             {/* NIB Section */}
@@ -1038,6 +1012,22 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   <p className="text-sm text-destructive mt-1">
                     {step4Form.formState.errors.nib.message}
                   </p>
+                )}
+              </div>
+              
+              {/* Debit Account Details */}
+              <div className="mt-4 pt-4 border-t border-border">
+                <button
+                  type="button"
+                  onClick={() => setShowDebitDetails(!showDebitDetails)}
+                  className="text-sm text-primary hover:underline font-semibold"
+                >
+                  Detalhes de Débito de Conta
+                </button>
+                {showDebitDetails && (
+                  <div className="mt-3 p-3 bg-muted/30 rounded-lg text-sm text-muted-foreground leading-relaxed">
+                    Por débito na minha conta mencionada, queiram proceder ao pagamento das importâncias referentes à obra "Carros de Coleção" que lhes serão apresentadas pela VASP PREMIUM. A insuficiência do saldo não responsabiliza o banco pela execução dos pagamentos.
+                  </div>
                 )}
               </div>
             </Card>
