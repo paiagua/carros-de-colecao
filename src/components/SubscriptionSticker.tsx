@@ -45,7 +45,7 @@ const SubscriptionSticker = () => {
           <div className="p-6 relative">
             <div className="mb-4 pr-6">
               <h3 className="font-display text-xl font-bold mb-1">
-                Subscreva Agora
+                Assine Agora
               </h3>
               <p className="text-sm text-accent-foreground/90">
                 Receba carros de coleção + fascículos semanais
