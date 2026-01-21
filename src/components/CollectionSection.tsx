@@ -165,10 +165,15 @@ const CollectionSection = () => {
                     </div>
                   )}
                   
-                  {/* Available for subscription badge - for cars 2 and 3 */}
-                  {(car.number === 2 || car.number === 3) && (
-                    <div className="absolute top-2 left-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg">
-                      Disponível
+                  {/* Delivery number badge - for cars 2 and 3 */}
+                  {car.number === 2 && (
+                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg">
+                      2ª Entrega
+                    </div>
+                  )}
+                  {car.number === 3 && (
+                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg">
+                      3ª Entrega
                     </div>
                   )}
                   
