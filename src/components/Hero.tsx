@@ -217,42 +217,19 @@ const Hero = () => {
           <div className="h-1.5 bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700" />
         </div>
 
-        {/* Price Badges */}
+        {/* Price Badge */}
         {!isSubscriptionOpen && (
-          <div className="fixed top-24 right-4 md:top-28 md:right-8 lg:right-12 flex flex-col gap-3 z-[100]">
-            {/* Circular orange badge - First car */}
-            <div 
-              onClick={() => {
-                trackSubscriptionClick('hero_price_badge');
-                setIsSubscriptionOpen(true);
-              }}
-              className="w-28 h-28 md:w-36 md:h-36 rounded-full font-bold flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 hover:scale-110 border-4 border-white shadow-2xl bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500"
-              style={{ boxShadow: '0 10px 40px rgba(249,115,22,0.5)' }}
-            >
-              <span className="text-[10px] md:text-xs uppercase tracking-wider text-white/80 font-medium">Cada Carro</span>
-              <span className="text-lg md:text-2xl font-black text-white leading-tight">VW Beetle</span>
-              <span className="text-sm md:text-lg font-bold text-white">1,95€</span>
-            </div>
-
-            {/* Dark badge - Regular price */}
-            <div 
-              onClick={() => {
-                trackSubscriptionClick('hero_price_badge_regular');
-                setIsSubscriptionOpen(true);
-              }}
-              className="cursor-pointer transition-all duration-300 hover:scale-105"
-            >
-              <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl px-5 py-3 shadow-2xl border border-gray-700">
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-orange-500 text-2xl md:text-3xl font-bold">
-                    5,95€
-                  </span>
-                  <span className="text-white/80 text-[10px] md:text-xs font-medium tracking-wider uppercase">
-                    Por Carro
-                  </span>
-                </div>
-              </div>
-            </div>
+          <div 
+            onClick={() => {
+              trackSubscriptionClick('hero_price_badge');
+              setIsSubscriptionOpen(true);
+            }}
+            className="fixed top-24 right-4 md:top-28 md:right-8 lg:right-12 w-28 h-28 md:w-36 md:h-36 rounded-full font-bold flex flex-col items-center justify-center text-center z-[100] cursor-pointer transition-all duration-300 hover:scale-110 border-4 border-white shadow-2xl bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500"
+            style={{ boxShadow: '0 10px 40px rgba(249,115,22,0.5)' }}
+          >
+            <span className="text-[10px] md:text-xs uppercase tracking-wider text-white/80 font-medium">Cada Carro</span>
+            <span className="text-lg md:text-2xl font-black text-white leading-tight">VW Beetle</span>
+            <span className="text-sm md:text-lg font-bold text-white">1,95€</span>
           </div>
         )}
       </section>
