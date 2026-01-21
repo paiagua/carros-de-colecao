@@ -165,6 +165,13 @@ const CollectionSection = () => {
                     </div>
                   )}
                   
+                  {/* Available for subscription badge - for cars 2 and 3 */}
+                  {(car.number === 2 || car.number === 3) && (
+                    <div className="absolute top-2 left-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg">
+                      Disponível
+                    </div>
+                  )}
+                  
                   {/* Car image container */}
                   <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center">
                     {/* Radial glow effect */}
