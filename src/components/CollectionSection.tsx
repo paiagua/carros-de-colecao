@@ -236,7 +236,7 @@ const CollectionSection = () => {
               onClick={handleToggleList}
               className="gap-2"
             >
-              <span className="font-medium">Ver Lista Completa</span>
+              <span className="font-medium">Ver Coleção Completa</span>
               {showFullList ? (
                 <ChevronUp className="w-4 h-4" />
               ) : (
