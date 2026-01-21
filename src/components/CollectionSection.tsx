@@ -159,23 +159,6 @@ const CollectionSection = () => {
                     {car.price}
                   </div>
                   
-                  {isFirst && (
-                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 text-white text-xs font-bold px-4 py-2 rounded-full z-20 shadow-xl animate-pulse ring-2 ring-orange-300 ring-offset-1">
-                      🚗 1ª Entrega
-                    </div>
-                  )}
-                  
-                  {/* Delivery number badge - for cars 2 and 3 */}
-                  {car.number === 2 && (
-                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg">
-                      2ª Entrega
-                    </div>
-                  )}
-                  {car.number === 3 && (
-                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg">
-                      3ª Entrega
-                    </div>
-                  )}
                   
                   {/* Car image container */}
                   <div className="relative w-full aspect-[4/3] mb-4 overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center">
