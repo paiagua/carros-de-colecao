@@ -109,9 +109,9 @@ const Hero = () => {
                   <div className="text-xs text-gray-400 uppercase tracking-wide mt-1">Escala</div>
                 </div>
                 <div className="text-center p-4 bg-white/10 rounded-xl border border-white/20">
-                  <div className="text-[10px] text-gray-400 uppercase tracking-wide">Cada carro</div>
+                  <div className="text-3xl md:text-4xl font-bold text-orange-500">5,95€</div>
+                  <div className="text-[10px] text-gray-400 uppercase tracking-wide mt-1">Cada carro</div>
                   <div className="text-[10px] text-gray-400 uppercase tracking-wide">por apenas</div>
-                  <div className="text-3xl md:text-4xl font-bold text-orange-500 mt-1">5,95€</div>
                 </div>
               </div>
 
