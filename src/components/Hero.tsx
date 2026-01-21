@@ -229,6 +229,7 @@ const Hero = () => {
             style={{ boxShadow: '0 10px 40px rgba(249,115,22,0.5)' }}
           >
             <span className="text-lg md:text-2xl font-black text-white leading-tight">VW Beetle</span>
+            <span className="text-[10px] md:text-xs text-white/80 font-medium">só</span>
             <span className="text-sm md:text-lg font-bold text-white">1,95€</span>
           </div>
         )}
