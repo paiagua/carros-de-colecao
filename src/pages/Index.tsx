@@ -35,6 +35,10 @@ const Index = () => {
           <ReplicasSection />
         </section>
         
+        <section id="ofertas" aria-labelledby="ofertas-titulo">
+          <SpecialOffersSection />
+        </section>
+        
         <section id="colecao" aria-labelledby="colecao-titulo">
           <CollectionSection />
         </section>
@@ -45,10 +49,6 @@ const Index = () => {
         
         <section id="fasciculos" aria-labelledby="fasciculos-titulo">
           <FasciculosSection />
-        </section>
-        
-        <section id="ofertas" aria-labelledby="ofertas-titulo">
-          <SpecialOffersSection />
         </section>
         
         <section id="razoes" aria-labelledby="razoes-titulo">
