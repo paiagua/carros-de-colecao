@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Car, ChevronRight } from "lucide-react";
+import { Car, ChevronRight, Search, Camera } from "lucide-react";
 import magazine1 from "@/assets/magazines/magazine-1.png";
 import magazine2 from "@/assets/magazines/magazine-2.png";
 import magazine3 from "@/assets/magazines/magazine-3.png";
@@ -104,7 +104,7 @@ const ReplicasSection = () => {
               
               <div className="group flex items-center gap-5 bg-white rounded-2xl px-6 py-5 shadow-sm border border-gray-100/80 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-300 hover:-translate-y-0.5 cursor-default">
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-orange-200 group-hover:to-orange-100 transition-all duration-300">
-                  <Car className="w-6 h-6 text-orange-500" strokeWidth={1.5} />
+                  <Search className="w-6 h-6 text-orange-500" strokeWidth={1.5} />
                 </div>
                 <span className="text-gray-800 font-medium flex-1 text-[15px]">Miniaturas pormenorizadas com atenção ao detalhe</span>
                 <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all duration-300" strokeWidth={2} />
@@ -112,7 +112,7 @@ const ReplicasSection = () => {
               
               <div className="group flex items-center gap-5 bg-white rounded-2xl px-6 py-5 shadow-sm border border-gray-100/80 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-300 hover:-translate-y-0.5 cursor-default">
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-orange-200 group-hover:to-orange-100 transition-all duration-300">
-                  <Car className="w-6 h-6 text-orange-500" strokeWidth={1.5} />
+                  <Camera className="w-6 h-6 text-orange-500" strokeWidth={1.5} />
                 </div>
                 <span className="text-gray-800 font-medium flex-1 text-[15px]">Fotografias e infografias da história e design</span>
                 <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all duration-300" strokeWidth={2} />
