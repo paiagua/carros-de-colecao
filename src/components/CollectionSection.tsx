@@ -160,8 +160,8 @@ const CollectionSection = () => {
                   </div>
                   
                   {isFirst && (
-                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-20 shadow-lg animate-pulse">
-                      1ª Entrega
+                    <div className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 text-white text-xs font-bold px-4 py-2 rounded-full z-20 shadow-xl animate-pulse ring-2 ring-orange-300 ring-offset-1">
+                      🚗 1ª Entrega
                     </div>
                   )}
                   
