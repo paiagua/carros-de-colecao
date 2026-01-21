@@ -32,40 +32,32 @@ const SubscriptionSticker = () => {
     <div className="fixed bottom-6 right-6 z-50 animate-scale-in">
       {/* Close button */}
       <button
-        onClick={() => setIsDismissed(true)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsDismissed(true);
+        }}
         className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white shadow-lg hover:bg-gray-100 flex items-center justify-center transition-colors z-10 border border-gray-200"
       >
         <X className="w-4 h-4 text-gray-600" />
       </button>
 
-      {/* Circular badge */}
+      {/* Dark badge - "Por apenas" style */}
       <button
         onClick={() => {
           trackSubscriptionClick('floating_sticker');
           setIsSubscriptionOpen(true);
         }}
-        className="group relative w-32 h-32 rounded-full cursor-pointer transition-transform hover:scale-110"
+        className="group relative cursor-pointer transition-transform hover:scale-105"
       >
-        {/* Outer white ring */}
-        <div className="absolute inset-0 rounded-full bg-white shadow-2xl" />
-        
-        {/* Orange inner circle with gradient */}
-        <div className="absolute inset-2 rounded-full bg-gradient-to-br from-accent via-accent to-orange-600 shadow-inner" />
-        
-        {/* Inner white ring */}
-        <div className="absolute inset-4 rounded-full border-2 border-white/40" />
-        
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-          <span className="text-[10px] font-medium tracking-wider uppercase opacity-90">
-            Cada Carro
-          </span>
-          <span className="text-sm font-bold mt-0.5 text-center px-2 leading-tight">
-            {firstCar.title}
-          </span>
-          <span className="text-lg font-bold mt-1">
-            {firstCar.price}
-          </span>
+        <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl px-6 py-4 shadow-2xl border border-gray-700">
+          <div className="flex flex-col items-center text-center">
+            <span className="text-accent text-3xl font-bold">
+              5,95€
+            </span>
+            <span className="text-white/80 text-xs font-medium tracking-wider uppercase mt-1">
+              Por Carro
+            </span>
+          </div>
         </div>
       </button>
     </div>
