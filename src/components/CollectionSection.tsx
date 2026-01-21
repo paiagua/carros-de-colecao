@@ -4,10 +4,23 @@ import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { minerals } from "@/data/minerals";
 import { getCarImage } from "@/data/carImages";
+import { toast } from "@/hooks/use-toast";
 
 const CollectionSection = () => {
   const [showFullList, setShowFullList] = useState(false);
   const { isSubscriptionOpen, setIsSubscriptionOpen } = useSubscription();
+
+  const handleCarClick = (carNumber: number) => {
+    if (carNumber <= 3) {
+      setIsSubscriptionOpen(true);
+    } else {
+      toast({
+        title: "Subscrição não disponível",
+        description: "Só é possível iniciar a coleção a partir dos números 1, 2 ou 3. Escolha uma dessas opções para começar.",
+        variant: "destructive",
+      });
+    }
+  };
   const listRef = useRef<HTMLDivElement>(null);
 
   const handleToggleList = () => {
@@ -114,11 +127,12 @@ const CollectionSection = () => {
               const isFirst = index === 0;
               const carImage = getCarImage(car.number);
               
+              const canSubscribe = car.number <= 3;
+              
               return (
                 <div 
                   key={car.number}
-                  onClick={() => setIsSubscriptionOpen(true)}
-                  className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 cursor-pointer ${
+                  className={`group relative bg-white rounded-2xl p-5 pt-6 text-center transition-all duration-500 hover:-translate-y-3 ${
                     isFirst 
                       ? "shadow-xl shadow-orange-500/25 ring-2 ring-orange-500" 
                       : "shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-300/30"
@@ -174,7 +188,7 @@ const CollectionSection = () => {
                   </div>
                   
                   {/* Car info */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 mb-3">
                     <span className="inline-block text-xs font-bold text-orange-600 bg-gradient-to-r from-orange-50 to-amber-50 px-3 py-1 rounded-full mb-2 border border-orange-100 group-hover:border-orange-300 transition-colors duration-300">
                       Nº {car.number}
                     </span>
@@ -182,6 +196,19 @@ const CollectionSection = () => {
                       {car.title}
                     </h3>
                   </div>
+                  
+                  {/* Subscribe button */}
+                  <Button
+                    size="sm"
+                    onClick={() => handleCarClick(car.number)}
+                    className={`relative z-10 w-full text-xs font-bold py-2 transition-all duration-300 ${
+                      canSubscribe
+                        ? "bg-orange-500 hover:bg-orange-600 text-white"
+                        : "bg-gray-100 hover:bg-gray-200 text-gray-500 border border-gray-200"
+                    }`}
+                  >
+                    Iniciar Coleção
+                  </Button>
                   
                   {/* Bottom accent line */}
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
