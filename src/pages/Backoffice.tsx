@@ -198,12 +198,14 @@ const Backoffice = () => {
       "Morada",
       "Número Porta",
       "Andar",
-      "Código Postal",
+      "Código Postal 1",
+      "Código Postal 2",
       "Cidade",
       "NIB",
       "Nome Titular",
       "Morada Titular",
-      "Código Postal Titular",
+      "Código Postal Titular 1",
+      "Código Postal Titular 2",
       "Cidade Titular",
       "Termos Aceites",
       "Passo Atual",
@@ -212,32 +214,49 @@ const Backoffice = () => {
       "Última Atualização",
     ];
 
+    // Helper to format cell - numbers without quotes, text with quotes
+    const formatCell = (value: string | number | null | undefined, isNumeric: boolean = false): string => {
+      if (value === null || value === undefined || value === "") {
+        return isNumeric ? "" : '""';
+      }
+      if (isNumeric) {
+        // Return number without quotes so Excel recognizes it
+        const numValue = String(value).replace(/\D/g, '');
+        return numValue || "";
+      }
+      // Escape quotes in text and wrap in quotes
+      return `"${String(value).replace(/"/g, '""')}"`;
+    };
+
     const rows = filteredLeads.map((lead) => [
-      lead.full_name || "",
-      lead.email || "",
-      lead.phone || "",
-      lead.marketing_consent ? "Sim" : "Não",
-      lead.first_book || "",
-      lead.address || "",
-      lead.door_number || "",
-      lead.floor || "",
-      `${lead.postal_code_1 || ""}-${lead.postal_code_2 || ""}`,
-      lead.city || "",
-      lead.nib || "",
-      lead.account_holder_name || "",
-      lead.account_holder_address || "",
-      `${lead.account_holder_postal_code_1 || ""}-${lead.account_holder_postal_code_2 || ""}`,
-      lead.account_holder_city || "",
-      lead.terms_accepted ? "Sim" : "Não",
-      lead.current_step.toString(),
-      lead.completed ? "Sim" : "Não",
-      format(new Date(lead.created_at), "dd/MM/yyyy HH:mm", { locale: pt }),
-      format(new Date(lead.updated_at), "dd/MM/yyyy HH:mm", { locale: pt }),
+      formatCell(lead.full_name),
+      formatCell(lead.email),
+      formatCell(lead.phone, true), // numeric
+      formatCell(lead.marketing_consent ? "Sim" : "Não"),
+      formatCell(lead.first_book),
+      formatCell(lead.address),
+      formatCell(lead.door_number),
+      formatCell(lead.floor),
+      formatCell(lead.postal_code_1, true), // numeric
+      formatCell(lead.postal_code_2, true), // numeric
+      formatCell(lead.city),
+      formatCell(lead.nib, true), // numeric
+      formatCell(lead.account_holder_name),
+      formatCell(lead.account_holder_address),
+      formatCell(lead.account_holder_postal_code_1, true), // numeric
+      formatCell(lead.account_holder_postal_code_2, true), // numeric
+      formatCell(lead.account_holder_city),
+      formatCell(lead.terms_accepted ? "Sim" : "Não"),
+      lead.current_step.toString(), // numeric - no quotes
+      formatCell(lead.completed ? "Sim" : "Não"),
+      formatCell(format(new Date(lead.created_at), "dd/MM/yyyy HH:mm", { locale: pt })),
+      formatCell(format(new Date(lead.updated_at), "dd/MM/yyyy HH:mm", { locale: pt })),
     ]);
 
-    const csvContent = [headers, ...rows]
-      .map((row) => row.map((cell) => `"${cell}"`).join(";"))
-      .join("\n");
+    const csvContent = [
+      headers.map(h => `"${h}"`).join(";"),
+      ...rows.map((row) => row.join(";"))
+    ].join("\n");
 
     // Add BOM for Excel UTF-8 compatibility
     const bom = "\uFEFF";
