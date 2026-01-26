@@ -80,6 +80,22 @@ export const trackSubscriptionStep = (step: number, stepName: string) => {
   });
 };
 
+export const trackSubscriptionFirstStep = () => {
+  trackEvent('subscription_first_step', {
+    event_category: 'funnel',
+    event_label: 'first_step_started',
+    step_number: 1,
+  });
+};
+
+export const trackSubscriptionLastStep = () => {
+  trackEvent('subscription_last_step', {
+    event_category: 'funnel',
+    event_label: 'last_step_completed',
+    step_number: 4,
+  });
+};
+
 // ============================================
 // EVENTOS DE NAVEGAÇÃO
 // ============================================
