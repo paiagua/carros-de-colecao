@@ -316,10 +316,6 @@ const Backoffice = () => {
               <RefreshCcw className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`} />
               Atualizar
             </Button>
-            <Button onClick={exportToExcel} disabled={filteredLeads.length === 0}>
-              <Download className="h-4 w-4 mr-2" />
-              Exportar
-            </Button>
             <Button variant="outline" onClick={signOut}>
               <LogOut className="h-4 w-4 mr-2" />
               Sair
@@ -413,7 +409,7 @@ const Backoffice = () => {
                   className="pl-10"
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-4 flex-wrap">
                 <Select value={stepFilter} onValueChange={setStepFilter}>
                   <SelectTrigger className="w-[150px]">
                     <Filter className="h-4 w-4 mr-2" />
@@ -448,6 +444,10 @@ const Backoffice = () => {
                     <SelectItem value="rejected">Recusaram</SelectItem>
                   </SelectContent>
                 </Select>
+                <Button onClick={exportToExcel} disabled={filteredLeads.length === 0}>
+                  <Download className="h-4 w-4 mr-2" />
+                  Exportar
+                </Button>
               </div>
             </div>
           </CardContent>
