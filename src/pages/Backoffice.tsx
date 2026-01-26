@@ -6,11 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Download, RefreshCcw, Search, Filter, ArrowLeft, Users, CheckCircle, Clock, AlertCircle, LogOut, BarChart3, Mail } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { Download, RefreshCcw, Search, Filter, ArrowLeft, Users, CheckCircle, Clock, AlertCircle, LogOut, BarChart3, Mail, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "@/hooks/use-toast";
 import FunnelChart from "@/components/backoffice/FunnelChart";
 import MarketingChart from "@/components/backoffice/MarketingChart";
 import DailyChart from "@/components/backoffice/DailyChart";
@@ -50,8 +53,60 @@ const Backoffice = () => {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [marketingFilter, setMarketingFilter] = useState<string>("all");
   const [showCharts, setShowCharts] = useState(true);
+  const [selectedLeads, setSelectedLeads] = useState<Set<string>>(new Set());
+  const [isDeleting, setIsDeleting] = useState(false);
   const navigate = useNavigate();
   const { user, loading: authLoading, signOut } = useAuth();
+
+  // Toggle single lead selection
+  const toggleLeadSelection = (leadId: string) => {
+    setSelectedLeads(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(leadId)) {
+        newSet.delete(leadId);
+      } else {
+        newSet.add(leadId);
+      }
+      return newSet;
+    });
+  };
+
+  // Toggle all visible leads selection
+  const toggleAllLeads = () => {
+    if (selectedLeads.size === filteredLeads.length) {
+      setSelectedLeads(new Set());
+    } else {
+      setSelectedLeads(new Set(filteredLeads.map(l => l.id)));
+    }
+  };
+
+  // Delete selected leads
+  const deleteSelectedLeads = async () => {
+    if (selectedLeads.size === 0) return;
+    
+    setIsDeleting(true);
+    const { error } = await supabase
+      .from("leads")
+      .delete()
+      .in("id", Array.from(selectedLeads));
+
+    if (error) {
+      console.error("Error deleting leads:", error);
+      toast({
+        title: "Erro ao eliminar",
+        description: "Não foi possível eliminar as leads selecionadas.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Leads eliminadas",
+        description: `${selectedLeads.size} lead(s) eliminada(s) com sucesso.`,
+      });
+      setSelectedLeads(new Set());
+      fetchLeads();
+    }
+    setIsDeleting(false);
+  };
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -379,6 +434,44 @@ const Backoffice = () => {
           </CardContent>
         </Card>
 
+        {/* Selection Actions */}
+        {selectedLeads.size > 0 && (
+          <Card className="mb-4 border-red-200 bg-red-50">
+            <CardContent className="py-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-red-700">
+                {selectedLeads.size} lead(s) selecionada(s)
+              </span>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm" onClick={() => setSelectedLeads(new Set())}>
+                  Limpar seleção
+                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="destructive" size="sm" disabled={isDeleting}>
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      Eliminar selecionadas
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Tem a certeza?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Esta ação não pode ser revertida. Vai eliminar permanentemente {selectedLeads.size} lead(s) da base de dados.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                      <AlertDialogAction onClick={deleteSelectedLeads} className="bg-red-600 hover:bg-red-700">
+                        Eliminar
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Table */}
         <Card>
           <CardContent className="p-0">
@@ -386,6 +479,12 @@ const Backoffice = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
+                    <TableHead className="w-12">
+                      <Checkbox 
+                        checked={filteredLeads.length > 0 && selectedLeads.size === filteredLeads.length}
+                        onCheckedChange={toggleAllLeads}
+                      />
+                    </TableHead>
                     <TableHead>Estado</TableHead>
                     <TableHead>Nome</TableHead>
                     <TableHead>Email</TableHead>
@@ -397,19 +496,25 @@ const Backoffice = () => {
                 <TableBody>
                   {loading ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8">
+                      <TableCell colSpan={7} className="text-center py-8">
                         A carregar...
                       </TableCell>
                     </TableRow>
                   ) : filteredLeads.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
                         Nenhuma lead encontrada
                       </TableCell>
                     </TableRow>
                   ) : (
                     filteredLeads.map((lead) => (
-                      <TableRow key={lead.id}>
+                      <TableRow key={lead.id} className={selectedLeads.has(lead.id) ? "bg-red-50" : ""}>
+                        <TableCell>
+                          <Checkbox 
+                            checked={selectedLeads.has(lead.id)}
+                            onCheckedChange={() => toggleLeadSelection(lead.id)}
+                          />
+                        </TableCell>
                         <TableCell>{getStepBadge(lead.current_step, lead.completed)}</TableCell>
                         <TableCell className="font-medium">{lead.full_name || "-"}</TableCell>
                         <TableCell>{lead.email || "-"}</TableCell>
