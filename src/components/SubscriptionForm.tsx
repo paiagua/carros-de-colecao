@@ -14,7 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import car1 from "@/assets/cars/car-1.png";
 import car2 from "@/assets/cars/car-2.png";
 import car3 from "@/assets/cars/car-3.png";
-import { trackSubscriptionFormSubmit, trackEvent } from "@/lib/analytics";
+import { trackSubscriptionFormSubmit, trackSubscriptionFirstStep, trackSubscriptionLastStep, trackEvent } from "@/lib/analytics";
 
 const step1Schema = z.object({
   fullName: z.string().trim().min(3, "Nome completo é obrigatório").max(100),
@@ -102,6 +102,11 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       termsAccepted: false
     }
   });
+
+  // Track first step when form opens
+  useEffect(() => {
+    trackSubscriptionFirstStep();
+  }, []);
 
   // Load saved data from localStorage on mount
   useEffect(() => {
@@ -406,6 +411,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
       // Clear saved data on successful submission
       clearStorage();
       
+      // Track last step completion and form submission
+      trackSubscriptionLastStep();
       trackSubscriptionFormSubmit(true);
       toast({
         title: "Subscrição guardada com sucesso!",
