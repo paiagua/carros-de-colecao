@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -1077,7 +1077,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                 </Card>
 
                 <div className="space-y-4">
-                  <div>
+                  <div id="accountHolderNameSection">
                     <Label htmlFor="accountHolderName">Nome do titular da Conta*</Label>
                     <Input
                       id="accountHolderName"
@@ -1228,6 +1228,13 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       const newFormData = { ...formData, nib: nibValue };
                       setFormData(newFormData);
                       saveToStorage(newFormData, 4, true);
+                      // Scroll to account holder name section after a brief delay
+                      setTimeout(() => {
+                        const section = document.getElementById('accountHolderNameSection');
+                        if (section) {
+                          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }, 100);
                     } else {
                       toast({
                         title: "NIB inválido",
