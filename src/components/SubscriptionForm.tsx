@@ -827,13 +827,14 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       const postalCode1 = step3Form.getValues('postalCode1');
                       if (value.length === 3 && postalCode1?.length === 4) {
                         fetchAddressByPostalCode(`${postalCode1}-${value}`, 'delivery');
-                        // Scroll to address fields after a brief delay
+                        // Scroll to door number field after address is fetched
                         setTimeout(() => {
-                          const addressSection = document.getElementById('addressFieldsSection');
-                          if (addressSection) {
-                            addressSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          const doorNumberField = document.getElementById('doorNumber');
+                          if (doorNumberField) {
+                            doorNumberField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            doorNumberField.focus();
                           }
-                        }, 150);
+                        }, 500);
                       }
                     }}
                     placeholder="000"
