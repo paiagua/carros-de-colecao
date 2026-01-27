@@ -827,6 +827,13 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       const postalCode1 = step3Form.getValues('postalCode1');
                       if (value.length === 3 && postalCode1?.length === 4) {
                         fetchAddressByPostalCode(`${postalCode1}-${value}`, 'delivery');
+                        // Scroll to address fields after a brief delay
+                        setTimeout(() => {
+                          const addressSection = document.getElementById('addressFieldsSection');
+                          if (addressSection) {
+                            addressSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }
+                        }, 150);
                       }
                     }}
                     placeholder="000"
@@ -843,7 +850,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
 
               {/* Morada - só aparece quando código postal está completo */}
               {step3Form.watch("postalCode1")?.length === 4 && step3Form.watch("postalCode2")?.length === 3 && (
-                <>
+                <div id="addressFieldsSection">
                   <div>
                     <Label htmlFor="address">{formData.fullName?.split(' ')[0]}, qual a Morada completa para a Entrega?*</Label>
                     <Input
@@ -901,7 +908,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       </p>
                     )}
                   </div>
-                </>
+                </div>
               )}
             </div>
           </div>
