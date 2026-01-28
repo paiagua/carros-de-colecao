@@ -943,8 +943,6 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
           <div className="flex-1 overflow-y-auto space-y-6 pb-4 min-h-0 px-4 md:px-6 pt-4 md:pt-6">
             {/* Header with title */}
             <div className="text-center mb-6">
-              <p className="text-sm text-muted-foreground mb-2">O próximo passo já é o último.</p>
-              <div className="h-1 w-full bg-accent rounded-full mb-6"></div>
               <h2 className="text-2xl font-bold mb-4">Finalizar adesão</h2>
             </div>
 
