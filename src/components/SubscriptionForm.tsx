@@ -952,18 +952,6 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
               <p className="text-sm text-muted-foreground mb-2">O próximo passo já é o último.</p>
               <div className="h-1 w-full bg-accent rounded-full mb-6"></div>
               <h2 className="text-2xl font-bold mb-4">Finalizar adesão</h2>
-              
-              {/* Trust badges - Real company info */}
-              <div className="flex flex-wrap justify-center gap-3 text-xs">
-                <div className="flex items-center gap-1.5 text-muted-foreground">
-                  <Building className="w-3.5 h-3.5" />
-                  <span>Medialivre, S.A. • NIF 502801034</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-muted-foreground">
-                  <Phone className="w-3.5 h-3.5" />
-                  <span>21 869 88 68</span>
-                </div>
-              </div>
             </div>
 
             {/* Delivery info based on selected first book */}
