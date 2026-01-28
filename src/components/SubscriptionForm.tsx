@@ -44,7 +44,13 @@ const step3Schema = z.object({
 const step4Schema = z.object({
   nib: z.string()
     .trim()
-    .regex(/^\d{21}$/, "NIB deve ter 21 dígitos"),
+    .refine((val) => {
+      // Accept either plain 21 digits or IBAN format (IBAN:21digits)
+      if (val.startsWith('IBAN:')) {
+        return /^\d{21}$/.test(val.slice(5));
+      }
+      return /^\d{21}$/.test(val);
+    }, "IBAN/NIB deve ter 21 dígitos"),
   accountHolderName: z.string().trim().min(3, "Nome do titular é obrigatório").max(100),
   accountHolderAddress: z.string().trim().min(5, "Morada do titular é obrigatória").max(200),
   accountHolderPostalCode1: z.string().trim().regex(/^\d{4}$/, "Código postal deve ter 4 dígitos").length(4, "Código postal inválido"),
@@ -986,14 +992,13 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
               </p>
             </Card>
 
-            {/* NIB Section */}
             <Card className="p-5 bg-background border-2 border-border">
               <div className="mb-4">
                 <p className="text-sm font-medium mb-2">
                   Autorização de Débito Direto SEPA
                 </p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  O NIB é usado apenas para criar a autorização de Débito Direto SEPA. 
+                  O IBAN/NIB é usado apenas para criar a autorização de Débito Direto SEPA. 
                   <strong className="text-foreground"> Não dá acesso à sua conta</strong> nem permite transferências — serve apenas para cobranças autorizadas por si.
                 </p>
               </div>
@@ -1001,13 +1006,20 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
               <div className="space-y-2">
                 <Label htmlFor="nib" className="flex items-center gap-2 text-base font-bold">
                   <Shield className="w-4 h-4 text-accent" />
-                  NIB (21 dígitos)*
+                  IBAN ou NIB*
                 </Label>
                 <div className="relative">
                   <Input
                     id="nib"
                     value={(() => {
-                      const digits = step4Form.watch('nib') || '';
+                      const rawValue = step4Form.watch('nib') || '';
+                      // Check if it looks like IBAN format (starts with stored indicator or has PT50)
+                      if (rawValue.startsWith('IBAN:')) {
+                        const digits = rawValue.slice(5);
+                        return `PT50 ${digits.slice(0, 4)} ${digits.slice(4, 8)} ${digits.slice(8, 19)} ${digits.slice(19, 21)}`.trim();
+                      }
+                      // NIB format
+                      const digits = rawValue;
                       let formatted = '';
                       if (digits.length > 0) formatted += digits.slice(0, 4);
                       if (digits.length > 4) formatted += '-' + digits.slice(4, 8);
@@ -1016,30 +1028,50 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       return formatted;
                     })()}
                     onChange={(e) => {
-                      // Accept IBAN format (PT50...), spaces, hyphens and extract only digits
                       let input = e.target.value.toUpperCase();
-                      // Remove PT50 prefix if pasted with IBAN
-                      if (input.startsWith('PT50')) {
-                        input = input.slice(4);
-                      }
-                      // Extract only digits
-                      let digits = input.replace(/\D/g, '');
-                      digits = digits.slice(0, 21);
-                      step4Form.setValue('nib', digits);
-                      // Update validation state
-                      if (digits.length === 21) {
-                        setNibValid(true);
-                      } else if (digits.length > 0) {
-                        setNibValid(false);
+                      
+                      // Check if user is typing IBAN format (starts with PT)
+                      if (input.startsWith('PT')) {
+                        // Remove "PT" and any "50" that follows
+                        let cleanInput = input;
+                        if (input.startsWith('PT50')) {
+                          cleanInput = input.slice(4);
+                        } else if (input.startsWith('PT')) {
+                          cleanInput = input.slice(2);
+                        }
+                        // Extract only digits
+                        let digits = cleanInput.replace(/\D/g, '');
+                        digits = digits.slice(0, 21);
+                        // Store with IBAN indicator
+                        step4Form.setValue('nib', digits.length > 0 ? `IBAN:${digits}` : '');
+                        // Update validation state
+                        if (digits.length === 21) {
+                          setNibValid(true);
+                        } else if (digits.length > 0) {
+                          setNibValid(false);
+                        } else {
+                          setNibValid(null);
+                        }
                       } else {
-                        setNibValid(null);
+                        // NIB format - extract only digits
+                        let digits = input.replace(/\D/g, '');
+                        digits = digits.slice(0, 21);
+                        step4Form.setValue('nib', digits);
+                        // Update validation state
+                        if (digits.length === 21) {
+                          setNibValid(true);
+                        } else if (digits.length > 0) {
+                          setNibValid(false);
+                        } else {
+                          setNibValid(null);
+                        }
                       }
-                      // Reset confirmation when NIB changes
+                      // Reset confirmation when value changes
                       if (nibConfirmed) setNibConfirmed(false);
                     }}
-                    maxLength={30}
+                    maxLength={35}
                     className={`font-mono text-lg bg-muted/50 pr-10 ${nibValid === true ? 'border-green-500 focus-visible:border-green-500' : nibValid === false ? 'border-orange-400' : ''}`}
-                    placeholder="0000-0000-00000000000-00"
+                    placeholder="PT50 0000 0000 ... ou 0000-0000-..."
                     disabled={nibConfirmed}
                   />
                   {nibValid === true && (
@@ -1274,7 +1306,13 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   size="lg"
                   onClick={() => {
                     const nibValue = step4Form.getValues("nib");
-                    if (nibValue && nibValue.length === 21) {
+                    // Check if valid - either 21 digits or IBAN:21digits
+                    const isValid = nibValue && (
+                      (nibValue.startsWith('IBAN:') && nibValue.slice(5).length === 21) ||
+                      (!nibValue.startsWith('IBAN:') && nibValue.length === 21)
+                    );
+                    
+                    if (isValid) {
                       setNibConfirmed(true);
                       setNibValid(true);
                       const newFormData = { ...formData, nib: nibValue };
@@ -1289,8 +1327,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                       }, 100);
                     } else {
                       toast({
-                        title: "NIB inválido",
-                        description: "O NIB deve ter 21 dígitos.",
+                        title: "IBAN/NIB inválido",
+                        description: "Introduza 21 dígitos (ou IBAN completo começando por PT50).",
                         variant: "destructive"
                       });
                     }
