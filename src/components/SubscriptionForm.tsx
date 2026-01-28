@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ChevronLeft, ArrowRight, Check, Sparkles, Gift, Package, Car, Shield, X, RefreshCcw } from "lucide-react";
+import { ChevronLeft, ArrowRight, Check, Sparkles, Gift, Package, Car, Shield, X, RefreshCcw, HelpCircle, Phone, Mail, Building } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import car1 from "@/assets/cars/car-1.png";
@@ -73,8 +73,10 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   const [showDebitDetails, setShowDebitDetails] = useState(false);
   const [showOffersDetails, setShowOffersDetails] = useState(false);
   const [showTermsDetails, setShowTermsDetails] = useState(false);
+  const [showNibHelp, setShowNibHelp] = useState(false);
   const [useDeliveryAddress, setUseDeliveryAddress] = useState(true);
   const [nibConfirmed, setNibConfirmed] = useState(false);
+  const [nibValid, setNibValid] = useState<boolean | null>(null);
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
   const [isLoadingAccountAddress, setIsLoadingAccountAddress] = useState(false);
   const [dataRecovered, setDataRecovered] = useState(false);
@@ -945,19 +947,15 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
               <div className="h-1 w-full bg-accent rounded-full mb-6"></div>
               <h2 className="text-2xl font-bold mb-4">Finalizar adesão</h2>
               
-              {/* Trust badges */}
-              <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <div className="flex items-center gap-2 text-accent">
-                  <Shield className="w-4 h-4" />
-                  <span>Encriptação SSL</span>
+              {/* Trust badges - Real company info */}
+              <div className="flex flex-wrap justify-center gap-3 text-xs">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <Building className="w-3.5 h-3.5" />
+                  <span>Medialivre, S.A. • NIF 502801034</span>
                 </div>
-                <div className="flex items-center gap-2 text-accent">
-                  <Check className="w-4 h-4" />
-                  <span>Dados Protegidos</span>
-                </div>
-                <div className="flex items-center gap-2 text-accent">
-                  <Check className="w-4 h-4" />
-                  <span>Medialivre, S.A.</span>
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>21 869 88 68</span>
                 </div>
               </div>
             </div>
@@ -983,46 +981,85 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                   Envio dos números 3, 4 e 5 – <span className="text-accent">17,85€</span>
                 </p>
               )}
+              <p className="text-xs text-muted-foreground mt-2">
+                Entregas seguintes: 5,95€/edição • Pode cancelar a qualquer momento
+              </p>
             </Card>
 
             {/* NIB Section */}
             <Card className="p-5 bg-background border-2 border-border">
-              <p className="text-sm mb-4">
-                Aceitamos pagamento por débito direto (SEPA). Por favor, indique o seu NIB (21 dígitos).
-              </p>
+              <div className="mb-4">
+                <p className="text-sm font-medium mb-2">
+                  Autorização de Débito Direto SEPA
+                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  O NIB é usado apenas para criar a autorização de Débito Direto SEPA. 
+                  <strong className="text-foreground"> Não dá acesso à sua conta</strong> nem permite transferências — serve apenas para cobranças autorizadas por si.
+                </p>
+              </div>
               
               <div className="space-y-2">
-                <Label htmlFor="nib" className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-muted-foreground" />
+                <Label htmlFor="nib" className="flex items-center gap-2 text-base font-bold">
+                  <Shield className="w-4 h-4 text-accent" />
                   NIB (21 dígitos)*
                 </Label>
-                <Input
-                  id="nib"
-                  value={(() => {
-                    const digits = step4Form.watch('nib') || '';
-                    let formatted = '';
-                    if (digits.length > 0) formatted += digits.slice(0, 4);
-                    if (digits.length > 4) formatted += '-' + digits.slice(4, 8);
-                    if (digits.length > 8) formatted += '-' + digits.slice(8, 19);
-                    if (digits.length > 19) formatted += '-' + digits.slice(19, 21);
-                    return formatted;
-                  })()}
-                  onChange={(e) => {
-                    let digits = e.target.value.replace(/\D/g, '');
-                    digits = digits.slice(0, 21);
-                    step4Form.setValue('nib', digits);
-                    // Reset confirmation when NIB changes
-                    if (nibConfirmed) setNibConfirmed(false);
-                  }}
-                  maxLength={24}
-                  className="font-mono text-lg bg-muted/50"
-                  placeholder="0000-0000-00000000000-00"
-                  disabled={nibConfirmed}
-                />
-                <p className="text-xs text-muted-foreground flex items-center gap-1">
-                  <span className="inline-block w-4 h-4 rounded-full border border-muted-foreground text-center text-xs leading-4">i</span>
-                  Encontra o NIB no seu cartão ou extrato bancário
-                </p>
+                <div className="relative">
+                  <Input
+                    id="nib"
+                    value={(() => {
+                      const digits = step4Form.watch('nib') || '';
+                      let formatted = '';
+                      if (digits.length > 0) formatted += digits.slice(0, 4);
+                      if (digits.length > 4) formatted += '-' + digits.slice(4, 8);
+                      if (digits.length > 8) formatted += '-' + digits.slice(8, 19);
+                      if (digits.length > 19) formatted += '-' + digits.slice(19, 21);
+                      return formatted;
+                    })()}
+                    onChange={(e) => {
+                      // Accept IBAN format (PT50...), spaces, hyphens and extract only digits
+                      let input = e.target.value.toUpperCase();
+                      // Remove PT50 prefix if pasted with IBAN
+                      if (input.startsWith('PT50')) {
+                        input = input.slice(4);
+                      }
+                      // Extract only digits
+                      let digits = input.replace(/\D/g, '');
+                      digits = digits.slice(0, 21);
+                      step4Form.setValue('nib', digits);
+                      // Update validation state
+                      if (digits.length === 21) {
+                        setNibValid(true);
+                      } else if (digits.length > 0) {
+                        setNibValid(false);
+                      } else {
+                        setNibValid(null);
+                      }
+                      // Reset confirmation when NIB changes
+                      if (nibConfirmed) setNibConfirmed(false);
+                    }}
+                    maxLength={30}
+                    className={`font-mono text-lg bg-muted/50 pr-10 ${nibValid === true ? 'border-green-500 focus-visible:border-green-500' : nibValid === false ? 'border-orange-400' : ''}`}
+                    placeholder="0000-0000-00000000000-00"
+                    disabled={nibConfirmed}
+                  />
+                  {nibValid === true && (
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-green-600">
+                      <Check className="w-4 h-4" />
+                      <span className="text-xs font-medium">Válido</span>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Help link */}
+                <button
+                  type="button"
+                  onClick={() => setShowNibHelp(true)}
+                  className="text-xs text-primary hover:underline flex items-center gap-1.5 mt-1"
+                >
+                  <HelpCircle className="w-3.5 h-3.5" />
+                  Onde encontro o NIB?
+                </button>
+                
                 {step4Form.formState.errors.nib && (
                   <p className="text-sm text-destructive mt-1">
                     {step4Form.formState.errors.nib.message}
@@ -1030,20 +1067,26 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                 )}
               </div>
               
-              {/* Debit Account Details */}
+              {/* What happens next - before confirm button */}
               <div className="mt-4 pt-4 border-t border-border">
-                <button
-                  type="button"
-                  onClick={() => setShowDebitDetails(!showDebitDetails)}
-                  className="text-sm text-primary hover:underline font-semibold"
-                >
-                  Detalhes de Débito de Conta
-                </button>
-                {showDebitDetails && (
-                  <div className="mt-3 p-3 bg-muted/30 rounded-lg text-sm text-muted-foreground leading-relaxed">
-                    Por débito na minha conta mencionada, queiram proceder ao pagamento das importâncias referentes à obra "Carros de Coleção" que lhes serão apresentadas pela VASP PREMIUM. A insuficiência do saldo não responsabiliza o banco pela execução dos pagamentos.
+                <div className="bg-muted/30 rounded-lg p-3 text-xs space-y-1.5">
+                  <div className="flex items-center gap-2 font-medium text-foreground">
+                    <Check className="w-3.5 h-3.5 text-accent" />
+                    <span>Hoje: {formData.firstBook === "1" ? "13,85€" : "17,85€"} (primeira entrega)</span>
                   </div>
-                )}
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Cobrança identificada como: VASP PREMIUM</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Pode cancelar no homebanking a qualquer momento</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Vai receber email de confirmação e recibo</span>
+                  </div>
+                </div>
               </div>
             </Card>
 
@@ -1233,6 +1276,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                     const nibValue = step4Form.getValues("nib");
                     if (nibValue && nibValue.length === 21) {
                       setNibConfirmed(true);
+                      setNibValid(true);
                       const newFormData = { ...formData, nib: nibValue };
                       setFormData(newFormData);
                       saveToStorage(newFormData, 4, true);
@@ -1252,18 +1296,30 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                     }
                   }}
                 >
-                  <Check className="w-5 h-5" />
-                  <span>Confirmar NIB</span>
+                  <Shield className="w-5 h-5" />
+                  <span>Autorizar Débito Direto SEPA</span>
                 </Button>
               ) : (
                 <Button type="submit" variant="cta" className="w-full h-14 text-lg font-bold group" size="lg">
                   <Check className="w-5 h-5" />
-                  <span>Confirmar e Subscrever a Coleção</span>
+                  <span>Confirmar e Finalizar Pagamento</span>
                 </Button>
               )}
               <p className="text-xs text-center text-muted-foreground">
-                🔒 Os seus dados estão protegidos e seguros
+                🔒 Os seus dados estão protegidos • Ao continuar, autoriza o débito direto SEPA
               </p>
+              
+              {/* Support contact */}
+              <div className="flex justify-center gap-4 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <Phone className="w-3 h-3" />
+                  21 869 88 68
+                </span>
+                <span className="flex items-center gap-1">
+                  <Mail className="w-3 h-3" />
+                  info@vasp.pt
+                </span>
+              </div>
               <Button
                 type="button"
                 variant="ghost"
@@ -1288,6 +1344,67 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
             <p className="leading-relaxed">
               Por débito na minha conta mencionada, queiram proceder ao pagamento das importâncias referentes à obra "Carros de Coleção" que lhes serão apresentadas pela VASP PREMIUM. A insuficiência do saldo não responsabiliza o banco pela execução dos pagamentos.
             </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog for NIB Help */}
+      <Dialog open={showNibHelp} onOpenChange={setShowNibHelp}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold flex items-center gap-2">
+              <HelpCircle className="w-5 h-5 text-accent" />
+              Onde encontro o NIB?
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 text-sm">
+            <div className="p-3 bg-accent/10 rounded-lg border border-accent/30">
+              <p className="font-semibold text-accent mb-1">Se tiver IBAN (PT50…)</p>
+              <p className="text-muted-foreground">
+                Introduza os <strong className="text-foreground">21 dígitos a seguir a PT50</strong>.
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Exemplo: PT50 <span className="font-mono bg-muted px-1 rounded">0000 0000 00000000000 00</span>
+              </p>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex gap-3">
+                <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-xs font-bold text-accent">1</span>
+                </div>
+                <div>
+                  <p className="font-medium">App/Homebanking</p>
+                  <p className="text-muted-foreground text-xs">Contas → IBAN/NIB</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-3">
+                <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-xs font-bold text-accent">2</span>
+                </div>
+                <div>
+                  <p className="font-medium">Extrato bancário</p>
+                  <p className="text-muted-foreground text-xs">Aparece como NIB/IBAN no cabeçalho</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-3">
+                <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-xs font-bold text-accent">3</span>
+                </div>
+                <div>
+                  <p className="font-medium">Cartão bancário</p>
+                  <p className="text-muted-foreground text-xs">Em alguns cartões aparece no verso</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="pt-3 border-t">
+              <p className="text-xs text-muted-foreground">
+                💡 <strong>Dica:</strong> Pode colar o IBAN completo (PT50...) — extraímos automaticamente os 21 dígitos do NIB.
+              </p>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
