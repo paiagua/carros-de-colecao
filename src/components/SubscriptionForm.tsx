@@ -440,7 +440,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
   ];
 
   return (
-    <div className="w-full max-w-full overflow-x-hidden h-full flex flex-col min-h-0">
+    <div className="w-full max-w-full overflow-x-hidden h-full flex flex-col min-h-0 p-4 md:p-6">
       {/* Welcome back message */}
       {dataRecovered && (
         <div className="mb-4 p-3 bg-gradient-to-r from-accent/20 to-amber-500/20 rounded-lg border border-accent/30 animate-fade-in">
@@ -938,9 +938,9 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
 
       {/* Step 4: Payment Details */}
       {currentStep === 4 && (
-        <form onSubmit={step4Form.handleSubmit(handleStep4)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+        <form onSubmit={step4Form.handleSubmit(handleStep4)} className="flex flex-col flex-1 min-h-0 overflow-hidden -m-4 md:-m-6">
           {/* Scrollable content */}
-          <div className="flex-1 overflow-y-auto space-y-6 pb-4 min-h-0">
+          <div className="flex-1 overflow-y-auto space-y-6 pb-4 min-h-0 px-4 md:px-6 pt-4 md:pt-6">
             {/* Header with title */}
             <div className="text-center mb-6">
               <p className="text-sm text-muted-foreground mb-2">O próximo passo já é o último.</p>
@@ -1265,8 +1265,8 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
             )}
           </div>
 
-          {/* Fixed button at bottom */}
-          <div className="flex-shrink-0 pt-4 border-t border-border bg-background">
+          {/* Fixed footer at bottom of modal */}
+          <div className="flex-shrink-0 px-4 md:px-6 py-4 border-t border-border bg-background">
             <div className="flex flex-col gap-2">
               {!nibConfirmed ? (
                 <Button 
