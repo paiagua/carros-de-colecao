@@ -994,7 +994,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
               <div className="space-y-2">
                 <Label htmlFor="nib" className="flex items-center gap-2 text-base font-bold">
                   <Shield className="w-4 h-4 text-accent" />
-                  IBAN ou NIB*
+                  IBAN*
                 </Label>
                 <div className="relative">
                   <Input
@@ -1059,7 +1059,7 @@ const SubscriptionForm = ({ onClose }: SubscriptionFormProps) => {
                     }}
                     maxLength={35}
                     className={`font-mono text-lg bg-muted/50 pr-10 ${nibValid === true ? 'border-green-500 focus-visible:border-green-500' : nibValid === false ? 'border-orange-400' : ''}`}
-                    placeholder="PT50 0000 0000 ... ou 0000-0000-..."
+                    placeholder="PT50 0000 0000 00000000000 00"
                     disabled={nibConfirmed}
                   />
                   {nibValid === true && (
