@@ -50,8 +50,17 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Top accent bar */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-orange-500 z-10" />
+        {/* Top accent bar with tagline */}
+        <div className="absolute top-0 left-0 right-0 z-10">
+          <div className="h-1 bg-orange-500" />
+          <div className="bg-gray-900 border-b border-white/10">
+            <div className="container mx-auto px-4 py-2 flex items-center justify-center gap-2 md:gap-4">
+              <span className="text-xs md:text-sm font-bold text-white uppercase tracking-wider">Coleções de Carros Exclusivas</span>
+              <span className="text-orange-500">•</span>
+              <span className="text-xs md:text-sm font-bold text-orange-400 uppercase tracking-wider">Réplicas Oficiais</span>
+            </div>
+          </div>
+        </div>
 
         {/* Main Content */}
         <div className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-[2] flex items-center">
