@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ReasonsSection from "@/components/ReasonsSection";
@@ -11,9 +11,12 @@ import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import SubscriptionSticker from "@/components/SubscriptionSticker";
+import SplashScreen from "@/components/SplashScreen";
 import { initScrollTracking, trackPageView } from "@/lib/analytics";
 
 const Index = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
   useEffect(() => {
     // Track page view
     trackPageView('home');
@@ -22,6 +25,11 @@ const Index = () => {
     const cleanup = initScrollTracking();
     return cleanup;
   }, []);
+
+  if (showSplash) {
+    return <SplashScreen onComplete={() => setShowSplash(false)} />;
+  }
+
   return (
     <main className="min-h-screen" role="main">
       <header>
