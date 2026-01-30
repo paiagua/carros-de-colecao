@@ -215,7 +215,7 @@ const Backoffice = () => {
     ];
 
     // Helper to format cell - numbers without quotes, text with quotes
-    const formatCell = (value: string | number | null | undefined, isNumeric: boolean = false): string => {
+    const formatCell = (value: string | number | null | undefined, isNumeric: boolean = false, forceText: boolean = false): string => {
       if (value === null || value === undefined || value === "") {
         return isNumeric ? "" : '""';
       }
@@ -223,6 +223,10 @@ const Backoffice = () => {
         // Return number without quotes so Excel recognizes it
         const numValue = String(value).replace(/\D/g, '');
         return numValue || "";
+      }
+      // For long numbers like IBAN, prefix with = to force Excel to treat as text formula
+      if (forceText) {
+        return `="${String(value).replace(/"/g, '""')}"`;
       }
       // Escape quotes in text and wrap in quotes
       return `"${String(value).replace(/"/g, '""')}"`;
@@ -240,7 +244,7 @@ const Backoffice = () => {
       formatCell(lead.postal_code_1, true), // numeric
       formatCell(lead.postal_code_2, true), // numeric
       formatCell(lead.city),
-      formatCell(lead.nib), // text - IBANs must be text to preserve format and prevent Excel truncation
+      formatCell(lead.nib, false, true), // force text - IBANs must be text to preserve all 21 digits
       formatCell(lead.account_holder_name),
       formatCell(lead.account_holder_address),
       formatCell(lead.account_holder_postal_code_1, true), // numeric
