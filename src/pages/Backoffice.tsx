@@ -240,7 +240,7 @@ const Backoffice = () => {
       formatCell(lead.postal_code_1, true), // numeric
       formatCell(lead.postal_code_2, true), // numeric
       formatCell(lead.city),
-      formatCell(lead.nib, true), // numeric
+      formatCell(lead.nib), // text - IBANs must be text to preserve format and prevent Excel truncation
       formatCell(lead.account_holder_name),
       formatCell(lead.account_holder_address),
       formatCell(lead.account_holder_postal_code_1, true), // numeric
