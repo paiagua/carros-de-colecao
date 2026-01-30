@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SubscriptionProvider } from "@/contexts/SubscriptionContext";
 import Index from "./pages/Index";
+import Assinar from "./pages/Assinar";
 import NotFound from "./pages/NotFound";
 import Backoffice from "./pages/Backoffice";
 import BackofficeLogin from "./pages/BackofficeLogin";
@@ -20,6 +21,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/assinar" element={<Assinar />} />
             <Route path="/admin" element={<Backoffice />} />
             <Route path="/admin/login" element={<BackofficeLogin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
