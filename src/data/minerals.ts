@@ -56,17 +56,28 @@ export const cars: Car[] = [
   { number: 23, title: "SUZUKI Jimny", date: deliveryDates[22], price: "5,95€" },
   { number: 24, title: "Citroën Dyane 6 Nazare", date: deliveryDates[23], price: "5,95€" },
   { number: 25, title: "Mini Cooper New", date: deliveryDates[24], price: "5,95€" },
-  { number: 26, title: "Trabant 601", date: "08/08/2026", price: "5,95€" },
-  { number: 27, title: "Renault 8 Gordini", date: "15/08/2026", price: "5,95€" },
-  { number: 28, title: "VW Golf GTI", date: "22/08/2026", price: "5,95€" },
-  { number: 29, title: "Dacia 1100", date: "29/08/2026", price: "5,95€" },
-  { number: 30, title: "Trabant P50", date: "05/09/2026", price: "5,95€" },
-  { number: 31, title: "Mercedes Benz G-Class", date: "12/09/2026", price: "5,95€" },
-  // Cars 32-150: Coming soon
-  ...Array.from({ length: 119 }, (_, i) => ({
-    number: i + 32,
+  { number: 26, title: "Volvo 240 GL", date: deliveryDates[25], price: "5,95€" },
+  { number: 27, title: "Fiat 126P", date: deliveryDates[26], price: "5,95€" },
+  { number: 28, title: "Trabant 601", date: deliveryDates[27], price: "5,95€" },
+  { number: 29, title: "VW Golf GTI", date: deliveryDates[28], price: "5,95€" },
+  { number: 30, title: "Renault 8 Gordini", date: deliveryDates[29], price: "5,95€" },
+  { number: 31, title: "Mercedes Benz G-Class", date: deliveryDates[30], price: "5,95€" },
+  { number: 32, title: "Ford Capri '69", date: deliveryDates[31], price: "5,95€" },
+  { number: 33, title: "Fiat Panda", date: deliveryDates[32], price: "5,95€" },
+  { number: 34, title: "Mercedes 190 SL", date: deliveryDates[33], price: "5,95€" },
+  { number: 35, title: "Trabant P50", date: deliveryDates[34], price: "5,95€" },
+  { number: 36, title: "Ford Pick-up '51", date: deliveryDates[35], price: "5,95€" },
+  { number: 37, title: "Opel Manta", date: deliveryDates[36], price: "5,95€" },
+  { number: 38, title: "Citröen Tipo H", date: deliveryDates[37], price: "5,95€" },
+  { number: 39, title: "Dacia 1100", date: deliveryDates[38], price: "5,95€" },
+  { number: 40, title: "Peugeot 206", date: deliveryDates[39], price: "5,95€" },
+  { number: 41, title: "Porsche 356B", date: deliveryDates[40], price: "5,95€" },
+  { number: 42, title: "Wartburg 353", date: deliveryDates[41], price: "5,95€" },
+  // Cars 43-150: Coming soon
+  ...Array.from({ length: 108 }, (_, i) => ({
+    number: i + 43,
     title: "Em breve disponível o modelo do carro",
-    date: deliveryDates[i + 31],
+    date: deliveryDates[i + 42],
     price: "5,95€"
   }))
 ];
