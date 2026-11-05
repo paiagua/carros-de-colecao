@@ -11,9 +11,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { ChevronLeft, ArrowRight, Check, Sparkles, Gift, Package, Car, Shield, X, RefreshCcw, HelpCircle, Phone, Mail, Building } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import car1 from "@/assets/cars/car-1.png";
-import car2 from "@/assets/cars/car-2.png";
-import car3 from "@/assets/cars/car-3.png";
+import car1 from "@/assets/cars/car-1.webp";
+import car2 from "@/assets/cars/car-2.webp";
+import car3 from "@/assets/cars/car-3.webp";
 import { trackSubscriptionFormSubmit, trackSubscriptionFirstStep, trackSubscriptionLastStep, trackEvent } from "@/lib/analytics";
 
 const step1Schema = z.object({

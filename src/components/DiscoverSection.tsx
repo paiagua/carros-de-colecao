@@ -1,5 +1,5 @@
 import carsCollection from "@/assets/cars-collection.png";
-import car5 from "@/assets/cars/car-5.png";
+import car5 from "@/assets/cars/car-5.webp";
 import realCar5 from "@/assets/real-cars/real-car-5.png";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/contexts/SubscriptionContext";
